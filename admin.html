@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>AMARA Portal - Admin User Management</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=Plus+Jakarta+Sans:wght@400;600&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-secondary-container": "#00714e",
+            "on-tertiary-container": "#8596ae",
+            "inverse-surface": "#2d3133",
+            "on-surface-variant": "#44474f",
+            "primary-fixed": "#d8e2ff",
+            "error": "#ba1a1a",
+            "on-secondary-fixed-variant": "#005137",
+            "surface-container-lowest": "#ffffff",
+            "primary": "#00173b",
+            "outline-variant": "#c4c6d0",
+            "tertiary": "#08192c",
+            "on-primary-container": "#7c94c8",
+            "primary-container": "#0f2c59",
+            "inverse-primary": "#aec7fd",
+            "on-background": "#191c1e",
+            "background": "#f7f9fb",
+            "surface-container-highest": "#e0e3e5",
+            "surface-container": "#eceef0",
+            "on-secondary-fixed": "#002114",
+            "on-secondary": "#ffffff",
+            "tertiary-container": "#1e2e42",
+            "on-error": "#ffffff",
+            "tertiary-fixed-dim": "#b7c8e1",
+            "error-container": "#ffdad6",
+            "on-primary-fixed": "#001a41",
+            "on-surface": "#191c1e",
+            "on-primary": "#ffffff",
+            "surface-container-high": "#e6e8ea",
+            "on-error-container": "#93000a",
+            "surface-dim": "#d8dadc",
+            "on-tertiary": "#ffffff",
+            "secondary-container": "#82f5c1",
+            "surface-bright": "#f7f9fb",
+            "on-primary-fixed-variant": "#2d4674",
+            "tertiary-fixed": "#d3e4fe",
+            "inverse-on-surface": "#eff1f3",
+            "secondary-fixed-dim": "#68dba9",
+            "surface-container-low": "#f2f4f6",
+            "surface": "#f7f9fb",
+            "surface-variant": "#e0e3e5",
+            "primary-fixed-dim": "#aec7fd",
+            "on-tertiary-fixed-variant": "#38485d",
+            "surface-tint": "#465e8e",
+            "secondary": "#006c4a",
+            "on-tertiary-fixed": "#0b1c30",
+            "secondary-fixed": "#85f8c4",
+            "outline": "#747780"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter": "24px",
+            "stack-lg": "32px",
+            "margin-desktop": "40px",
+            "container-max": "1280px",
+            "margin-mobile": "16px",
+            "stack-md": "16px",
+            "stack-sm": "8px",
+            "sidebar-width": "280px"
+          },
+          "fontFamily": {
+            "label-md": ["Plus Jakarta Sans"],
+            "headline-sm": ["Playfair Display"],
+            "body-md": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Playfair Display"],
+            "headline-xl": ["Playfair Display"],
+            "headline-lg": ["Playfair Display"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-md": ["Playfair Display"]
+          },
+          "fontSize": {
+            "label-md": ["14px", { "lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "600" }],
+            "headline-sm": ["22px", { "lineHeight": "1.4", "fontWeight": "600" }],
+            "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+            "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+            "headline-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+            "headline-xl": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-lg": ["36px", { "lineHeight": "1.2", "fontWeight": "700" }],
+            "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+            "headline-md": ["28px", { "lineHeight": "1.3", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .glass-card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .shadow-level-1 {
+      box-shadow: 0px 4px 20px rgba(15, 44, 89, 0.05);
+    }
+
+    .shadow-level-2 {
+      box-shadow: 0px 12px 32px rgba(15, 44, 89, 0.1);
+    }
+
+    .border-left-emerald {
+      border-left: 4px solid #006c4a;
+    }
+  </style>
+  <script>
+      (async function guardAdmin() {
+        try {
+          const res = await fetch('/api/auth/me');
+          const data = await res.json();
+          if (!data.authenticated || data.user.role !== 'admin') {
+            location.href = 'login.html';
+          }
+        } catch (e) {
+          location.href = 'login.html';
+        }
+      })();
+  </script>
+</head>
+
+<body class="bg-background text-on-background font-body-md min-h-screen flex antialiased">
+  <!-- SideNavBar (from JSON) -->
+  <nav
+    class="hidden md:flex flex-col h-full p-stack-md border-r border-outline-variant bg-surface-container-low w-sidebar-width fixed left-0 top-0 h-screen z-40">
+    <div class="mb-stack-lg flex items-center gap-stack-md">
+      <div>
+        <h1 class="font-headline-sm text-headline-sm text-primary">AMARA Portal</h1>
+        <p class="font-body-sm text-body-sm text-on-surface-variant">Institutional Access</p>
+      </div>
+    </div>
+    <button
+      class="w-full bg-primary text-on-primary font-label-md text-label-md py-3 rounded-lg mb-stack-lg shadow-sm hover:opacity-90 transition-opacity">
+      New Report
+    </button>
+    <ul class="flex-1 space-y-2">
+      <li>
+        <a class="flex items-center gap-stack-md text-on-surface-variant p-stack-md hover:bg-surface-container-high transition-all rounded-lg font-label-md text-label-md"
+          href="dashboard.html">
+          <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+          Dashboard
+        </a>
+      </li>
+      <li>
+        <a class="flex items-center gap-stack-md text-on-surface-variant p-stack-md hover:bg-surface-container-high transition-all rounded-lg font-label-md text-label-md"
+          href="transparency.html">
+          <span class="material-symbols-outlined" data-icon="public">public</span>
+          Global Impact
+        </a>
+      </li>
+      <li>
+        <a class="flex items-center gap-stack-md text-on-surface-variant p-stack-md hover:bg-surface-container-high transition-all rounded-lg font-label-md text-label-md"
+          href="financials.html">
+          <span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+          Financials
+        </a>
+      </li>
+      <li>
+        <a class="flex items-center gap-stack-md text-on-surface-variant p-stack-md hover:bg-surface-container-high transition-all rounded-lg font-label-md text-label-md"
+          href="#">
+          <span class="material-symbols-outlined" data-icon="group">group</span>
+          Donors
+        </a>
+      </li>
+      <li>
+        <!-- Active State -->
+        <a class="flex items-center gap-stack-md bg-secondary-container text-on-secondary-container rounded-lg p-stack-md border-l-4 border-secondary font-label-md text-label-md"
+          href="#">
+          <span class="material-symbols-outlined" data-icon="settings">settings</span>
+          Settings
+        </a>
+      </li>
+    </ul>
+    <div class="mt-auto pt-stack-md border-t border-outline-variant space-y-2">
+      <a class="flex items-center gap-stack-md text-on-surface-variant p-stack-md hover:bg-surface-container-high transition-all rounded-lg font-label-md text-label-md"
+        href="#">
+        <span class="material-symbols-outlined" data-icon="help">help</span>
+        Help
+      </a>
+      <a class="flex items-center gap-stack-md text-on-surface-variant p-stack-md hover:bg-surface-container-high transition-all rounded-lg font-label-md text-label-md"
+        href="#">
+        <span class="material-symbols-outlined" data-icon="logout">logout</span>
+        Logout
+      </a>
+    </div>
+  </nav>
+  <!-- Main Content Area -->
+  <main class="flex-1 md:ml-sidebar-width p-margin-mobile md:p-margin-desktop min-h-screen">
+    <!-- Header -->
+    <header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-stack-lg gap-stack-md">
+      <div>
+        <h2 class="font-headline-lg text-headline-lg text-primary mb-2">User Management</h2>
+        <p class="font-body-md text-body-md text-on-surface-variant">Manage administrative access, roles, and review
+          activity logs across the institution.</p>
+      </div>
+      <div class="flex gap-3">
+        <a href="/api/donations/export.csv"
+          class="bg-primary text-on-primary px-6 py-3 rounded-full font-label-md text-label-md hover:opacity-90 transition-opacity flex items-center gap-2 shadow-level-1">
+          <span class="material-symbols-outlined" data-icon="download">download</span> Export CSV
+        </a>
+        <button
+          class="bg-secondary text-on-secondary px-6 py-3 rounded-full font-label-md text-label-md hover:opacity-90 transition-opacity flex items-center gap-2 shadow-level-1"
+          onclick="document.getElementById('inviteModal').classList.remove('hidden')">
+          <span class="material-symbols-outlined" data-icon="add">add</span> Invite New User
+        </button>
+      </div>
+    </header>
+    <!-- Search & Filter Bar -->
+    <div
+      class="bg-surface-container-lowest p-stack-md rounded-xl shadow-level-1 mb-gutter flex flex-col md:flex-row gap-stack-md items-center">
+      <div class="relative flex-1 w-full">
+        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant"
+          data-icon="search">search</span>
+        <input id="adminSearch"
+          class="w-full pl-12 pr-4 py-3 bg-surface border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md"
+          placeholder="Rechercher par donateur, email ou projet..." type="text" oninput="filterAdminTable()" />
+      </div>
+    </div>
+    <!-- User Directory - Bento Grid Style -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-stack-lg">
+      <!-- Main User List (Takes up 8 columns on desktop) -->
+      <div class="md:col-span-8 bg-surface-container-lowest rounded-[24px] shadow-level-1 overflow-hidden">
+        <div
+          class="p-stack-md border-b border-outline-variant flex justify-between items-center bg-surface-container-low">
+          <h3 class="font-headline-sm text-headline-sm text-primary">Tous les Dons (Base de données Live)</h3>
+          <span class="font-body-sm text-body-sm text-on-surface-variant" id="donationCountLabel">Chargement...</span>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr
+                class="bg-surface-container-lowest border-b border-outline-variant font-label-md text-label-md text-on-surface-variant">
+                <th class="p-stack-md font-medium">Référence</th>
+                <th class="p-stack-md font-medium">Donateur</th>
+                <th class="p-stack-md font-medium">Projet</th>
+                <th class="p-stack-md font-medium">Montant</th>
+                <th class="p-stack-md font-medium">Date</th>
+                <th class="p-stack-md font-medium">Statut</th>
+              </tr>
+            </thead>
+            <tbody id="adminDonationsBody" class="divide-y divide-outline-variant font-body-sm text-body-sm">
+              <tr>
+                <td colspan="6" class="p-stack-md text-center text-on-surface-variant">Chargement des données...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- Activity Logs & Quick Stats (Takes up 4 columns on desktop) -->
+      <div class="md:col-span-4 flex flex-col gap-gutter">
+        <!-- Quick Stats Card -->
+        <div class="bg-primary text-on-primary rounded-[24px] p-stack-md shadow-level-1 relative overflow-hidden">
+          <div class="absolute -right-10 -top-10 w-32 h-32 bg-primary-container rounded-full opacity-50"></div>
+          <h3
+            class="font-label-md text-label-md text-on-primary-container mb-4 relative z-10 uppercase tracking-widest">
+            Santé Système</h3>
+          <div class="flex items-end gap-2 relative z-10 mb-2">
+            <span class="font-headline-xl text-headline-xl">100%</span>
+            <span class="font-body-sm text-body-sm mb-2 text-on-primary-container">Postgres Serverless</span>
+          </div>
+          <div class="w-full bg-primary-container h-1 mt-4 rounded-full overflow-hidden relative z-10">
+            <div class="bg-secondary h-full w-[100%] rounded-full"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    let allAdminDonations = [];
+
+    async function loadAdminDonations() {
+      try {
+        const res = await fetch('/api/donations');
+        const data = await res.json();
+        if (data.success) {
+          allAdminDonations = data.donations;
+          renderAdminTable(allAdminDonations);
+        }
+      } catch (err) {
+        console.error('Error loading admin donations:', err);
+      }
+    }
+
+    function renderAdminTable(list) {
+      const tbody = document.getElementById('adminDonationsBody');
+      document.getElementById('donationCountLabel').textContent = `${list.length} Dons enregistrés`;
+      if (list.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" class="p-stack-md text-center text-on-surface-variant">Aucun don trouvé.</td></tr>`;
+        return;
+      }
+      tbody.innerHTML = list.map(d => `
+    <tr class="hover:bg-surface transition-colors">
+      <td class="p-stack-md font-bold text-primary">${d.reference}</td>
+      <td class="p-stack-md">
+        <div class="font-bold text-on-background">${d.donorName}</div>
+        <div class="text-xs text-on-surface-variant">${d.email}</div>
+      </td>
+      <td class="p-stack-md">${d.projectTitle}</td>
+      <td class="p-stack-md font-bold text-secondary">${d.amount.toLocaleString()} $</td>
+      <td class="p-stack-md text-on-surface-variant">${d.date}</td>
+      <td class="p-stack-md"><span class="bg-secondary-container text-on-secondary-container text-xs px-2 py-1 rounded-full font-medium">Validé</span></td>
+    </tr>
+  `).join('');
+    }
+
+    function filterAdminTable() {
+      const q = document.getElementById('adminSearch').value.toLowerCase().trim();
+      if (!q) { renderAdminTable(allAdminDonations); return; }
+      const filtered = allAdminDonations.filter(d =>
+        d.reference.toLowerCase().includes(q) ||
+        d.donorName.toLowerCase().includes(q) ||
+        d.email.toLowerCase().includes(q) ||
+        d.projectTitle.toLowerCase().includes(q)
+      );
+      renderAdminTable(filtered);
+    }
+
+    async function doLogout() {
+      await fetch('/api/auth/logout', { method: 'POST' });
+      location.href = 'login.html';
+    }
+
+    loadAdminDonations();
+  </script>
+</body>
+
+</html>

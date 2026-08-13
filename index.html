@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en">
+
+<head>
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>AMARA | Empowering Communities, Sustaining Futures</title>
+        <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;display=swap"
+                rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+                rel="stylesheet" />
+        <script id="tailwind-config">
+                tailwind.config = {
+                        darkMode: "class",
+                        theme: {
+                                extend: {
+                                        "colors": {
+                                                "on-surface": "#191c1e",
+                                                "secondary": "#006c4a",
+                                                "secondary-fixed-dim": "#68dba9",
+                                                "secondary-fixed": "#85f8c4",
+                                                "on-primary-fixed-variant": "#2d4674",
+                                                "on-tertiary": "#ffffff",
+                                                "on-error-container": "#93000a",
+                                                "tertiary": "#08192c",
+                                                "tertiary-container": "#1e2e42",
+                                                "on-secondary-fixed": "#002114",
+                                                "on-tertiary-container": "#8596ae",
+                                                "on-secondary-fixed-variant": "#005137",
+                                                "on-background": "#191c1e",
+                                                "tertiary-fixed-dim": "#b7c8e1",
+                                                "primary-fixed-dim": "#aec7fd",
+                                                "on-surface-variant": "#44474f",
+                                                "on-tertiary-fixed-variant": "#38485d",
+                                                "primary": "#00173b",
+                                                "surface-variant": "#e0e3e5",
+                                                "inverse-on-surface": "#eff1f3",
+                                                "error": "#ba1a1a",
+                                                "on-primary": "#ffffff",
+                                                "surface-container-lowest": "#ffffff",
+                                                "outline": "#747780",
+                                                "inverse-surface": "#2d3133",
+                                                "surface-tint": "#465e8e",
+                                                "inverse-primary": "#aec7fd",
+                                                "on-primary-container": "#7c94c8",
+                                                "outline-variant": "#c4c6d0",
+                                                "surface-bright": "#f7f9fb",
+                                                "surface-container-high": "#e6e8ea",
+                                                "surface-container": "#eceef0",
+                                                "secondary-container": "#82f5c1",
+                                                "surface-container-highest": "#e0e3e5",
+                                                "primary-fixed": "#d8e2ff",
+                                                "surface-container-low": "#f2f4f6",
+                                                "surface-dim": "#d8dadc",
+                                                "on-secondary-container": "#00714e",
+                                                "background": "#f7f9fb",
+                                                "surface": "#f7f9fb",
+                                                "on-tertiary-fixed": "#0b1c30",
+                                                "on-error": "#ffffff",
+                                                "on-secondary": "#ffffff",
+                                                "tertiary-fixed": "#d3e4fe",
+                                                "on-primary-fixed": "#001a41",
+                                                "primary-container": "#0f2c59",
+                                                "error-container": "#ffdad6"
+                                        },
+                                        "borderRadius": {
+                                                "DEFAULT": "0.25rem",
+                                                "lg": "0.5rem",
+                                                "xl": "0.75rem",
+                                                "full": "9999px"
+                                        },
+                                        "spacing": {
+                                                "margin-mobile": "16px",
+                                                "stack-lg": "32px",
+                                                "margin-desktop": "40px",
+                                                "sidebar-width": "280px",
+                                                "container-max": "1280px",
+                                                "gutter": "24px",
+                                                "stack-sm": "8px",
+                                                "stack-md": "16px"
+                                        },
+                                        "fontFamily": {
+                                                "body-md": [
+                                                        "Plus Jakarta Sans"
+                                                ],
+                                                "body-lg": [
+                                                        "Plus Jakarta Sans"
+                                                ],
+                                                "headline-xl": [
+                                                        "Playfair Display"
+                                                ],
+                                                "headline-lg-mobile": [
+                                                        "Playfair Display"
+                                                ],
+                                                "headline-sm": [
+                                                        "Playfair Display"
+                                                ],
+                                                "label-md": [
+                                                        "Plus Jakarta Sans"
+                                                ],
+                                                "headline-md": [
+                                                        "Playfair Display"
+                                                ],
+                                                "body-sm": [
+                                                        "Plus Jakarta Sans"
+                                                ],
+                                                "headline-lg": [
+                                                        "Playfair Display"
+                                                ]
+                                        },
+                                        "fontSize": {
+                                                "body-md": [
+                                                        "16px",
+                                                        {
+                                                                "lineHeight": "1.6",
+                                                                "fontWeight": "400"
+                                                        }
+                                                ],
+                                                "body-lg": [
+                                                        "18px",
+                                                        {
+                                                                "lineHeight": "1.6",
+                                                                "fontWeight": "400"
+                                                        }
+                                                ],
+                                                "headline-xl": [
+                                                        "48px",
+                                                        {
+                                                                "lineHeight": "1.2",
+                                                                "letterSpacing": "-0.02em",
+                                                                "fontWeight": "700"
+                                                        }
+                                                ],
+                                                "headline-lg-mobile": [
+                                                        "32px",
+                                                        {
+                                                                "lineHeight": "1.2",
+                                                                "fontWeight": "700"
+                                                        }
+                                                ],
+                                                "headline-sm": [
+                                                        "22px",
+                                                        {
+                                                                "lineHeight": "1.4",
+                                                                "fontWeight": "600"
+                                                        }
+                                                ],
+                                                "label-md": [
+                                                        "14px",
+                                                        {
+                                                                "lineHeight": "1.0",
+                                                                "letterSpacing": "0.05em",
+                                                                "fontWeight": "600"
+                                                        }
+                                                ],
+                                                "headline-md": [
+                                                        "28px",
+                                                        {
+                                                                "lineHeight": "1.3",
+                                                                "fontWeight": "600"
+                                                        }
+                                                ],
+                                                "body-sm": [
+                                                        "14px",
+                                                        {
+                                                                "lineHeight": "1.5",
+                                                                "fontWeight": "400"
+                                                        }
+                                                ],
+                                                "headline-lg": [
+                                                        "36px",
+                                                        {
+                                                                "lineHeight": "1.2",
+                                                                "fontWeight": "700"
+                                                        }
+                                                ]
+                                        }
+                                },
+                        },
+                }
+        </script>
+        <style>
+                .material-symbols-outlined {
+                        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+                }
+
+                .material-symbols-outlined[data-weight="fill"] {
+                        font-variation-settings: 'FILL' 1;
+                }
+
+                .shadow-level-1 {
+                        box-shadow: 0px 4px 20px rgba(15, 44, 89, 0.05);
+                }
+
+                .shadow-level-2 {
+                        box-shadow: 0px 12px 32px rgba(15, 44, 89, 0.1);
+                }
+
+                @keyframes fadeInUp {
+                        from {
+                                opacity: 0;
+                                transform: translateY(20px);
+                        }
+
+                        to {
+                                opacity: 1;
+                                transform: translateY(0);
+                        }
+                }
+
+                .animate-fade-in-up {
+                        animation: fadeInUp 0.8s ease-out forwards;
+                        opacity: 0;
+                }
+        </style>
+</head>
+
+<body class="bg-surface text-on-surface font-body-md antialiased flex flex-col min-h-screen">
+        <!-- TopNavBar -->
+        <header class="sticky top-0 z-50 bg-surface shadow-sm">
+                <nav
+                        class="flex justify-between items-center px-margin-mobile md:px-margin-desktop w-full h-20 max-w-container-max mx-auto">
+                        <div class="font-headline-md text-headline-md font-bold text-primary">
+                                AMARA
+                        </div>
+                        <div class="hidden md:flex gap-stack-lg items-center">
+                                <a class="font-body-md text-body-md text-secondary font-bold border-b-2 border-secondary pb-1 hover:text-secondary transition-colors duration-200"
+                                        href="index.html">Impact</a>
+                                <a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors duration-200"
+                                        href="projects.html">Programs</a>
+                                <a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors duration-200"
+                                        href="reports.html">Reports</a>
+                                <a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors duration-200"
+                                        href="about.html">Governance</a>
+                        </div>
+                        <div class="flex items-center gap-stack-md">
+                                <button class="hidden md:flex bg-secondary text-on-secondary rounded-full px-6 py-2 font-label-md text-label-md hover:bg-on-secondary-container transition-colors"
+                                        onclick="location.href='donate.html'">
+                                        Donate
+                                </button>
+                                <a href="login.html"
+                                        class="hidden md:flex items-center text-on-surface-variant hover:text-secondary transition-colors"
+                                        title="Connexion">
+                                        <span class="material-symbols-outlined">account_circle</span>
+                                </a>
+                                <button class="md:hidden text-primary">
+                                        <span class="material-symbols-outlined text-3xl">menu</span>
+                                </button>
+                        </div>
+                </nav>
+        </header>
+        <main class="flex-grow">
+                <!-- Hero Section -->
+                <section class="relative w-full h-[819px] min-h-[600px] flex items-center justify-center">
+                        <canvas class="absolute inset-0 w-full h-full object-cover z-0" id="hero-gl-canvas"></canvas>
+                        <script>
+                                        (function () {
+                                                const canvas = document.getElementById('hero-gl-canvas');
+                                                const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+                                                if (!gl) return;
+
+                                                const vsSource = `
+        attribute vec2 position;
+        varying vec2 v_texCoord;
+        void main() {
+            gl_Position = vec4(position, 0.0, 1.0);
+            v_texCoord = position * 0.5 + 0.5;
+        }
+    `;
+
+                                                const fsSource = `
+        precision highp float;
+        varying vec2 v_texCoord;
+        uniform float u_time;
+        uniform vec2 u_resolution;
+
+        float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123); }
+        float noise(vec2 p) {
+            vec2 i = floor(p);
+            vec2 f = fract(p);
+            f = f * f * (3.0 - 2.0 * f);
+            return mix(mix(hash(i + vec2(0.0,0.0)), hash(i + vec2(1.0,0.0)), f.x),
+                       mix(hash(i + vec2(0.0,1.0)), hash(i + vec2(1.0,1.0)), f.x), f.y);
+        }
+
+        void main() {
+            vec2 uv = v_texCoord;
+            vec2 p = uv * 3.0;
+            float n = noise(p + u_time * 0.1);
+            n += 0.5 * noise(p * 2.1 + u_time * 0.15);
+            vec3 color1 = vec3(0.058, 0.172, 0.349);
+            vec3 color2 = vec3(0.04, 0.12, 0.25);
+            vec3 accent = vec3(0.02, 0.588, 0.412);
+            float mask = smoothstep(0.4, 0.6, n);
+            vec3 finalColor = mix(color1, color2, mask);
+            float glow = smoothstep(0.3, 0.7, noise(p * 0.5 - u_time * 0.05));
+            finalColor = mix(finalColor, mix(finalColor, accent, 0.03), glow);
+            gl_FragColor = vec4(finalColor, 1.0);
+        }
+    `;
+
+                                                function createShader(gl, type, source) {
+                                                        const shader = gl.createShader(type);
+                                                        gl.shaderSource(shader, source);
+                                                        gl.compileShader(shader);
+                                                        if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+                                                                console.error(gl.getShaderInfoLog(shader));
+                                                        }
+                                                        return shader;
+                                                }
+
+                                                const vertexShader = createShader(gl, gl.VERTEX_SHADER, vsSource);
+                                                const fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fsSource);
+
+                                                const program = gl.createProgram();
+                                                gl.attachShader(program, vertexShader);
+                                                gl.attachShader(program, fragmentShader);
+                                                gl.linkProgram(program);
+                                                gl.useProgram(program);
+
+                                                const positionBuffer = gl.createBuffer();
+                                                gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+                                                const positions = [-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1];
+                                                gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
+
+                                                const positionLocation = gl.getAttribLocation(program, 'position');
+                                                gl.enableVertexAttribArray(positionLocation);
+                                                gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
+
+                                                const timeLocation = gl.getUniformLocation(program, 'u_time');
+                                                const resolutionLocation = gl.getUniformLocation(program, 'u_resolution');
+
+                                                function resize() {
+                                                        canvas.width = canvas.clientWidth;
+                                                        canvas.height = canvas.clientHeight;
+                                                        gl.viewport(0, 0, canvas.width, canvas.height);
+                                                }
+                                                window.addEventListener('resize', resize);
+                                                resize();
+
+                                                function render(time) {
+                                                        time *= 0.001;
+                                                        gl.uniform1f(timeLocation, time);
+                                                        gl.uniform2f(resolutionLocation, canvas.width, canvas.height);
+                                                        gl.drawArrays(gl.TRIANGLES, 0, 6);
+                                                        requestAnimationFrame(render);
+                                                }
+                                                requestAnimationFrame(render);
+                                        })();
+                        </script>
+                        <div
+                                class="relative z-10 text-center px-margin-mobile md:px-margin-desktop max-w-4xl mx-auto flex flex-col items-center animate-fade-in-up">
+                                <h1
+                                        class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-xl md:text-headline-xl text-white mb-stack-md">
+                                        Empowering Communities,<br />Sustaining Futures
+                                </h1>
+                                <p class="font-body-lg text-body-lg text-surface-container-low max-w-2xl mb-stack-lg">
+                                        We partner with local leaders to build resilient infrastructure, deliver
+                                        critical healthcare, and foster economic independence across the globe.
+                                </p>
+                                <button class="bg-secondary text-on-secondary rounded-full px-8 py-3 font-label-md text-label-md hover:bg-on-secondary-container transition-all shadow-level-1 hover:shadow-level-2 transform hover:-translate-y-1"
+                                        onclick="location.href='donate.html'">
+                                        Support Our Mission
+                                </button>
+                        </div>
+                        <!-- Overlapping Statistics Bar -->
+                        <div class="absolute bottom-0 left-0 right-0 translate-y-1/2 z-20 px-margin-mobile md:px-margin-desktop w-full max-w-container-max mx-auto animate-fade-in-up"
+                                style="animation-delay: 0.2s;">
+                                <div
+                                        class="bg-white rounded-[24px] shadow-level-2 p-stack-lg grid grid-cols-1 md:grid-cols-3 gap-gutter divide-y md:divide-y-0 md:divide-x divide-surface-variant">
+                                        <div class="flex flex-col items-center text-center py-stack-sm md:py-0">
+                                                <span
+                                                        class="font-headline-lg text-headline-lg text-primary mb-2">1M+</span>
+                                                <span
+                                                        class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Lives
+                                                        Impacted</span>
+                                        </div>
+                                        <div class="flex flex-col items-center text-center py-stack-sm md:py-0">
+                                                <span
+                                                        class="font-headline-lg text-headline-lg text-primary mb-2">15</span>
+                                                <span
+                                                        class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Countries</span>
+                                        </div>
+                                        <div class="flex flex-col items-center text-center py-stack-sm md:py-0">
+                                                <span
+                                                        class="font-headline-lg text-headline-lg text-primary mb-2">98%</span>
+                                                <span
+                                                        class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Fund
+                                                        Efficiency</span>
+                                        </div>
+                                </div>
+                        </div>
+                </section>
+                <!-- Spacer for overlapping stats -->
+                <div class="h-32 md:h-24"></div>
+                <!-- Our Impact Section -->
+                <section class="py-20 px-margin-mobile md:px-margin-desktop w-full max-w-container-max mx-auto">
+                        <div class="mb-16">
+                                <h2 class="font-headline-lg text-headline-lg text-primary mb-4">Our Impact Areas</h2>
+                                <div class="w-16 h-1 bg-secondary rounded-full"></div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+                                <!-- Impact Card 1 -->
+                                <div
+                                        class="bg-white rounded-[16px] shadow-level-1 overflow-hidden group hover:shadow-level-2 transition-shadow duration-300 border-l-4 border-secondary flex flex-col h-full">
+                                        <div class="h-48 bg-cover bg-center"
+                                                data-alt="A close-up, high-quality portrait of a young female student in a rural classroom, deeply engaged in reading a textbook. The setting is a newly built, well-lit educational facility. The style is 'Modern Institutionalism', conveying hope, structure, and the tangible results of educational funding. The color palette features deep navys from the school uniforms and bright whites from the classroom environment."
+                                                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBl245hxNpxFb1xGvc_mUX1QQWXpIXgucEPCiC6lYRe5miSdR9WRNwW7KGHx2fqyyoPBX__yGUBX1_6AbLvEFccusCGgQNAPS1urTQ6t2n4zvVxxUYGIuFv0yQ4lxwVhsLCeGQw7oPmGyoHM4UfCf6sdGMUeAD030iK1fLofO8A0ERvLr00g_J2J8Q72kVeOe-5CTsUXPuRtElX_jM4k5H7UQ37zPNUjCtNyzqmbGDcT07gBvA4VxzWxA')">
+                                        </div>
+                                        <div class="p-stack-lg flex-grow flex flex-col">
+                                                <h3 class="font-headline-sm text-headline-sm text-primary mb-2">
+                                                        Education Access</h3>
+                                                <p
+                                                        class="font-body-md text-body-md text-on-surface-variant mb-6 flex-grow">
+                                                        Building schools and providing scholarships to ensure every
+                                                        child has the foundation for a successful future.</p>
+                                                <a class="inline-flex items-center gap-2 font-label-md text-label-md text-secondary hover:text-on-secondary-container transition-colors"
+                                                        href="#">
+                                                        Read Report <span
+                                                                class="material-symbols-outlined text-sm">arrow_forward</span>
+                                                </a>
+                                        </div>
+                                </div>
+                                <!-- Impact Card 2 -->
+                                <div
+                                        class="bg-white rounded-[16px] shadow-level-1 overflow-hidden group hover:shadow-level-2 transition-shadow duration-300 border-l-4 border-transparent flex flex-col h-full">
+                                        <div class="h-48 bg-cover bg-center"
+                                                data-alt="A dynamic shot of a modern, small-scale sustainable agriculture project. Farmers are seen tending to lush, green crops using efficient drip irrigation systems. The aesthetic emphasizes 'Modern Institutionalism' with a focus on structural solutions, clean lines, and environmental sustainability. The dominant colors are emerald greens and earthy tones, lit by clear, bright sunlight."
+                                                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuArWjgd7j_mEhozQ18DNgpkAZWJw_FBGg2XXHlEul3LEo4D-pOqOIpwNJB4ALo6bB499MvwtRTkfLaBTq9W1hpw01-dLyOkA2Q8qqsdticW-t-3IqwOxEVgyMtF2tTVr9aTRVVSAdE9tEVdH-7MNK1EuN_vjonGLzvHQjzkwLiSR1Xi_vSVQoBB793Mjww-shi95a7BeF4_fJoZsn6WpJ0shmN-ZxfqCRJzvcopXpz_ZiqoxdxXl3D_ww')">
+                                        </div>
+                                        <div class="p-stack-lg flex-grow flex flex-col">
+                                                <h3 class="font-headline-sm text-headline-sm text-primary mb-2">
+                                                        Sustainable Agriculture</h3>
+                                                <p
+                                                        class="font-body-md text-body-md text-on-surface-variant mb-6 flex-grow">
+                                                        Equipping farmers with modern techniques and drought-resistant
+                                                        resources to ensure food security.</p>
+                                                <a class="inline-flex items-center gap-2 font-label-md text-label-md text-secondary hover:text-on-secondary-container transition-colors"
+                                                        href="#">
+                                                        Read Report <span
+                                                                class="material-symbols-outlined text-sm">arrow_forward</span>
+                                                </a>
+                                        </div>
+                                </div>
+                                <!-- Impact Card 3 -->
+                                <div
+                                        class="bg-white rounded-[16px] shadow-level-1 overflow-hidden group hover:shadow-level-2 transition-shadow duration-300 border-l-4 border-transparent flex flex-col h-full">
+                                        <div class="h-48 bg-cover bg-center"
+                                                data-alt="A highly professional image of a clean, well-equipped rural medical clinic. A local healthcare worker in crisp scrubs is examining a patient. The visual style is rooted in 'Modern Institutionalism', highlighting cleanliness, medical authority, and care. The color palette is composed of stark whites, clinical blues, and warm skin tones, conveying trust and stability."
+                                                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAtSdU6PLtMeBTNnsCq-PmIxCXMyAuvZiHv6XqS07xTOkU2Lhi6mPxbAK6ybrdgCP4-E1clxnK0yNMyZ8siveSICLAmCAjP1gcxXu8wdylI6mhjkrVkYcAGVAAn6GTyxe8PT4x7_3VMdYpFM1BS2CivS3GdTN5E7jOLHQTdJReX9wmcVuPvmCJNzuFaeGvi2yb-k7LRlAB937B6S0Z0-4ANZ4M3atGQ80H7qQDGOKoJyaBuTUeu12imxQ')">
+                                        </div>
+                                        <div class="p-stack-lg flex-grow flex flex-col">
+                                                <h3 class="font-headline-sm text-headline-sm text-primary mb-2">
+                                                        Healthcare Infrastructure</h3>
+                                                <p
+                                                        class="font-body-md text-body-md text-on-surface-variant mb-6 flex-grow">
+                                                        Constructing clinics and training medical staff to deliver
+                                                        essential healthcare in remote regions.</p>
+                                                <a class="inline-flex items-center gap-2 font-label-md text-label-md text-secondary hover:text-on-secondary-container transition-colors"
+                                                        href="#">
+                                                        Read Report <span
+                                                                class="material-symbols-outlined text-sm">arrow_forward</span>
+                                                </a>
+                                        </div>
+                                </div>
+                        </div>
+                </section>
+                <!-- CTA Section -->
+                <section class="bg-primary py-24 px-margin-mobile md:px-margin-desktop relative overflow-hidden">
+                        <!-- Subtle background pattern/gradient could go here -->
+                        <div class="relative z-10 w-full max-w-4xl mx-auto text-center">
+                                <h2 class="font-headline-lg text-headline-lg text-white mb-stack-md">Your Contribution
+                                        Drives Global Change</h2>
+                                <p
+                                        class="font-body-lg text-body-lg text-surface-container-low mb-stack-lg max-w-2xl mx-auto">
+                                        Join us in building a more equitable world. Every donation directly funds vital
+                                        infrastructure and community programs.
+                                </p>
+                                <div class="flex flex-col sm:flex-row gap-stack-md justify-center items-center">
+                                        <button class="bg-secondary text-on-secondary rounded-full px-8 py-4 font-label-md text-label-md hover:bg-on-secondary-container transition-all shadow-level-1 w-full sm:w-auto text-lg"
+                                                onclick="location.href='donate.html'">
+                                                Donate Now
+                                        </button>
+                                        <button class="bg-transparent border-2 border-secondary text-secondary-fixed rounded-lg px-8 py-4 font-label-md text-label-md hover:bg-secondary-fixed hover:text-on-secondary-fixed transition-all w-full sm:w-auto text-lg"
+                                                onclick="location.href='contact.html'">
+                                                Partner With Us
+                                        </button>
+                                </div>
+                        </div>
+                </section>
+        </main>
+        <!-- Footer -->
+        <footer class="bg-primary w-full">
+                <div
+                        class="flex flex-col md:flex-row justify-between items-center px-margin-mobile md:px-margin-desktop py-stack-lg w-full max-w-container-max mx-auto border-t border-on-primary-fixed-variant">
+                        <div class="font-headline-sm text-headline-sm text-on-primary mb-stack-md md:mb-0">
+                                AMARA
+                        </div>
+                        <div class="flex flex-wrap justify-center gap-stack-md md:gap-stack-lg mb-stack-md md:mb-0">
+                                <a class="font-body-sm text-body-sm text-on-primary-container hover:text-secondary-fixed transition-colors"
+                                        href="#">Privacy Policy</a>
+                                <a class="font-body-sm text-body-sm text-on-primary-container hover:text-secondary-fixed transition-colors"
+                                        href="#">Terms of Service</a>
+                                <a class="font-body-sm text-body-sm text-on-primary-container hover:text-secondary-fixed transition-colors"
+                                        href="#">Annual Reports</a>
+                                <a class="font-body-sm text-body-sm text-on-primary-container hover:text-secondary-fixed transition-colors"
+                                        href="#">Contact Us</a>
+                        </div>
+                        <div class="font-body-sm text-body-sm text-on-primary-container text-center md:text-right">
+                                © 2026 AMARA Institutional. All rights reserved.
+                        </div>
+                </div>
+        </footer>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+{
+  "name": "amara-backend",
+  "version": "1.0.0",
+  "description": "AMARA Foundation Backend API - Node.js Express + Neon Postgres + Vercel",
+  "main": "api/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon api/index.js",
+    "start": "node api/index.js",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "tsx src/db/migrate.js",
+    "db:seed": "tsx src/db/seed.js"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^0.9.5",
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "drizzle-orm": "^0.33.0",
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.4.0",
+    "jsonwebtoken": "^9.0.2",
+    "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.24.2",
+    "nodemon": "^3.1.4",
+    "tsx": "^4.19.0"
+  }
+}
