@@ -199,8 +199,7 @@
                                         href="index.html">Impact</a>
                                 <a class="text-on-surface-variant dark:text-outline-variant hover:text-secondary transition-colors duration-200 font-body-md text-body-md"
                                         href="projects.html">Programmes</a>
-                                <a class="text-on-surface-variant dark:text-outline-variant hover:text-secondary transition-colors duration-200 font-body-md text-body-md"
-                                        href="reports.html">Rapports</a>
+                                
                                 <a class="text-on-surface-variant dark:text-outline-variant hover:text-secondary transition-colors duration-200 font-body-md text-body-md"
                                         href="about.html">Gouvernance</a>
                         </nav>
@@ -333,6 +332,56 @@
                                         <input class="bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none w-full"
                                                 id="donorEmail" placeholder="Email Address" type="email" />
                                 </div>
+
+                                <!-- Moyens de paiement -->
+                                <div class="flex flex-col gap-stack-md mt-stack-sm">
+                                        <label class="font-label-md text-label-md text-primary">Moyen de paiement</label>
+                                        <div class="grid grid-cols-3 gap-2" id="paymentMethodGrid">
+                                                <button type="button" data-method="card" onclick="selectPaymentMethod('card')"
+                                                        class="py-3 px-2 border-2 border-primary bg-primary-fixed text-on-primary-fixed rounded-lg font-body-sm text-body-sm text-center font-bold flex flex-col items-center justify-center gap-1">
+                                                        <span class="material-symbols-outlined text-lg">credit_card</span>
+                                                        <span class="text-xs">Carte (Visa/MC)</span>
+                                                </button>
+                                                <button type="button" data-method="mobile_money" onclick="selectPaymentMethod('mobile_money')"
+                                                        class="py-3 px-2 border border-outline-variant rounded-lg font-body-sm text-body-sm text-on-surface hover:border-primary transition-colors text-center flex flex-col items-center justify-center gap-1">
+                                                        <span class="material-symbols-outlined text-lg">phone_android</span>
+                                                        <span class="text-xs">Mobile Money</span>
+                                                </button>
+                                                <button type="button" data-method="paypal" onclick="selectPaymentMethod('paypal')"
+                                                        class="py-3 px-2 border border-outline-variant rounded-lg font-body-sm text-body-sm text-on-surface hover:border-primary transition-colors text-center flex flex-col items-center justify-center gap-1">
+                                                        <span class="material-symbols-outlined text-lg">payment</span>
+                                                        <span class="text-xs">PayPal</span>
+                                                </button>
+                                        </div>
+                                </div>
+
+                                <!-- Champs Dynamiques de Paiement -->
+                                <div id="paymentFields" class="mt-2">
+                                        <!-- Section Carte -->
+                                        <div id="cardFields" class="space-y-3">
+                                                <input type="text" placeholder="Numéro de carte (Visa / Mastercard)" class="bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none w-full" />
+                                                <div class="grid grid-cols-2 gap-2">
+                                                        <input type="text" placeholder="MM/AA" class="bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none" />
+                                                        <input type="text" placeholder="CVC" class="bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none" />
+                                                </div>
+                                        </div>
+
+                                        <!-- Section Mobile Money -->
+                                        <div id="mobileMoneyFields" class="hidden space-y-3">
+                                                <select id="mobileProvider" class="bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none w-full">
+                                                        <option value="mpesa">M-Pesa (Vodacom)</option>
+                                                        <option value="orange">Orange Money</option>
+                                                        <option value="airtel">Airtel Money</option>
+                                                </select>
+                                                <input type="text" id="mobileNumber" placeholder="Numéro de téléphone (ex: +243...)" class="bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none w-full" />
+                                        </div>
+
+                                        <!-- Section PayPal -->
+                                        <div id="paypalFields" class="hidden p-4 bg-surface-container-low rounded-lg text-center text-on-surface-variant font-body-sm text-body-sm">
+                                                Vous serez redirigé vers PayPal pour finaliser la transaction.
+                                        </div>
+                                </div>
+
                                 <button onclick="submitDonation()"
                                         class="mt-stack-md w-full bg-primary text-on-primary font-label-md text-label-md py-4 rounded-lg hover:bg-primary-container transition-colors shadow-sm"
                                         type="button">Confirmer le don</button>
@@ -379,6 +428,31 @@
                         }
                 }
 
+                let selectedPaymentMethod = 'card';
+                function selectPaymentMethod(method) {
+                        selectedPaymentMethod = method;
+                        document.querySelectorAll('#paymentMethodGrid button').forEach(b => {
+                                const m = b.getAttribute('data-method');
+                                if (m === method) {
+                                        b.className = "py-3 px-2 border-2 border-primary bg-primary-fixed text-on-primary-fixed rounded-lg font-body-sm text-body-sm text-center font-bold flex flex-col items-center justify-center gap-1";
+                                } else {
+                                        b.className = "py-3 px-2 border border-outline-variant rounded-lg font-body-sm text-body-sm text-on-surface hover:border-primary transition-colors text-center flex flex-col items-center justify-center gap-1";
+                                }
+                        });
+
+                        document.getElementById('cardFields').classList.add('hidden');
+                        document.getElementById('mobileMoneyFields').classList.add('hidden');
+                        document.getElementById('paypalFields').classList.add('hidden');
+
+                        if (method === 'card') {
+                                document.getElementById('cardFields').classList.remove('hidden');
+                        } else if (method === 'mobile_money') {
+                                document.getElementById('mobileMoneyFields').classList.remove('hidden');
+                        } else if (method === 'paypal') {
+                                document.getElementById('paypalFields').classList.remove('hidden');
+                        }
+                }
+
                 // Prefill form if user is already logged in
                 async function checkAuthPrefill() {
                         try {
@@ -413,7 +487,7 @@
                                                 slug: projectId,
                                                 amount: selectedAmount,
                                                 frequency: monthly ? 'monthly' : 'once',
-                                                paymentMethod: 'card'
+                                                paymentMethod: selectedPaymentMethod
                                         })
                                 });
 
