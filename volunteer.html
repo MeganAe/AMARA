@@ -244,7 +244,7 @@
                                         title="Connexion">
                                         <span class="material-symbols-outlined">account_circle</span>
                                 </a>
-                                <button class="md:hidden text-primary">
+                                <button class="md:hidden text-primary" id="mobileMenuBtn">
                                         <span class="material-symbols-outlined text-3xl">menu</span>
                                 </button>
                         </div>
@@ -354,6 +354,43 @@
                         </div>
                 </div>
         </footer>
+
+
+  <!-- Mobile Fullscreen Navigation Overlay -->
+  <div id="mobileMenuOverlay" class="fixed inset-0 bg-primary bg-opacity-98 z-50 transform translate-x-full transition-transform duration-300 flex flex-col items-center justify-center">
+    <button id="closeMobileMenuBtn" class="absolute top-6 right-6 text-white focus:outline-none">
+      <span class="material-symbols-outlined text-4xl">close</span>
+    </button>
+    <nav class="flex flex-col gap-6 text-center">
+      <a class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="index.html">Impact</a>
+      <a class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="projects.html">Programmes</a>
+      <a class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="transparency.html">Transparence</a>
+      <a class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="about.html">Gouvernance</a>
+      <a class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="volunteer.html">Bénévolat</a>
+      <a class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="contact.html">Contact</a>
+      <hr class="border-white opacity-20 my-2">
+      <a class="text-white text-xl hover:text-secondary-fixed transition-colors" href="login.html">Mon Compte</a>
+      <a class="bg-secondary text-on-secondary font-label-md py-3 px-8 rounded-full hover:bg-opacity-90 transition-opacity mt-4 inline-block text-lg" href="donate.html">Faire un don</a>
+    </nav>
+  </div>
+
+  <script>
+    (function() {
+      const btn = document.getElementById('mobileMenuBtn');
+      const closeBtn = document.getElementById('closeMobileMenuBtn');
+      const overlay = document.getElementById('mobileMenuOverlay');
+      if (btn && overlay) {
+        btn.addEventListener('click', function() {
+          overlay.classList.remove('translate-x-full');
+        });
+      }
+      if (closeBtn && overlay) {
+        closeBtn.addEventListener('click', function() {
+          overlay.classList.add('translate-x-full');
+        });
+      }
+    })();
+  </script>
 
 </body>
 

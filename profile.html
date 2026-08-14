@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>AMARA - Mon Profil</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-surface": "#191c1e",
+            "secondary": "#006c4a",
+            "secondary-fixed-dim": "#68dba9",
+            "secondary-fixed": "#85f8c4",
+            "on-primary-fixed-variant": "#2d4674",
+            "on-tertiary": "#ffffff",
+            "on-error-container": "#93000a",
+            "tertiary": "#08192c",
+            "tertiary-container": "#1e2e42",
+            "on-secondary-fixed": "#002114",
+            "on-tertiary-container": "#8596ae",
+            "on-secondary-fixed-variant": "#005137",
+            "on-background": "#191c1e",
+            "tertiary-fixed-dim": "#b7c8e1",
+            "primary-fixed-dim": "#aec7fd",
+            "on-surface-variant": "#44474f",
+            "on-tertiary-fixed-variant": "#38485d",
+            "primary": "#00173b",
+            "surface-variant": "#e0e3e5",
+            "inverse-on-surface": "#eff1f3",
+            "error": "#ba1a1a",
+            "on-primary": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "outline": "#747780",
+            "inverse-surface": "#2d3133",
+            "surface-tint": "#465e8e",
+            "inverse-primary": "#aec7fd",
+            "on-primary-container": "#7c94c8",
+            "outline-variant": "#c4c6d0",
+            "surface-bright": "#f7f9fb",
+            "surface-container-high": "#e6e8ea",
+            "surface-container": "#eceef0",
+            "secondary-container": "#82f5c1",
+            "surface-container-highest": "#e0e3e5",
+            "primary-fixed": "#d8e2ff",
+            "surface-container-low": "#f2f4f6",
+            "surface-dim": "#d8dadc",
+            "on-secondary-container": "#00714e",
+            "background": "#f7f9fb",
+            "surface": "#f7f9fb",
+            "on-tertiary-fixed": "#0b1c30",
+            "on-error": "#ffffff",
+            "on-secondary": "#ffffff",
+            "tertiary-fixed": "#d3e4fe",
+            "on-primary-fixed": "#001a41",
+            "primary-container": "#0f2c59",
+            "error-container": "#ffdad6"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin-mobile": "16px",
+            "stack-lg": "32px",
+            "margin-desktop": "40px",
+            "sidebar-width": "280px",
+            "gutter": "24px",
+            "stack-md": "16px",
+            "stack-sm": "8px"
+          },
+          "fontFamily": {
+            "headline": ["Playfair Display", "serif"],
+            "body-md": ["Plus Jakarta Sans", "sans-serif"],
+            "label-md": ["Plus Jakarta Sans", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
+  <style id="antiClickjack">body { display: none !important; }</style>
+</head>
+
+<body class="bg-background text-on-surface font-body-md antialiased h-screen overflow-hidden flex">
+  <!-- Sidebar -->
+  <aside
+    class="hidden md:flex bg-surface-container-low text-secondary font-label-md fixed left-0 top-0 h-screen w-sidebar-width flex-col p-stack-md border-r border-outline-variant z-40">
+    <!-- Brand / Header -->
+    <div class="mb-stack-lg flex items-center gap-4">
+      <div>
+        <h2 class="font-headline-sm text-headline-sm text-primary">Portail AMARA</h2>
+        <p class="text-on-surface-variant text-xs opacity-80" id="sidebarUserLabel">Espace donateur</p>
+      </div>
+    </div>
+    <!-- Navigation Links -->
+    <nav class="flex-1 space-y-2">
+      <!-- Tableau de bord -->
+      <a class="flex items-center gap-stack-md text-on-surface-variant p-stack-md rounded-lg hover:bg-surface-container-high transition-all"
+        href="dashboard.html">
+        <span class="material-symbols-outlined">dashboard</span>
+        <span>Tableau de bord</span>
+      </a>
+      <!-- Impact Global -->
+      <a class="flex items-center gap-stack-md text-on-surface-variant p-stack-md rounded-lg hover:bg-surface-container-high transition-all"
+        href="transparency.html">
+        <span class="material-symbols-outlined">public</span>
+        <span>Impact Global</span>
+      </a>
+      <!-- Finances (Admin uniquement) -->
+      <a id="navFinancials" class="hidden flex items-center gap-stack-md text-on-surface-variant p-stack-md rounded-lg hover:bg-surface-container-high transition-all"
+        href="financials.html">
+        <span class="material-symbols-outlined">account_balance_wallet</span>
+        <span>Finances</span>
+      </a>
+      <!-- Donateurs (Admin uniquement) -->
+      <a id="navAdminDonors" class="hidden flex items-center gap-stack-md text-on-surface-variant p-stack-md rounded-lg hover:bg-surface-container-high transition-all"
+        href="admin.html">
+        <span class="material-symbols-outlined">group</span>
+        <span>Gestion Donateurs</span>
+      </a>
+      <!-- Paramètres -->
+      <a class="flex items-center gap-stack-md bg-secondary-container text-on-secondary-container rounded-lg p-stack-md border-l-4 border-secondary transition-all"
+        href="profile.html">
+        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+        <span>Mon Profil</span>
+      </a>
+    </nav>
+    <!-- CTA -->
+    <div class="mt-auto mb-stack-lg">
+      <button onclick="location.href='donate.html'"
+        class="w-full bg-secondary text-on-secondary font-label-md py-3 rounded-lg hover:bg-opacity-90 transition-opacity">Faire un don</button>
+    </div>
+    <!-- Footer Links -->
+    <div class="space-y-2 border-t border-outline-variant pt-stack-md">
+      <a class="flex items-center gap-stack-md text-on-surface-variant p-2 rounded-lg hover:bg-surface-container-high transition-all"
+        href="#">
+        <span class="material-symbols-outlined text-sm">help</span>
+        <span class="text-sm">Aide</span>
+      </a>
+      <a class="flex items-center gap-stack-md text-on-surface-variant p-2 rounded-lg hover:bg-surface-container-high transition-all cursor-pointer"
+        onclick="doLogout()">
+        <span class="material-symbols-outlined text-sm">logout</span>
+        <span class="text-sm">Déconnexion</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Mobile Topbar -->
+  <div
+    class="md:hidden w-full h-16 bg-surface border-b border-outline-variant flex items-center justify-between px-margin-mobile fixed top-0 z-50">
+    <h1 class="font-headline-sm text-headline-sm text-primary">Portail AMARA</h1>
+    <button id="mobileMenuBtn" class="text-primary focus:outline-none">
+      <span class="material-symbols-outlined text-3xl">menu</span>
+    </button>
+  </div>
+
+  <!-- Mobile Fullscreen Navigation Overlay -->
+  <div id="mobileMenuOverlay" class="fixed inset-0 bg-primary bg-opacity-98 z-50 transform translate-x-full transition-transform duration-350 flex flex-col items-center justify-center">
+    <button id="closeMobileMenuBtn" class="absolute top-6 right-6 text-white focus:outline-none">
+      <span class="material-symbols-outlined text-4xl">close</span>
+    </button>
+    <nav class="flex flex-col gap-6 text-center">
+      <a class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="dashboard.html">Tableau de bord</a>
+      <a class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="transparency.html">Impact Global</a>
+      <a id="mobNavFinancials" class="hidden text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="financials.html">Finances</a>
+      <a id="mobNavAdminDonors" class="hidden text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="admin.html">Gestion Donateurs</a>
+      <a class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="profile.html">Mon Profil</a>
+      <hr class="border-white opacity-20 my-2">
+      <a class="text-white text-xl hover:text-secondary-fixed transition-colors" href="donate.html">Faire un don</a>
+      <a class="text-white text-xl hover:text-secondary-fixed transition-colors cursor-pointer" onclick="doLogout()">Déconnexion</a>
+    </nav>
+  </div>
+
+  <!-- Main Content -->
+  <main class="flex-1 ml-0 md:ml-sidebar-width h-screen overflow-y-auto mt-16 md:mt-0 p-margin-mobile md:p-margin-desktop">
+    <div class="max-w-2xl mx-auto">
+      <h1 class="font-headline-lg text-headline-lg text-primary mb-1">Mon Profil</h1>
+      <p class="font-body-md text-body-md text-on-surface-variant mb-8">Consultez et mettez à jour les informations de votre compte.</p>
+
+      <div class="bg-white rounded-[16px] shadow-level-1 p-stack-lg border border-outline-variant">
+        <form id="profileForm" class="space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label for="firstName" class="block font-label-md text-label-md text-on-surface-variant mb-2">Prénom</label>
+              <input type="text" id="firstName" required
+                class="w-full rounded-lg border-outline-variant focus:border-secondary focus:ring-secondary" />
+            </div>
+            <div>
+              <label for="lastName" class="block font-label-md text-label-md text-on-surface-variant mb-2">Nom</label>
+              <input type="text" id="lastName" required
+                class="w-full rounded-lg border-outline-variant focus:border-secondary focus:ring-secondary" />
+            </div>
+          </div>
+
+          <div>
+            <label for="email" class="block font-label-md text-label-md text-on-surface-variant mb-2">Adresse email (Non modifiable)</label>
+            <input type="email" id="email" disabled
+              class="w-full rounded-lg border-outline-variant bg-surface-container-low text-on-surface-variant opacity-70 cursor-not-allowed" />
+          </div>
+
+          <div>
+            <label for="role" class="block font-label-md text-label-md text-on-surface-variant mb-2">Type de compte</label>
+            <input type="text" id="role" disabled
+              class="w-full rounded-lg border-outline-variant bg-surface-container-low text-on-surface-variant opacity-70 cursor-not-allowed" />
+          </div>
+
+          <div class="border-t border-outline-variant pt-6">
+            <h3 class="font-headline-sm text-headline-sm text-primary mb-4">Changer de mot de passe (Optionnel)</h3>
+            <div>
+              <label for="password" class="block font-label-md text-label-md text-on-surface-variant mb-2">Nouveau mot de passe (min. 6 caractères)</label>
+              <input type="password" id="password" placeholder="Laisser vide pour ne pas modifier"
+                class="w-full rounded-lg border-outline-variant focus:border-secondary focus:ring-secondary" />
+            </div>
+          </div>
+
+          <div id="feedback" class="hidden text-sm p-4 rounded-lg"></div>
+
+          <div class="flex justify-end gap-4">
+            <button type="submit"
+              class="bg-secondary text-on-secondary font-label-md py-3 px-6 rounded-lg hover:bg-opacity-90 transition-opacity">
+              Enregistrer les modifications
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    let currentUser = null;
+
+    // Mobile Menu Triggers
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const closeMobileMenuBtn = document.getElementById('closeMobileMenuBtn');
+    const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+
+    mobileMenuBtn?.addEventListener('click', () => {
+      mobileMenuOverlay?.classList.remove('translate-x-full');
+    });
+
+    closeMobileMenuBtn?.addEventListener('click', () => {
+      mobileMenuOverlay?.classList.add('translate-x-full');
+    });
+
+    async function initProfile() {
+      try {
+        const authRes = await fetch('/api/auth/me');
+        const authData = await authRes.json();
+        if (!authData.authenticated || !authData.user) {
+          location.href = 'login.html';
+          return;
+        }
+        currentUser = authData.user;
+        const nameStr = `${currentUser.firstName} ${currentUser.lastName}`.trim();
+        const isAdmin = currentUser.role === 'admin';
+        document.getElementById('sidebarUserLabel').textContent = isAdmin ? `${nameStr} (Admin)` : nameStr;
+
+        // Display labels and fill values
+        document.getElementById('firstName').value = currentUser.firstName;
+        document.getElementById('lastName').value = currentUser.lastName;
+        document.getElementById('email').value = currentUser.email;
+        document.getElementById('role').value = isAdmin ? 'Administrateur' : 'Donateur';
+
+        // Toggle admin links
+        if (isAdmin) {
+          document.getElementById('navFinancials')?.classList.remove('hidden');
+          document.getElementById('navAdminDonors')?.classList.remove('hidden');
+          document.getElementById('mobNavFinancials')?.classList.remove('hidden');
+          document.getElementById('mobNavAdminDonors')?.classList.remove('hidden');
+        }
+
+        // Show body after complete load
+        document.getElementById('antiClickjack')?.remove();
+      } catch (err) {
+        location.href = 'login.html';
+      }
+    }
+
+    // Submit profile form
+    document.getElementById('profileForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const feedback = document.getElementById('feedback');
+      feedback.className = 'hidden text-sm p-4 rounded-lg';
+
+      const firstName = document.getElementById('firstName').value;
+      const lastName = document.getElementById('lastName').value;
+      const password = document.getElementById('password').value;
+
+      try {
+        const res = await fetch('/api/users/profile', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ firstName, lastName, password })
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          feedback.textContent = 'Votre profil a été mis à jour avec succès.';
+          feedback.className = 'block bg-secondary-container text-on-secondary-container text-sm p-4 rounded-lg';
+          document.getElementById('password').value = ''; // clear password field
+          
+          // Update sidebar label
+          const nameStr = `${firstName} ${lastName}`.trim();
+          document.getElementById('sidebarUserLabel').textContent = currentUser.role === 'admin' ? `${nameStr} (Admin)` : nameStr;
+        } else {
+          feedback.textContent = data.message || 'Une erreur est survenue.';
+          feedback.className = 'block bg-error-container text-on-error-container text-sm p-4 rounded-lg';
+        }
+      } catch (err) {
+        feedback.textContent = 'Erreur lors de la communication avec le serveur.';
+        feedback.className = 'block bg-error-container text-on-error-container text-sm p-4 rounded-lg';
+      }
+    });
+
+    async function doLogout() {
+      await fetch('/api/auth/logout', { method: 'POST' });
+      location.href = 'index.html';
+    }
+
+    initProfile();
+  </script>
+</body>
+
+</html>

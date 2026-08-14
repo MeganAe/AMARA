@@ -140,6 +140,8 @@
           if (!data.authenticated || data.user.role !== 'admin') {
             location.href = 'login.html';
           } else {
+            document.getElementById('mobNavFinancials')?.classList.remove('hidden');
+            document.getElementById('mobNavAdminDonors')?.classList.remove('hidden');
             document.getElementById('antiClickjack')?.remove();
           }
         } catch (e) {
@@ -191,9 +193,9 @@
       </li>
       <li>
         <a class="flex items-center gap-stack-md text-on-surface-variant p-stack-md hover:bg-surface-container-high transition-all rounded-lg font-label-md text-label-md"
-          href="#">
-          <span class="material-symbols-outlined" data-icon="settings">settings</span>
-          Paramètres
+          href="profile.html">
+          <span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+          Mon Profil
         </a>
       </li>
     </ul>
@@ -349,6 +351,43 @@
 
     loadAdminDonations();
   </script>
+
+  <!-- Mobile Fullscreen Navigation Overlay -->
+  <div id="mobileMenuOverlay" class="fixed inset-0 bg-primary bg-opacity-98 z-50 transform translate-x-full transition-transform duration-300 flex flex-col items-center justify-center">
+    <button id="closeMobileMenuBtn" class="absolute top-6 right-6 text-white focus:outline-none">
+      <span class="material-symbols-outlined text-4xl">close</span>
+    </button>
+    <nav class="flex flex-col gap-6 text-center">
+      <a class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="dashboard.html">Tableau de bord</a>
+      <a class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="transparency.html">Impact Global</a>
+      <a id="mobNavFinancials" class="hidden text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="financials.html">Finances</a>
+      <a id="mobNavAdminDonors" class="hidden text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="admin.html">Gestion Donateurs</a>
+      <a class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="profile.html">Mon Profil</a>
+      <hr class="border-white opacity-20 my-2">
+      <a class="text-white text-xl hover:text-secondary-fixed transition-colors" href="donate.html">Faire un don</a>
+      <a class="text-white text-xl hover:text-secondary-fixed transition-colors cursor-pointer" onclick="doLogout()">Déconnexion</a>
+    </nav>
+  </div>
+
+  <script>
+    // Mobile menu toggle logic
+    (function() {
+      const btn = document.getElementById('mobileMenuBtn');
+      const closeBtn = document.getElementById('closeMobileMenuBtn');
+      const overlay = document.getElementById('mobileMenuOverlay');
+      if (btn && overlay) {
+        btn.addEventListener('click', function() {
+          overlay.classList.remove('translate-x-full');
+        });
+      }
+      if (closeBtn && overlay) {
+        closeBtn.addEventListener('click', function() {
+          overlay.classList.add('translate-x-full');
+        });
+      }
+    })();
+  </script>
+
 </body>
 
 </html>
