@@ -10,6 +10,7 @@ import volunteersRouter from './routes/volunteers.js';
 import contactRouter from './routes/contact.js';
 import reportsRouter from './routes/reports.js';
 import usersRouter from './routes/users.js';
+import { ensureDbReady } from './db/init.js';
 
 const app = express();
 
@@ -21,6 +22,21 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+
+// Auto-initialize DB tables on first API call
+app.use('/api', async (req, res, next) => {
+  if (req.path === '/health') return next();
+  try {
+    await ensureDbReady();
+    next();
+  } catch (err) {
+    console.error('Database connection / init error:', err);
+    return res.status(500).json({
+      success: false,
+      message: err.message || 'Erreur de connexion à la base de données.'
+    });
+  }
+});
 
 // Mount API routes
 app.use('/api/auth', authRouter);

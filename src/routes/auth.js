@@ -73,7 +73,7 @@ router.post('/register', async (req, res) => {
     });
   } catch (err) {
     console.error('Error in /api/auth/register:', err);
-    return res.status(500).json({ success: false, message: 'Erreur serveur lors de l’inscription.' });
+    return res.status(500).json({ success: false, message: `Erreur serveur lors de l’inscription: ${err.message}` });
   }
 });
 
