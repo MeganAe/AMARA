@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="fr">
 
 <head>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>AMARA Portal - Admin User Management</title>
+  <title>Portail AMARA - Gestion des donateurs</title>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=Plus+Jakarta+Sans:wght@400;600&amp;display=swap"
@@ -139,12 +139,15 @@
           const data = await res.json();
           if (!data.authenticated || data.user.role !== 'admin') {
             location.href = 'login.html';
+          } else {
+            document.getElementById('antiClickjack')?.remove();
           }
         } catch (e) {
           location.href = 'login.html';
         }
       })();
   </script>
+<style id="antiClickjack">body { display: none !important; }</style>
 </head>
 
 <body class="bg-background text-on-background font-body-md min-h-screen flex antialiased">
@@ -153,49 +156,44 @@
     class="hidden md:flex flex-col h-full p-stack-md border-r border-outline-variant bg-surface-container-low w-sidebar-width fixed left-0 top-0 h-screen z-40">
     <div class="mb-stack-lg flex items-center gap-stack-md">
       <div>
-        <h1 class="font-headline-sm text-headline-sm text-primary">AMARA Portal</h1>
-        <p class="font-body-sm text-body-sm text-on-surface-variant">Institutional Access</p>
+        <h1 class="font-headline-sm text-headline-sm text-primary">Portail AMARA</h1>
+        <p class="font-body-sm text-body-sm text-on-surface-variant">Accès Administrateur</p>
       </div>
     </div>
-    <button
-      class="w-full bg-primary text-on-primary font-label-md text-label-md py-3 rounded-lg mb-stack-lg shadow-sm hover:opacity-90 transition-opacity">
-      New Report
-    </button>
     <ul class="flex-1 space-y-2">
       <li>
         <a class="flex items-center gap-stack-md text-on-surface-variant p-stack-md hover:bg-surface-container-high transition-all rounded-lg font-label-md text-label-md"
           href="dashboard.html">
           <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
-          Dashboard
+          Tableau de bord
         </a>
       </li>
       <li>
         <a class="flex items-center gap-stack-md text-on-surface-variant p-stack-md hover:bg-surface-container-high transition-all rounded-lg font-label-md text-label-md"
           href="transparency.html">
           <span class="material-symbols-outlined" data-icon="public">public</span>
-          Global Impact
+          Impact Global
         </a>
       </li>
       <li>
         <a class="flex items-center gap-stack-md text-on-surface-variant p-stack-md hover:bg-surface-container-high transition-all rounded-lg font-label-md text-label-md"
           href="financials.html">
           <span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
-          Financials
+          Finances
+        </a>
+      </li>
+      <li>
+        <a class="flex items-center gap-stack-md bg-secondary-container text-on-secondary-container rounded-lg p-stack-md border-l-4 border-secondary font-label-md text-label-md"
+          href="admin.html">
+          <span class="material-symbols-outlined" data-icon="group">group</span>
+          Gestion Donateurs
         </a>
       </li>
       <li>
         <a class="flex items-center gap-stack-md text-on-surface-variant p-stack-md hover:bg-surface-container-high transition-all rounded-lg font-label-md text-label-md"
           href="#">
-          <span class="material-symbols-outlined" data-icon="group">group</span>
-          Donors
-        </a>
-      </li>
-      <li>
-        <!-- Active State -->
-        <a class="flex items-center gap-stack-md bg-secondary-container text-on-secondary-container rounded-lg p-stack-md border-l-4 border-secondary font-label-md text-label-md"
-          href="#">
           <span class="material-symbols-outlined" data-icon="settings">settings</span>
-          Settings
+          Paramètres
         </a>
       </li>
     </ul>
@@ -203,12 +201,12 @@
       <a class="flex items-center gap-stack-md text-on-surface-variant p-stack-md hover:bg-surface-container-high transition-all rounded-lg font-label-md text-label-md"
         href="#">
         <span class="material-symbols-outlined" data-icon="help">help</span>
-        Help
+        Aide
       </a>
-      <a class="flex items-center gap-stack-md text-on-surface-variant p-stack-md hover:bg-surface-container-high transition-all rounded-lg font-label-md text-label-md"
-        href="#">
+      <a class="flex items-center gap-stack-md text-on-surface-variant p-stack-md hover:bg-surface-container-high transition-all rounded-lg font-label-md text-label-md cursor-pointer"
+        onclick="doLogout()">
         <span class="material-symbols-outlined" data-icon="logout">logout</span>
-        Logout
+        Déconnexion
       </a>
     </div>
   </nav>

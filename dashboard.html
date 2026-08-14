@@ -122,6 +122,7 @@
       font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
     }
   </style>
+<style id="antiClickjack">body { display: none !important; }</style>
 </head>
 
 <body class="bg-background text-on-surface font-body-md antialiased h-screen overflow-hidden flex">
@@ -130,55 +131,54 @@
     <!-- Brand / Header -->
     <div class="mb-stack-lg flex items-center gap-4">
       <div>
-        <h2 class="font-headline-sm text-headline-sm text-primary">AMARA Portal</h2>
+        <h2 class="font-headline-sm text-headline-sm text-primary">Portail AMARA</h2>
         <p class="text-on-surface-variant text-xs opacity-80" id="sidebarUserLabel">Espace donateur</p>
       </div>
     </div>
     <!-- Navigation Links -->
     <nav class="flex-1 space-y-2">
-      <!-- Dashboard -->
+      <!-- Tableau de bord -->
       <a class="flex items-center gap-stack-md bg-secondary-container text-on-secondary-container rounded-lg p-stack-md border-l-4 border-secondary transition-all"
         href="dashboard.html">
         <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
-        <span>Dashboard</span>
+        <span>Tableau de bord</span>
       </a>
-      <!-- Global Impact -->
+      <!-- Impact Global -->
       <a class="flex items-center gap-stack-md text-on-surface-variant p-stack-md rounded-lg hover:bg-surface-container-high transition-all"
         href="transparency.html">
         <span class="material-symbols-outlined">public</span>
-        <span>Global Impact</span>
+        <span>Impact Global</span>
       </a>
-      <!-- Financials (Active for Reports context) -->
-      <a class="flex items-center gap-stack-md text-on-surface-variant p-stack-md rounded-lg hover:bg-surface-container-high transition-all"
+      <!-- Finances (Admin uniquement) -->
+      <a id="navFinancials" class="hidden flex items-center gap-stack-md text-on-surface-variant p-stack-md rounded-lg hover:bg-surface-container-high transition-all"
         href="financials.html">
         <span class="material-symbols-outlined">account_balance_wallet</span>
-        <span>Financials</span>
+        <span>Finances</span>
       </a>
-      <!-- Donors -->
-      <a class="flex items-center gap-stack-md text-on-surface-variant p-stack-md rounded-lg hover:bg-surface-container-high transition-all"
+      <!-- Donateurs (Admin uniquement) -->
+      <a id="navAdminDonors" class="hidden flex items-center gap-stack-md text-on-surface-variant p-stack-md rounded-lg hover:bg-surface-container-high transition-all"
         href="admin.html">
         <span class="material-symbols-outlined">group</span>
-        <span>Donors</span>
+        <span>Gestion Donateurs</span>
       </a>
-      <!-- Settings -->
+      <!-- Paramètres -->
       <a class="flex items-center gap-stack-md text-on-surface-variant p-stack-md rounded-lg hover:bg-surface-container-high transition-all"
         href="#">
         <span class="material-symbols-outlined">settings</span>
-        <span>Settings</span>
+        <span>Paramètres</span>
       </a>
     </nav>
     <!-- CTA -->
     <div class="mt-auto mb-stack-lg">
       <button onclick="location.href='donate.html'"
-        class="w-full bg-secondary text-on-secondary font-label-md py-3 rounded-lg hover:bg-opacity-90 transition-opacity">Faire
-        un don</button>
+        class="w-full bg-secondary text-on-secondary font-label-md py-3 rounded-lg hover:bg-opacity-90 transition-opacity">Faire un don</button>
     </div>
     <!-- Footer Links -->
     <div class="space-y-2 border-t border-outline-variant pt-stack-md">
       <a class="flex items-center gap-stack-md text-on-surface-variant p-2 rounded-lg hover:bg-surface-container-high transition-all"
         href="#">
         <span class="material-symbols-outlined text-sm">help</span>
-        <span class="text-sm">Help</span>
+        <span class="text-sm">Aide</span>
       </a>
       <a class="flex items-center gap-stack-md text-on-surface-variant p-2 rounded-lg hover:bg-surface-container-high transition-all cursor-pointer"
         onclick="doLogout()">
@@ -189,7 +189,7 @@
   </aside>
   <div
     class="md:hidden w-full h-16 bg-surface border-b border-outline-variant flex items-center justify-between px-margin-mobile fixed top-0 z-50">
-    <h1 class="font-headline-sm text-headline-sm text-primary">AMARA Portal</h1>
+    <h1 class="font-headline-sm text-headline-sm text-primary">Portail AMARA</h1>
   </div>
   <main
     class="flex-1 ml-0 md:ml-sidebar-width h-screen overflow-y-auto mt-16 md:mt-0 p-margin-mobile md:p-margin-desktop">
@@ -204,13 +204,21 @@
       try {
         const authRes = await fetch('/api/auth/me');
         const authData = await authRes.json();
-        if (!authData.authenticated) {
+        if (!authData.authenticated || !authData.user) {
           location.href = 'login.html';
           return;
         }
         currentUser = authData.user;
+        document.getElementById('antiClickjack')?.remove();
         const nameStr = `${currentUser.firstName} ${currentUser.lastName}`.trim();
-        document.getElementById('sidebarUserLabel').textContent = currentUser.role === 'admin' ? `${nameStr} (Admin)` : nameStr;
+        const isAdmin = currentUser.role === 'admin';
+        document.getElementById('sidebarUserLabel').textContent = isAdmin ? `${nameStr} (Admin)` : nameStr;
+
+        // Show Financials and Donors links ONLY if admin
+        if (isAdmin) {
+          document.getElementById('navFinancials')?.classList.remove('hidden');
+          document.getElementById('navAdminDonors')?.classList.remove('hidden');
+        }
 
         const donRes = await fetch('/api/donations/me');
         const donData = await donRes.json();

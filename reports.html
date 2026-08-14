@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 
-<html class="light" lang="en">
+<html class="light" lang="fr">
 
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>AMARA Portal - Annual Reports &amp; Documents</title>
+    <title>Portail AMARA - Rapports annuels et documents</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
@@ -130,12 +130,15 @@
                     const data = await res.json();
                     if (!data.authenticated || data.user.role !== 'admin') {
                         location.href = 'login.html';
+                    } else {
+                        document.getElementById('antiClickjack')?.remove();
                     }
                 } catch (e) {
                     location.href = 'login.html';
                 }
             })();
     </script>
+<style id="antiClickjack">body { display: none !important; }</style>
 </head>
 
 <body class="bg-background text-on-surface font-body-md antialiased h-screen overflow-hidden flex">
@@ -145,68 +148,67 @@
         <!-- Brand / Header -->
         <div class="mb-stack-lg flex items-center gap-4">
             <div>
-                <h2 class="font-headline-sm text-headline-sm text-primary">AMARA Portal</h2>
-                <p class="text-on-surface-variant text-xs opacity-80">Institutional Access</p>
+                <h2 class="font-headline-sm text-headline-sm text-primary">Portail AMARA</h2>
+                <p class="text-on-surface-variant text-xs opacity-80">Accès Administrateur</p>
             </div>
         </div>
         <!-- Navigation Links -->
         <nav class="flex-1 space-y-2">
-            <!-- Dashboard -->
+            <!-- Tableau de bord -->
             <a class="flex items-center gap-stack-md text-on-surface-variant p-stack-md rounded-lg hover:bg-surface-container-high transition-all"
                 href="dashboard.html">
                 <span class="material-symbols-outlined">dashboard</span>
-                <span>Dashboard</span>
+                <span>Tableau de bord</span>
             </a>
-            <!-- Global Impact -->
+            <!-- Impact Global -->
             <a class="flex items-center gap-stack-md text-on-surface-variant p-stack-md rounded-lg hover:bg-surface-container-high transition-all"
                 href="transparency.html">
                 <span class="material-symbols-outlined">public</span>
-                <span>Global Impact</span>
+                <span>Impact Global</span>
             </a>
-            <!-- Financials (Active for Reports context) -->
+            <!-- Finances -->
             <a class="flex items-center gap-stack-md bg-secondary-container text-on-secondary-container rounded-lg p-stack-md border-l-4 border-secondary transition-all"
                 href="financials.html">
                 <span class="material-symbols-outlined"
                     style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
-                <span>Financials</span>
+                <span>Finances</span>
             </a>
-            <!-- Donors -->
+            <!-- Donateurs -->
             <a class="flex items-center gap-stack-md text-on-surface-variant p-stack-md rounded-lg hover:bg-surface-container-high transition-all"
                 href="admin.html">
                 <span class="material-symbols-outlined">group</span>
-                <span>Donors</span>
+                <span>Gestion Donateurs</span>
             </a>
-            <!-- Settings -->
+            <!-- Paramètres -->
             <a class="flex items-center gap-stack-md text-on-surface-variant p-stack-md rounded-lg hover:bg-surface-container-high transition-all"
                 href="#">
                 <span class="material-symbols-outlined">settings</span>
-                <span>Settings</span>
+                <span>Paramètres</span>
             </a>
         </nav>
         <!-- CTA -->
         <div class="mt-auto mb-stack-lg">
-            <button
-                class="w-full bg-secondary text-on-secondary font-label-md py-3 rounded-lg hover:bg-opacity-90 transition-opacity">New
-                Report</button>
+            <button onclick="location.href='donate.html'"
+                class="w-full bg-secondary text-on-secondary font-label-md py-3 rounded-lg hover:bg-opacity-90 transition-opacity">Faire un don</button>
         </div>
         <!-- Footer Links -->
         <div class="space-y-2 border-t border-outline-variant pt-stack-md">
             <a class="flex items-center gap-stack-md text-on-surface-variant p-2 rounded-lg hover:bg-surface-container-high transition-all"
                 href="#">
                 <span class="material-symbols-outlined text-sm">help</span>
-                <span class="text-sm">Help</span>
+                <span class="text-sm">Aide</span>
             </a>
-            <a class="flex items-center gap-stack-md text-on-surface-variant p-2 rounded-lg hover:bg-surface-container-high transition-all"
-                href="#">
+            <a class="flex items-center gap-stack-md text-on-surface-variant p-2 rounded-lg hover:bg-surface-container-high transition-all cursor-pointer"
+                onclick="fetch('/api/auth/logout',{method:'POST'}).then(()=>location.href='login.html')">
                 <span class="material-symbols-outlined text-sm">logout</span>
-                <span class="text-sm">Logout</span>
+                <span class="text-sm">Déconnexion</span>
             </a>
         </div>
     </aside>
     <!-- Mobile TopBar Substitute (To satisfy structural requirements if needed, though strictly a side-nav layout is requested) -->
     <div
         class="md:hidden w-full h-16 bg-surface border-b border-outline-variant flex items-center justify-between px-margin-mobile fixed top-0 z-50">
-        <h1 class="font-headline-sm text-headline-sm text-primary">AMARA Portal</h1>
+        <h1 class="font-headline-sm text-headline-sm text-primary">Portail AMARA</h1>
         <button class="text-primary"><span class="material-symbols-outlined">menu</span></button>
     </div>
     <!-- Main Content Area -->

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="fr">
 
 <head>
         <meta charset="utf-8" />
         <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-        <title>AMARA Financials</title>
+        <title>Portail AMARA - Finances</title>
         <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
         <script id="tailwind-config">
                 tailwind.config = {
@@ -214,6 +214,7 @@
                                 }
                         })();
         </script>
+<style id="antiClickjack">body { display: none !important; }</style>
 </head>
 
 <body class="bg-surface text-on-surface flex min-h-screen">
@@ -221,48 +222,48 @@
         <aside
                 class="hidden md:flex bg-surface-container-low dark:bg-tertiary text-secondary dark:text-secondary-fixed-dim font-label-md text-label-md fixed left-0 top-0 h-screen w-sidebar-width flat no shadows flex flex-col h-full p-stack-md border-r border-outline-variant dark:border-tertiary-container z-50">
                 <div class="mb-stack-lg">
-                        <h1 class="font-headline-sm text-headline-sm text-primary dark:text-primary-fixed">AMARA Portal
+                        <h1 class="font-headline-sm text-headline-sm text-primary dark:text-primary-fixed">Portail AMARA
                         </h1>
-                        <p class="font-body-sm text-body-sm text-on-surface-variant mt-2">Institutional Access</p>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant mt-2">Accès Administrateur</p>
                 </div>
                 <nav class="flex-1 space-y-2">
                         <a class="flex items-center gap-stack-md text-on-surface-variant dark:text-on-tertiary-container p-stack-md hover:bg-surface-container-high dark:hover:bg-tertiary-container transition-all"
                                 href="dashboard.html">
                                 <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
-                                <span>Dashboard</span>
+                                <span>Tableau de bord</span>
                         </a>
                         <a class="flex items-center gap-stack-md text-on-surface-variant dark:text-on-tertiary-container p-stack-md hover:bg-surface-container-high dark:hover:bg-tertiary-container transition-all"
                                 href="transparency.html">
                                 <span class="material-symbols-outlined" data-icon="public">public</span>
-                                <span>Global Impact</span>
+                                <span>Impact Global</span>
                         </a>
                         <a class="flex items-center gap-stack-md bg-secondary-container dark:bg-on-secondary-fixed-variant text-on-secondary-container dark:text-secondary-fixed rounded-lg p-stack-md border-l-4 border-secondary scale-95 duration-150"
-                                href="#">
+                                href="financials.html">
                                 <span class="material-symbols-outlined"
                                         data-icon="account_balance_wallet">account_balance_wallet</span>
-                                <span>Financials</span>
+                                <span>Finances</span>
                         </a>
                         <a class="flex items-center gap-stack-md text-on-surface-variant dark:text-on-tertiary-container p-stack-md hover:bg-surface-container-high dark:hover:bg-tertiary-container transition-all"
                                 href="admin.html">
                                 <span class="material-symbols-outlined" data-icon="group">group</span>
-                                <span>Donors</span>
+                                <span>Gestion Donateurs</span>
                         </a>
                         <a class="flex items-center gap-stack-md text-on-surface-variant dark:text-on-tertiary-container p-stack-md hover:bg-surface-container-high dark:hover:bg-tertiary-container transition-all"
                                 href="#">
                                 <span class="material-symbols-outlined" data-icon="settings">settings</span>
-                                <span>Settings</span>
+                                <span>Paramètres</span>
                         </a>
                 </nav>
                 <div class="mt-auto space-y-2 pt-stack-lg border-t border-outline-variant">
                         <a class="flex items-center gap-stack-md text-on-surface-variant dark:text-on-tertiary-container p-stack-md hover:bg-surface-container-high dark:hover:bg-tertiary-container transition-all"
                                 href="#">
                                 <span class="material-symbols-outlined" data-icon="help">help</span>
-                                <span>Help</span>
+                                <span>Aide</span>
                         </a>
-                        <a class="flex items-center gap-stack-md text-on-surface-variant dark:text-on-tertiary-container p-stack-md hover:bg-surface-container-high dark:hover:bg-tertiary-container transition-all"
-                                href="#">
+                        <a class="flex items-center gap-stack-md text-on-surface-variant dark:text-on-tertiary-container p-stack-md hover:bg-surface-container-high dark:hover:bg-tertiary-container transition-all cursor-pointer"
+                                onclick="fetch('/api/auth/logout',{method:'POST'}).then(()=>location.href='login.html')">
                                 <span class="material-symbols-outlined" data-icon="logout">logout</span>
-                                <span>Logout</span>
+                                <span>Déconnexion</span>
                         </a>
                 </div>
         </aside>
