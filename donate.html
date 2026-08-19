@@ -1,595 +1,839 @@
-<!DOCTYPE html>
+<!doctype html>
 
 <html class="light" lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>AMORA - Portail de dons</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-surface": "#191c1e",
+              secondary: "#006c4a",
+              "secondary-fixed-dim": "#68dba9",
+              "secondary-fixed": "#85f8c4",
+              "on-primary-fixed-variant": "#2d4674",
+              "on-tertiary": "#ffffff",
+              "on-error-container": "#93000a",
+              tertiary: "#08192c",
+              "tertiary-container": "#1e2e42",
+              "on-secondary-fixed": "#002114",
+              "on-tertiary-container": "#8596ae",
+              "on-secondary-fixed-variant": "#005137",
+              "on-background": "#191c1e",
+              "tertiary-fixed-dim": "#b7c8e1",
+              "primary-fixed-dim": "#aec7fd",
+              "on-surface-variant": "#44474f",
+              "on-tertiary-fixed-variant": "#38485d",
+              primary: "#00173b",
+              "surface-variant": "#e0e3e5",
+              "inverse-on-surface": "#eff1f3",
+              error: "#ba1a1a",
+              "on-primary": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              outline: "#747780",
+              "inverse-surface": "#2d3133",
+              "surface-tint": "#465e8e",
+              "inverse-primary": "#aec7fd",
+              "on-primary-container": "#7c94c8",
+              "outline-variant": "#c4c6d0",
+              "surface-bright": "#f7f9fb",
+              "surface-container-high": "#e6e8ea",
+              "surface-container": "#eceef0",
+              "secondary-container": "#82f5c1",
+              "surface-container-highest": "#e0e3e5",
+              "primary-fixed": "#d8e2ff",
+              "surface-container-low": "#f2f4f6",
+              "surface-dim": "#d8dadc",
+              "on-secondary-container": "#00714e",
+              background: "#f7f9fb",
+              surface: "#f7f9fb",
+              "on-tertiary-fixed": "#0b1c30",
+              "on-error": "#ffffff",
+              "on-secondary": "#ffffff",
+              "tertiary-fixed": "#d3e4fe",
+              "on-primary-fixed": "#001a41",
+              "primary-container": "#0f2c59",
+              "error-container": "#ffdad6",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              "margin-mobile": "16px",
+              "stack-lg": "32px",
+              "margin-desktop": "40px",
+              "sidebar-width": "280px",
+              "container-max": "1280px",
+              gutter: "24px",
+              "stack-sm": "8px",
+              "stack-md": "16px",
+            },
+            fontFamily: {
+              "body-md": ["Plus Jakarta Sans"],
+              "body-lg": ["Plus Jakarta Sans"],
+              "headline-xl": ["Playfair Display"],
+              "headline-lg-mobile": ["Playfair Display"],
+              "headline-sm": ["Playfair Display"],
+              "label-md": ["Plus Jakarta Sans"],
+              "headline-md": ["Playfair Display"],
+              "body-sm": ["Plus Jakarta Sans"],
+              "headline-lg": ["Playfair Display"],
+            },
+            fontSize: {
+              "body-md": [
+                "16px",
+                {
+                  lineHeight: "1.6",
+                  fontWeight: "400",
+                },
+              ],
+              "body-lg": [
+                "18px",
+                {
+                  lineHeight: "1.6",
+                  fontWeight: "400",
+                },
+              ],
+              "headline-xl": [
+                "48px",
+                {
+                  lineHeight: "1.2",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "headline-lg-mobile": [
+                "32px",
+                {
+                  lineHeight: "1.2",
+                  fontWeight: "700",
+                },
+              ],
+              "headline-sm": [
+                "22px",
+                {
+                  lineHeight: "1.4",
+                  fontWeight: "600",
+                },
+              ],
+              "label-md": [
+                "14px",
+                {
+                  lineHeight: "1.0",
+                  letterSpacing: "0.05em",
+                  fontWeight: "600",
+                },
+              ],
+              "headline-md": [
+                "28px",
+                {
+                  lineHeight: "1.3",
+                  fontWeight: "600",
+                },
+              ],
+              "body-sm": [
+                "14px",
+                {
+                  lineHeight: "1.5",
+                  fontWeight: "400",
+                },
+              ],
+              "headline-lg": [
+                "36px",
+                {
+                  lineHeight: "1.2",
+                  fontWeight: "700",
+                },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
 
-<head>
-        <meta charset="utf-8" />
-        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-        <title>AMORA - Portail de dons</title>
-        <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-                rel="stylesheet" />
-        <link href="https://fonts.googleapis.com" rel="preconnect" />
-        <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;display=swap"
-                rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-                rel="stylesheet" />
-        <script id="tailwind-config">
-                tailwind.config = {
-                        darkMode: "class",
-                        theme: {
-                                extend: {
-                                        "colors": {
-                                                "on-surface": "#191c1e",
-                                                "secondary": "#006c4a",
-                                                "secondary-fixed-dim": "#68dba9",
-                                                "secondary-fixed": "#85f8c4",
-                                                "on-primary-fixed-variant": "#2d4674",
-                                                "on-tertiary": "#ffffff",
-                                                "on-error-container": "#93000a",
-                                                "tertiary": "#08192c",
-                                                "tertiary-container": "#1e2e42",
-                                                "on-secondary-fixed": "#002114",
-                                                "on-tertiary-container": "#8596ae",
-                                                "on-secondary-fixed-variant": "#005137",
-                                                "on-background": "#191c1e",
-                                                "tertiary-fixed-dim": "#b7c8e1",
-                                                "primary-fixed-dim": "#aec7fd",
-                                                "on-surface-variant": "#44474f",
-                                                "on-tertiary-fixed-variant": "#38485d",
-                                                "primary": "#00173b",
-                                                "surface-variant": "#e0e3e5",
-                                                "inverse-on-surface": "#eff1f3",
-                                                "error": "#ba1a1a",
-                                                "on-primary": "#ffffff",
-                                                "surface-container-lowest": "#ffffff",
-                                                "outline": "#747780",
-                                                "inverse-surface": "#2d3133",
-                                                "surface-tint": "#465e8e",
-                                                "inverse-primary": "#aec7fd",
-                                                "on-primary-container": "#7c94c8",
-                                                "outline-variant": "#c4c6d0",
-                                                "surface-bright": "#f7f9fb",
-                                                "surface-container-high": "#e6e8ea",
-                                                "surface-container": "#eceef0",
-                                                "secondary-container": "#82f5c1",
-                                                "surface-container-highest": "#e0e3e5",
-                                                "primary-fixed": "#d8e2ff",
-                                                "surface-container-low": "#f2f4f6",
-                                                "surface-dim": "#d8dadc",
-                                                "on-secondary-container": "#00714e",
-                                                "background": "#f7f9fb",
-                                                "surface": "#f7f9fb",
-                                                "on-tertiary-fixed": "#0b1c30",
-                                                "on-error": "#ffffff",
-                                                "on-secondary": "#ffffff",
-                                                "tertiary-fixed": "#d3e4fe",
-                                                "on-primary-fixed": "#001a41",
-                                                "primary-container": "#0f2c59",
-                                                "error-container": "#ffdad6"
-                                        },
-                                        "borderRadius": {
-                                                "DEFAULT": "0.25rem",
-                                                "lg": "0.5rem",
-                                                "xl": "0.75rem",
-                                                "full": "9999px"
-                                        },
-                                        "spacing": {
-                                                "margin-mobile": "16px",
-                                                "stack-lg": "32px",
-                                                "margin-desktop": "40px",
-                                                "sidebar-width": "280px",
-                                                "container-max": "1280px",
-                                                "gutter": "24px",
-                                                "stack-sm": "8px",
-                                                "stack-md": "16px"
-                                        },
-                                        "fontFamily": {
-                                                "body-md": [
-                                                        "Plus Jakarta Sans"
-                                                ],
-                                                "body-lg": [
-                                                        "Plus Jakarta Sans"
-                                                ],
-                                                "headline-xl": [
-                                                        "Playfair Display"
-                                                ],
-                                                "headline-lg-mobile": [
-                                                        "Playfair Display"
-                                                ],
-                                                "headline-sm": [
-                                                        "Playfair Display"
-                                                ],
-                                                "label-md": [
-                                                        "Plus Jakarta Sans"
-                                                ],
-                                                "headline-md": [
-                                                        "Playfair Display"
-                                                ],
-                                                "body-sm": [
-                                                        "Plus Jakarta Sans"
-                                                ],
-                                                "headline-lg": [
-                                                        "Playfair Display"
-                                                ]
-                                        },
-                                        "fontSize": {
-                                                "body-md": [
-                                                        "16px",
-                                                        {
-                                                                "lineHeight": "1.6",
-                                                                "fontWeight": "400"
-                                                        }
-                                                ],
-                                                "body-lg": [
-                                                        "18px",
-                                                        {
-                                                                "lineHeight": "1.6",
-                                                                "fontWeight": "400"
-                                                        }
-                                                ],
-                                                "headline-xl": [
-                                                        "48px",
-                                                        {
-                                                                "lineHeight": "1.2",
-                                                                "letterSpacing": "-0.02em",
-                                                                "fontWeight": "700"
-                                                        }
-                                                ],
-                                                "headline-lg-mobile": [
-                                                        "32px",
-                                                        {
-                                                                "lineHeight": "1.2",
-                                                                "fontWeight": "700"
-                                                        }
-                                                ],
-                                                "headline-sm": [
-                                                        "22px",
-                                                        {
-                                                                "lineHeight": "1.4",
-                                                                "fontWeight": "600"
-                                                        }
-                                                ],
-                                                "label-md": [
-                                                        "14px",
-                                                        {
-                                                                "lineHeight": "1.0",
-                                                                "letterSpacing": "0.05em",
-                                                                "fontWeight": "600"
-                                                        }
-                                                ],
-                                                "headline-md": [
-                                                        "28px",
-                                                        {
-                                                                "lineHeight": "1.3",
-                                                                "fontWeight": "600"
-                                                        }
-                                                ],
-                                                "body-sm": [
-                                                        "14px",
-                                                        {
-                                                                "lineHeight": "1.5",
-                                                                "fontWeight": "400"
-                                                        }
-                                                ],
-                                                "headline-lg": [
-                                                        "36px",
-                                                        {
-                                                                "lineHeight": "1.2",
-                                                                "fontWeight": "700"
-                                                        }
-                                                ]
-                                        }
-                                },
-                        },
-                }
-        </script>
-</head>
+  <body
+    class="bg-background text-on-background min-h-screen flex flex-col font-body-md"
+  >
+    <!-- TopNavBar -->
+    <header
+      class="bg-surface dark:bg-on-surface shadow-sm z-50 sticky top-0 w-full"
+    >
+      <div
+        class="flex justify-between items-center px-margin-mobile md:px-margin-desktop w-full h-20 max-w-container-max mx-auto"
+      >
+        <div
+          class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed"
+        >
+          AMORA
+        </div>
+        <nav class="hidden md:flex items-center gap-gutter">
+          <a
+            class="text-on-surface-variant dark:text-outline-variant hover:text-secondary transition-colors duration-200 font-body-md text-body-md"
+            href="index.html"
+            >Impact</a
+          >
+          <a
+            class="text-on-surface-variant dark:text-outline-variant hover:text-secondary transition-colors duration-200 font-body-md text-body-md"
+            href="projects.html"
+            >Programmes</a
+          >
 
-<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md">
-        <!-- TopNavBar -->
-        <header class="bg-surface dark:bg-on-surface shadow-sm z-50 sticky top-0 w-full">
-                <div
-                        class="flex justify-between items-center px-margin-mobile md:px-margin-desktop w-full h-20 max-w-container-max mx-auto">
-                        <div class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">
-                                AMORA</div>
-                        <nav class="hidden md:flex items-center gap-gutter">
-                                <a class="text-on-surface-variant dark:text-outline-variant hover:text-secondary transition-colors duration-200 font-body-md text-body-md"
-                                        href="index.html">Impact</a>
-                                <a class="text-on-surface-variant dark:text-outline-variant hover:text-secondary transition-colors duration-200 font-body-md text-body-md"
-                                        href="projects.html">Programmes</a>
-                                
-                                <a class="text-on-surface-variant dark:text-outline-variant hover:text-secondary transition-colors duration-200 font-body-md text-body-md"
-                                        href="about.html">Gouvernance</a>
-                        </nav>
-                        <div class="flex items-center gap-stack-md">
-                                <div
-                                        class="hidden md:flex items-center border border-outline rounded-full px-4 py-2 bg-surface-container-lowest">
-                                        <span class="material-symbols-outlined text-outline">search</span>
-                                        <input class="bg-transparent border-none focus:ring-0 text-body-sm text-on-surface ml-2 w-32 outline-none"
-                                                placeholder="Search..." type="text" />
-                                </div>
-                                <a href="login.html" id="navProfileLink" class="nav-profile-icon hidden md:flex items-center text-on-surface-variant hover:text-secondary transition-colors" title="Connexion"><span
-                                                class="material-symbols-outlined">account_circle</span></a>
-                                <button class="bg-secondary text-on-secondary font-label-md text-label-md px-6 py-3 rounded-full hover:opacity-80 transition-opacity"
-                                        onclick="location.href='javascript:void(0)'">Faire un don</button>
-                        </div>
-                </div>
-        </header>
-        <!-- Main Content -->
-        <main
-                class="flex-grow flex flex-col items-center justify-start py-stack-lg md:py-margin-desktop px-margin-mobile md:px-margin-desktop w-full max-w-container-max mx-auto gap-stack-lg md:gap-gutter md:flex-row md:items-start">
-                <!-- Left Column: Impact Stories & Trust Badges -->
-                <div class="w-full md:w-1/2 flex flex-col gap-stack-lg">
-                        <div class="mb-stack-md">
-                                <h1
-                                        class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-primary mb-stack-sm">
-                                        Support Global Change</h1>
-                                <p class="font-body-lg text-body-lg text-on-surface-variant">Your contribution directly
-                                        funds institutional programs that create lasting, measurable impact across
-                                        communities worldwide. Join us in building a sustainable future.</p>
-                        </div>
-                        <!-- Impact Story Card -->
-                        <div
-                                class="bg-surface-container-lowest rounded-lg shadow-[0px_4px_20px_rgba(15,44,89,0.05)] overflow-hidden border-l-4 border-secondary flex flex-col">
-                                <div class="h-48 w-full bg-cover bg-center"
-                                        data-alt="A compelling, high-quality documentary-style photograph showing a diverse community engaged in an educational workshop. The setting is bright and hopeful, with natural sunlight streaming through large windows. People of various ages are collaborating over structural plans. The visual style is modern, professional, and authentic, aligning with an institutional NGO's global impact report. Warm, natural color palette."
-                                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA0csS6bOZePdzAgkSK0uL17_ZLjqrM15EbM9uQ4oAh4ujjJYTezghHginw5iqeMpkbxIu3s1UedfKro6Ef55MXJym7TQsPEn4Plvqej8YOa4Wjk6eOyGYmKSs7Cla53e2aM07GXkelSGACwXfBxZpJq0FliLq8KuoZ87LZpnLSgG4CUzZiN5SyFM3u3tm9qW_f434bV883gRzcjROPxWNrZPRKN9gI3fA3e5_u-ed7Sf84oAtjPTZ7tw')">
-                                </div>
-                                <div class="p-stack-md flex flex-col gap-stack-sm">
-                                        <span
-                                                class="text-secondary font-label-md text-label-md uppercase tracking-wider">Current
-                                                Initiative</span>
-                                        <h3 class="font-headline-sm text-headline-sm text-primary">Clean Water
-                                                Infrastructure</h3>
-                                        <p class="font-body-md text-body-md text-on-surface-variant line-clamp-3">In
-                                                2023, AMORA successfully deployed advanced filtration systems to over 50
-                                                rural communities, reducing waterborne diseases by 40%. Your sustained
-                                                support ensures ongoing maintenance and expansion of these vital
-                                                networks.</p>
-                                </div>
-                        </div>
-                        <!-- Trust Badges -->
-                        <div
-                                class="flex flex-wrap gap-stack-md items-center mt-stack-sm p-stack-md bg-surface-container-low rounded-lg">
-                                <div class="flex items-center gap-stack-sm">
-                                        <span class="material-symbols-outlined text-secondary"
-                                                style="font-variation-settings: 'FILL' 1;">verified_user</span>
-                                        <span class="font-label-md text-label-md text-on-surface">Verified
-                                                Transparent</span>
-                                </div>
-                                <div class="flex items-center gap-stack-sm">
-                                        <span class="material-symbols-outlined text-secondary"
-                                                style="font-variation-settings: 'FILL' 1;">security</span>
-                                        <span class="font-label-md text-label-md text-on-surface">Secure
-                                                Transaction</span>
-                                </div>
-                                <div class="flex items-center gap-stack-sm">
-                                        <span class="material-symbols-outlined text-secondary"
-                                                style="font-variation-settings: 'FILL' 1;">public</span>
-                                        <span class="font-label-md text-label-md text-on-surface">Global Reach</span>
-                                </div>
-                        </div>
-                </div>
-                <!-- Right Column: Donation Form -->
-                <div
-                        class="w-full md:w-1/2 bg-surface-container-lowest rounded-xl shadow-[0px_12px_32px_rgba(15,44,89,0.1)] p-stack-lg border border-surface-variant">
-                        <div
-                                class="flex items-center justify-between mb-stack-lg pb-stack-sm border-b border-surface-variant">
-                                <h2 class="font-headline-sm text-headline-sm text-primary">Secure Donation</h2>
-                                <span
-                                        class="font-label-md text-label-md text-on-surface-variant bg-surface-container px-3 py-1 rounded-full">Step
-                                        1 of 3</span>
-                        </div>
-                        <form class="flex flex-col gap-stack-lg">
-                                <!-- Amount Selection -->
-                                <div class="flex flex-col gap-stack-md">
-                                        <label class="font-label-md text-label-md text-primary">Select Amount</label>
-                                        <div class="grid grid-cols-3 gap-stack-sm" id="amountGrid">
-                                                <button data-amt="50" onclick="selectAmt(this,50)"
-                                                        class="py-3 px-4 border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface hover:border-primary transition-colors text-center"
-                                                        type="button">$50</button>
-                                                <button data-amt="100" onclick="selectAmt(this,100)"
-                                                        class="py-3 px-4 border-2 border-primary bg-primary-fixed text-on-primary-fixed rounded-lg font-body-md text-body-md text-center font-bold"
-                                                        type="button">$100</button>
-                                                <button data-amt="250" onclick="selectAmt(this,250)"
-                                                        class="py-3 px-4 border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface hover:border-primary transition-colors text-center"
-                                                        type="button">$250</button>
-                                                <button data-amt="500" onclick="selectAmt(this,500)"
-                                                        class="py-3 px-4 border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface hover:border-primary transition-colors text-center"
-                                                        type="button">$500</button>
-                                                <button data-amt="1000" onclick="selectAmt(this,1000)"
-                                                        class="py-3 px-4 border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface hover:border-primary transition-colors text-center"
-                                                        type="button">$1000</button>
-                                                <button data-amt="0" onclick="selectAmt(this,0)"
-                                                        class="py-3 px-4 border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface hover:border-primary transition-colors text-center"
-                                                        type="button">Other</button>
-                                        </div>
-                                </div>
-                                <div
-                                        class="flex items-center gap-stack-sm bg-surface-container-low p-stack-sm rounded-lg">
-                                        <input class="rounded border-outline text-secondary focus:ring-secondary w-5 h-5"
-                                                id="monthly" type="checkbox" />
-                                        <label class="font-body-sm text-body-sm text-on-surface" for="monthly">Make this
-                                                a recurring monthly donation</label>
-                                </div>
-                                <!-- Personal Info (Simplified for Step 1 visual) -->
-                                <div class="flex flex-col gap-stack-md mt-stack-sm">
-                                        <label class="font-label-md text-label-md text-primary">Personal Details</label>
-                                        <div class="grid grid-cols-2 gap-stack-sm">
-                                                <div class="flex flex-col gap-1">
-                                                        <input class="bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none"
-                                                                id="donorFirst" placeholder="First Name" type="text" />
-                                                </div>
-                                                <div class="flex flex-col gap-1">
-                                                        <input class="bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none"
-                                                                id="donorLast" placeholder="Last Name" type="text" />
-                                                </div>
-                                        </div>
-                                        <input class="bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none w-full"
-                                                id="donorEmail" placeholder="Email Address" type="email" />
-                                </div>
+          <a
+            class="text-on-surface-variant dark:text-outline-variant hover:text-secondary transition-colors duration-200 font-body-md text-body-md"
+            href="about.html"
+            >Gouvernance</a
+          >
+        </nav>
+        <div class="flex items-center gap-stack-md">
+          <div
+            class="hidden md:flex items-center border border-outline rounded-full px-4 py-2 bg-surface-container-lowest"
+          >
+            <span class="material-symbols-outlined text-outline">search</span>
+            <input
+              class="bg-transparent border-none focus:ring-0 text-body-sm text-on-surface ml-2 w-32 outline-none"
+              placeholder="Search..."
+              type="text"
+            />
+          </div>
+          <a
+            href="login.html"
+            id="navProfileLink"
+            class="nav-profile-icon hidden md:flex items-center text-on-surface-variant hover:text-secondary transition-colors"
+            title="Connexion"
+            ><span class="material-symbols-outlined">account_circle</span></a
+          >
+          <button
+            class="bg-secondary text-on-secondary font-label-md text-label-md px-6 py-3 rounded-full hover:opacity-80 transition-opacity"
+            onclick="location.href = 'javascript:void(0)'"
+          >
+            Faire un don
+          </button>
+        </div>
+      </div>
+    </header>
+    <!-- Main Content -->
+    <main
+      class="flex-grow flex flex-col items-center justify-start py-stack-lg md:py-margin-desktop px-margin-mobile md:px-margin-desktop w-full max-w-container-max mx-auto gap-stack-lg md:gap-gutter md:flex-row md:items-start"
+    >
+      <!-- Left Column: Impact Stories & Trust Badges -->
+      <div class="w-full md:w-1/2 flex flex-col gap-stack-lg">
+        <div class="mb-stack-md">
+          <h1
+            class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-primary mb-stack-sm"
+          >
+            Support Global Change
+          </h1>
+          <p class="font-body-lg text-body-lg text-on-surface-variant">
+            Your contribution directly funds institutional programs that create
+            lasting, measurable impact across communities worldwide. Join us in
+            building a sustainable future.
+          </p>
+        </div>
+        <!-- Impact Story Card -->
+        <div
+          class="bg-surface-container-lowest rounded-lg shadow-[0px_4px_20px_rgba(15,44,89,0.05)] overflow-hidden border-l-4 border-secondary flex flex-col"
+        >
+          <div
+            class="h-48 w-full bg-cover bg-center"
+            data-alt="A compelling, high-quality documentary-style photograph showing a diverse community engaged in an educational workshop. The setting is bright and hopeful, with natural sunlight streaming through large windows. People of various ages are collaborating over structural plans. The visual style is modern, professional, and authentic, aligning with an institutional NGO's global impact report. Warm, natural color palette."
+            style="
+              background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuA0csS6bOZePdzAgkSK0uL17_ZLjqrM15EbM9uQ4oAh4ujjJYTezghHginw5iqeMpkbxIu3s1UedfKro6Ef55MXJym7TQsPEn4Plvqej8YOa4Wjk6eOyGYmKSs7Cla53e2aM07GXkelSGACwXfBxZpJq0FliLq8KuoZ87LZpnLSgG4CUzZiN5SyFM3u3tm9qW_f434bV883gRzcjROPxWNrZPRKN9gI3fA3e5_u-ed7Sf84oAtjPTZ7tw&quot;);
+            "
+          ></div>
+          <div class="p-stack-md flex flex-col gap-stack-sm">
+            <span
+              class="text-secondary font-label-md text-label-md uppercase tracking-wider"
+              >Current Initiative</span
+            >
+            <h3 class="font-headline-sm text-headline-sm text-primary">
+              Clean Water Infrastructure
+            </h3>
+            <p
+              class="font-body-md text-body-md text-on-surface-variant line-clamp-3"
+            >
+              In 2023, AMORA successfully deployed advanced filtration systems
+              to over 50 rural communities, reducing waterborne diseases by 40%.
+              Your sustained support ensures ongoing maintenance and expansion
+              of these vital networks.
+            </p>
+          </div>
+        </div>
+        <!-- Trust Badges -->
+        <div
+          class="flex flex-wrap gap-stack-md items-center mt-stack-sm p-stack-md bg-surface-container-low rounded-lg"
+        >
+          <div class="flex items-center gap-stack-sm">
+            <span
+              class="material-symbols-outlined text-secondary"
+              style="font-variation-settings: &quot;FILL&quot; 1"
+              >verified_user</span
+            >
+            <span class="font-label-md text-label-md text-on-surface"
+              >Verified Transparent</span
+            >
+          </div>
+          <div class="flex items-center gap-stack-sm">
+            <span
+              class="material-symbols-outlined text-secondary"
+              style="font-variation-settings: &quot;FILL&quot; 1"
+              >security</span
+            >
+            <span class="font-label-md text-label-md text-on-surface"
+              >Secure Transaction</span
+            >
+          </div>
+          <div class="flex items-center gap-stack-sm">
+            <span
+              class="material-symbols-outlined text-secondary"
+              style="font-variation-settings: &quot;FILL&quot; 1"
+              >public</span
+            >
+            <span class="font-label-md text-label-md text-on-surface"
+              >Global Reach</span
+            >
+          </div>
+        </div>
+      </div>
+      <!-- Right Column: Donation Form -->
+      <div
+        class="w-full md:w-1/2 bg-surface-container-lowest rounded-xl shadow-[0px_12px_32px_rgba(15,44,89,0.1)] p-stack-lg border border-surface-variant"
+      >
+        <div
+          class="flex items-center justify-between mb-stack-lg pb-stack-sm border-b border-surface-variant"
+        >
+          <h2 class="font-headline-sm text-headline-sm text-primary">
+            Secure Donation
+          </h2>
+          <span
+            class="font-label-md text-label-md text-on-surface-variant bg-surface-container px-3 py-1 rounded-full"
+            >Step 1 of 3</span
+          >
+        </div>
+        <form class="flex flex-col gap-stack-lg">
+          <!-- Amount Selection -->
+          <div class="flex flex-col gap-stack-md">
+            <label class="font-label-md text-label-md text-primary"
+              >Select Amount</label
+            >
+            <div class="grid grid-cols-3 gap-stack-sm" id="amountGrid">
+              <button
+                data-amt="50"
+                onclick="selectAmt(this, 50)"
+                class="py-3 px-4 border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface hover:border-primary transition-colors text-center"
+                type="button"
+              >
+                $50
+              </button>
+              <button
+                data-amt="100"
+                onclick="selectAmt(this, 100)"
+                class="py-3 px-4 border-2 border-primary bg-primary-fixed text-on-primary-fixed rounded-lg font-body-md text-body-md text-center font-bold"
+                type="button"
+              >
+                $100
+              </button>
+              <button
+                data-amt="250"
+                onclick="selectAmt(this, 250)"
+                class="py-3 px-4 border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface hover:border-primary transition-colors text-center"
+                type="button"
+              >
+                $250
+              </button>
+              <button
+                data-amt="500"
+                onclick="selectAmt(this, 500)"
+                class="py-3 px-4 border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface hover:border-primary transition-colors text-center"
+                type="button"
+              >
+                $500
+              </button>
+              <button
+                data-amt="1000"
+                onclick="selectAmt(this, 1000)"
+                class="py-3 px-4 border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface hover:border-primary transition-colors text-center"
+                type="button"
+              >
+                $1000
+              </button>
+              <button
+                data-amt="0"
+                onclick="selectAmt(this, 0)"
+                class="py-3 px-4 border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface hover:border-primary transition-colors text-center"
+                type="button"
+              >
+                Other
+              </button>
+            </div>
+          </div>
+          <div
+            class="flex items-center gap-stack-sm bg-surface-container-low p-stack-sm rounded-lg"
+          >
+            <input
+              class="rounded border-outline text-secondary focus:ring-secondary w-5 h-5"
+              id="monthly"
+              type="checkbox"
+            />
+            <label
+              class="font-body-sm text-body-sm text-on-surface"
+              for="monthly"
+              >Make this a recurring monthly donation</label
+            >
+          </div>
+          <!-- Personal Info (Simplified for Step 1 visual) -->
+          <div class="flex flex-col gap-stack-md mt-stack-sm">
+            <label class="font-label-md text-label-md text-primary"
+              >Personal Details</label
+            >
+            <div class="grid grid-cols-2 gap-stack-sm">
+              <div class="flex flex-col gap-1">
+                <input
+                  class="bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none"
+                  id="donorFirst"
+                  placeholder="First Name"
+                  type="text"
+                />
+              </div>
+              <div class="flex flex-col gap-1">
+                <input
+                  class="bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none"
+                  id="donorLast"
+                  placeholder="Last Name"
+                  type="text"
+                />
+              </div>
+            </div>
+            <input
+              class="bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none w-full"
+              id="donorEmail"
+              placeholder="Email Address"
+              type="email"
+            />
+          </div>
 
-                                <!-- Moyens de paiement -->
-                                <div class="flex flex-col gap-stack-md mt-stack-sm">
-                                        <label class="font-label-md text-label-md text-primary">Moyen de paiement</label>
-                                        <div class="grid grid-cols-3 gap-2" id="paymentMethodGrid">
-                                                <button type="button" data-method="card" onclick="selectPaymentMethod('card')"
-                                                        class="py-3 px-2 border-2 border-primary bg-primary-fixed text-on-primary-fixed rounded-lg font-body-sm text-body-sm text-center font-bold flex flex-col items-center justify-center gap-1">
-                                                        <span class="material-symbols-outlined text-lg">credit_card</span>
-                                                        <span class="text-xs">Carte (Visa/MC)</span>
-                                                </button>
-                                                <button type="button" data-method="mobile_money" onclick="selectPaymentMethod('mobile_money')"
-                                                        class="py-3 px-2 border border-outline-variant rounded-lg font-body-sm text-body-sm text-on-surface hover:border-primary transition-colors text-center flex flex-col items-center justify-center gap-1">
-                                                        <span class="material-symbols-outlined text-lg">phone_android</span>
-                                                        <span class="text-xs">Mobile Money</span>
-                                                </button>
-                                                <button type="button" data-method="paypal" onclick="selectPaymentMethod('paypal')"
-                                                        class="py-3 px-2 border border-outline-variant rounded-lg font-body-sm text-body-sm text-on-surface hover:border-primary transition-colors text-center flex flex-col items-center justify-center gap-1">
-                                                        <span class="material-symbols-outlined text-lg">payment</span>
-                                                        <span class="text-xs">PayPal</span>
-                                                </button>
-                                        </div>
-                                </div>
+          <!-- Moyens de paiement -->
+          <div class="flex flex-col gap-stack-md mt-stack-sm">
+            <label class="font-label-md text-label-md text-primary"
+              >Moyen de paiement</label
+            >
+            <div class="grid grid-cols-3 gap-2" id="paymentMethodGrid">
+              <button
+                type="button"
+                data-method="card"
+                onclick="selectPaymentMethod('card')"
+                class="py-3 px-2 border-2 border-primary bg-primary-fixed text-on-primary-fixed rounded-lg font-body-sm text-body-sm text-center font-bold flex flex-col items-center justify-center gap-1"
+              >
+                <span class="material-symbols-outlined text-lg"
+                  >credit_card</span
+                >
+                <span class="text-xs">Carte (Visa/MC)</span>
+              </button>
+              <button
+                type="button"
+                data-method="mobile_money"
+                onclick="selectPaymentMethod('mobile_money')"
+                class="py-3 px-2 border border-outline-variant rounded-lg font-body-sm text-body-sm text-on-surface hover:border-primary transition-colors text-center flex flex-col items-center justify-center gap-1"
+              >
+                <span class="material-symbols-outlined text-lg"
+                  >phone_android</span
+                >
+                <span class="text-xs">Mobile Money</span>
+              </button>
+              <button
+                type="button"
+                data-method="paypal"
+                onclick="selectPaymentMethod('paypal')"
+                class="py-3 px-2 border border-outline-variant rounded-lg font-body-sm text-body-sm text-on-surface hover:border-primary transition-colors text-center flex flex-col items-center justify-center gap-1"
+              >
+                <span class="material-symbols-outlined text-lg">payment</span>
+                <span class="text-xs">PayPal</span>
+              </button>
+            </div>
+          </div>
 
-                                <!-- Champs Dynamiques de Paiement -->
-                                <div id="paymentFields" class="mt-2">
-                                        <!-- Section Carte -->
-                                        <div id="cardFields" class="space-y-3">
-                                                <input type="text" placeholder="Numéro de carte (Visa / Mastercard)" class="bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none w-full" />
-                                                <div class="grid grid-cols-2 gap-2">
-                                                        <input type="text" placeholder="MM/AA" class="bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none" />
-                                                        <input type="text" placeholder="CVC" class="bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none" />
-                                                </div>
-                                        </div>
+          <!-- Champs Dynamiques de Paiement -->
+          <div id="paymentFields" class="mt-2">
+            <!-- Section Carte -->
+            <div id="cardFields" class="space-y-3">
+              <input
+                type="text"
+                placeholder="Numéro de carte (Visa / Mastercard)"
+                class="bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none w-full"
+              />
+              <div class="grid grid-cols-2 gap-2">
+                <input
+                  type="text"
+                  placeholder="MM/AA"
+                  class="bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none"
+                />
+                <input
+                  type="text"
+                  placeholder="CVC"
+                  class="bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none"
+                />
+              </div>
+            </div>
 
-                                        <!-- Section Mobile Money -->
-                                        <div id="mobileMoneyFields" class="hidden space-y-3">
-                                                <select id="mobileProvider" class="bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none w-full">
-                                                        <option value="mpesa">M-Pesa (Vodacom)</option>
-                                                        <option value="orange">Orange Money</option>
-                                                        <option value="airtel">Airtel Money</option>
-                                                </select>
-                                                <input type="text" id="mobileNumber" placeholder="Numéro de téléphone (ex: +243...)" class="bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none w-full" />
-                                        </div>
+            <!-- Section Mobile Money -->
+            <div id="mobileMoneyFields" class="hidden space-y-3">
+              <select
+                id="mobileProvider"
+                class="bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none w-full"
+              >
+                <option value="mpesa">M-Pesa (Vodacom)</option>
+                <option value="orange">Orange Money</option>
+                <option value="airtel">Airtel Money</option>
+              </select>
+              <input
+                type="text"
+                id="mobileNumber"
+                placeholder="Numéro de téléphone (ex: +243...)"
+                class="bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none w-full"
+              />
+            </div>
 
-                                        <!-- Section PayPal -->
-                                        <div id="paypalFields" class="hidden p-4 bg-surface-container-low rounded-lg text-center text-on-surface-variant font-body-sm text-body-sm">
-                                                Vous serez redirigé vers PayPal pour finaliser la transaction.
-                                        </div>
-                                </div>
+            <!-- Section PayPal -->
+            <div
+              id="paypalFields"
+              class="hidden p-4 bg-surface-container-low rounded-lg text-center text-on-surface-variant font-body-sm text-body-sm"
+            >
+              Vous serez redirigé vers PayPal pour finaliser la transaction.
+            </div>
+          </div>
 
-                                <button onclick="submitDonation()"
-                                        class="mt-stack-md w-full bg-primary text-on-primary font-label-md text-label-md py-4 rounded-lg hover:bg-primary-container transition-colors shadow-sm"
-                                        type="button">Confirmer le don</button>
-                                <p id="donateMsg" class="hidden text-center font-body-sm text-body-sm text-secondary">
-                                </p>
-                        </form>
-                </div>
-        </main>
-        <!-- Footer -->
-        <footer class="bg-primary dark:bg-tertiary mt-auto full-width">
-                <div
-                        class="flex flex-col md:flex-row justify-between items-center px-margin-desktop py-stack-lg w-full max-w-container-max mx-auto">
-                        <div class="font-headline-sm text-headline-sm text-on-primary mb-stack-md md:mb-0">AMORA</div>
-                        <nav class="flex flex-wrap justify-center gap-gutter mb-stack-md md:mb-0">
-                                <a class="text-on-primary-container dark:text-on-tertiary-container hover:text-secondary-fixed transition-colors font-body-sm text-body-sm"
-                                        href="#">Politique de confidentialité</a>
-                                <a class="text-on-primary-container dark:text-on-tertiary-container hover:text-secondary-fixed transition-colors font-body-sm text-body-sm"
-                                        href="#">Conditions d'utilisation</a>
-                                <a class="text-on-primary-container dark:text-on-tertiary-container hover:text-secondary-fixed transition-colors font-body-sm text-body-sm"
-                                        href="#">Rapports annuels</a>
-                                <a class="text-on-primary-container dark:text-on-tertiary-container hover:text-secondary-fixed transition-colors font-body-sm text-body-sm"
-                                        href="#">Nous contacter</a>
-                        </nav>
-                        <div
-                                class="text-on-primary-container dark:text-on-tertiary-container font-body-sm text-body-sm">
-                                © 2026 AMORA. Tous droits réservés.
-                        </div>
-                </div>
-        </footer>
+          <button
+            onclick="submitDonation()"
+            class="mt-stack-md w-full bg-primary text-on-primary font-label-md text-label-md py-4 rounded-lg hover:bg-primary-container transition-colors shadow-sm"
+            type="button"
+          >
+            Confirmer le don
+          </button>
+          <p
+            id="donateMsg"
+            class="hidden text-center font-body-sm text-body-sm text-secondary"
+          ></p>
+        </form>
+      </div>
+    </main>
+    <!-- Footer -->
+    <footer class="bg-primary dark:bg-tertiary mt-auto full-width">
+      <div
+        class="flex flex-col md:flex-row justify-between items-center px-margin-desktop py-stack-lg w-full max-w-container-max mx-auto"
+      >
+        <div
+          class="font-headline-sm text-headline-sm text-on-primary mb-stack-md md:mb-0"
+        >
+          AMORA
+        </div>
+        <nav
+          class="flex flex-wrap justify-center gap-gutter mb-stack-md md:mb-0"
+        >
+          <a
+            class="text-on-primary-container dark:text-on-tertiary-container hover:text-secondary-fixed transition-colors font-body-sm text-body-sm"
+            href="#"
+            >Politique de confidentialité</a
+          >
+          <a
+            class="text-on-primary-container dark:text-on-tertiary-container hover:text-secondary-fixed transition-colors font-body-sm text-body-sm"
+            href="#"
+            >Conditions d'utilisation</a
+          >
+          <a
+            class="text-on-primary-container dark:text-on-tertiary-container hover:text-secondary-fixed transition-colors font-body-sm text-body-sm"
+            href="#"
+            >Rapports annuels</a
+          >
+          <a
+            class="text-on-primary-container dark:text-on-tertiary-container hover:text-secondary-fixed transition-colors font-body-sm text-body-sm"
+            href="#"
+            >Nous contacter</a
+          >
+        </nav>
+        <div
+          class="text-on-primary-container dark:text-on-tertiary-container font-body-sm text-body-sm"
+        >
+          © 2026 AMORA. Tous droits réservés.
+        </div>
+      </div>
+    </footer>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-        <script>
-                let selectedAmount = 100;
-                const projectId = new URLSearchParams(location.search).get('project') || 'general';
-                function selectAmt(btn, amt) {
-                        document.querySelectorAll('#amountGrid button').forEach(b => {
-                                b.className = "py-3 px-4 border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface hover:border-primary transition-colors text-center";
-                        });
-                        btn.className = "py-3 px-4 border-2 border-primary bg-primary-fixed text-on-primary-fixed rounded-lg font-body-md text-body-md text-center font-bold";
-                        selectedAmount = amt;
-                        if (amt === 0) {
-                                const custom = prompt("Montant personnalisé (USD) :");
-                                selectedAmount = Number(custom) || 0;
-                        }
-                }
-
-                let selectedPaymentMethod = 'card';
-                function selectPaymentMethod(method) {
-                        selectedPaymentMethod = method;
-                        document.querySelectorAll('#paymentMethodGrid button').forEach(b => {
-                                const m = b.getAttribute('data-method');
-                                if (m === method) {
-                                        b.className = "py-3 px-2 border-2 border-primary bg-primary-fixed text-on-primary-fixed rounded-lg font-body-sm text-body-sm text-center font-bold flex flex-col items-center justify-center gap-1";
-                                } else {
-                                        b.className = "py-3 px-2 border border-outline-variant rounded-lg font-body-sm text-body-sm text-on-surface hover:border-primary transition-colors text-center flex flex-col items-center justify-center gap-1";
-                                }
-                        });
-
-                        document.getElementById('cardFields').classList.add('hidden');
-                        document.getElementById('mobileMoneyFields').classList.add('hidden');
-                        document.getElementById('paypalFields').classList.add('hidden');
-
-                        if (method === 'card') {
-                                document.getElementById('cardFields').classList.remove('hidden');
-                        } else if (method === 'mobile_money') {
-                                document.getElementById('mobileMoneyFields').classList.remove('hidden');
-                        } else if (method === 'paypal') {
-                                document.getElementById('paypalFields').classList.remove('hidden');
-                        }
-                }
-
-                // Prefill form if user is already logged in
-                async function checkAuthPrefill() {
-                        try {
-                                const res = await fetch('/api/auth/me');
-                                const data = await res.json();
-                                if (data.authenticated && data.user) {
-                                        document.getElementById('donorFirst').value = data.user.firstName || '';
-                                        document.getElementById('donorLast').value = data.user.lastName || '';
-                                        document.getElementById('donorEmail').value = data.user.email || '';
-                                }
-                        } catch (e) { }
-                }
-                checkAuthPrefill();
-
-                async function submitDonation() {
-                        const first = document.getElementById('donorFirst').value.trim();
-                        const last = document.getElementById('donorLast').value.trim();
-                        const email = document.getElementById('donorEmail').value.trim();
-                        const monthly = document.getElementById('monthly').checked;
-                        const msg = document.getElementById('donateMsg');
-                        if (!selectedAmount || selectedAmount <= 0) { alert('Sélectionnez un montant.'); return; }
-                        if (!first || !last || !email) { alert('Merci de compléter vos informations.'); return; }
-
-                        try {
-                                const res = await fetch('/api/donations', {
-                                        method: 'POST',
-                                        headers: { 'Content-Type': 'application/json' },
-                                        body: JSON.stringify({
-                                                firstName: first,
-                                                lastName: last,
-                                                email: email,
-                                                slug: projectId,
-                                                amount: selectedAmount,
-                                                frequency: monthly ? 'monthly' : 'once',
-                                                paymentMethod: selectedPaymentMethod
-                                        })
-                                });
-
-                                const data = await res.json();
-                                if (data.success) {
-                                        const d = data.donation;
-                                        generateReceipt(d);
-                                        msg.textContent = 'Don confirmé — votre reçu a été téléchargé avec la référence ' + d.reference;
-                                        msg.classList.remove('hidden');
-                                        setTimeout(() => location.href = 'dashboard.html', 1500);
-                                } else {
-                                        alert(data.message || 'Erreur lors de la confirmation du don.');
-                                }
-                        } catch (err) {
-                                alert('Erreur lors du traitement de la requête.');
-                        }
-                }
-
-                function generateReceipt(d) {
-                        const { jsPDF } = window.jspdf;
-                        const doc = new jsPDF();
-                        doc.setFont('helvetica', 'bold'); doc.setFontSize(20); doc.setTextColor(15, 44, 89);
-                        doc.text('AMORA — Reçu de don', 20, 25);
-                        doc.setFontSize(11); doc.setTextColor(80, 80, 80); doc.setFont('helvetica', 'normal');
-                        doc.text('Fondation AMORA — RDC (document académique, sans valeur fiscale réelle)', 20, 33);
-                        doc.setDrawColor(226, 232, 240); doc.line(20, 40, 190, 40);
-                        doc.setTextColor(30, 41, 59);
-                        const lines = [
-                                ['Référence', d.reference || d.id],
-                                ['Donateur', d.donor],
-                                ['Email', d.email],
-                                ['Projet', d.projectTitle || d.project],
-                                ['Montant', d.amount + ' $'],
-                                ['Fréquence', d.frequency === 'once' ? 'Don unique' : 'Don mensuel'],
-                                ['Date', d.date]
-                        ];
-                        let y = 55;
-                        lines.forEach(([k, v]) => { doc.setFont('helvetica', 'bold'); doc.text(k + ' :', 20, y); doc.setFont('helvetica', 'normal'); doc.text(String(v), 80, y); y += 10; });
-                        doc.save('recu-amora-' + (d.reference || d.id) + '.pdf');
-                }
-        </script>
-
-  
-  <!-- Mobile Fullscreen Navigation Overlay -->
-  <div id="mobileMenuOverlay" class="fixed inset-0 bg-primary bg-opacity-98 z-[9999] transform translate-x-full transition-transform duration-300 flex flex-col items-center justify-center">
-    <button id="closeMobileMenuBtn" onclick="document.getElementById('mobileMenuOverlay')?.classList.add('translate-x-full')" class="absolute top-6 right-6 text-white focus:outline-none p-2" aria-label="Fermer le menu">
-      <span class="material-symbols-outlined text-4xl">close</span>
-    </button>
-    <nav class="flex flex-col gap-6 text-center">
-      <a class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="index.html">Impact</a>
-      <a class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="projects.html">Programmes</a>
-      <a class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="transparency.html">Transparence</a>
-      <a class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="about.html">Gouvernance</a>
-      <a class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="volunteer.html">Bénévolat</a>
-      <a class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="contact.html">Contact</a>
-      <hr class="border-white opacity-20 my-2">
-      <a id="mobProfileLink" class="text-white text-xl hover:text-secondary-fixed transition-colors" href="login.html">
-        <span id="mobProfileText">Connexion / Mon Compte</span>
-      </a>
-      <a class="bg-secondary text-on-secondary font-label-md py-3 px-8 rounded-full hover:bg-opacity-90 transition-opacity mt-2 inline-block text-lg shadow-sm" href="donate.html">Faire un don</a>
-    </nav>
-  </div>
-
-
-  <script>
-    // Dynamic Navbar Auth & Profile Routing
-    (async function checkNavbarAuth() {
-      try {
-        const res = await fetch('/api/auth/me');
-        const data = await res.json();
-        if (data.authenticated && data.user) {
-          const profileIcons = document.querySelectorAll('#navProfileLink, .nav-profile-icon');
-          profileIcons.forEach(el => {
-            el.href = 'profile.html';
-            el.title = 'Mon Profil (' + data.user.firstName + ')';
-          });
-          const mobText = document.getElementById('mobProfileText');
-          const mobLink = document.getElementById('mobProfileLink');
-          if (mobText && mobLink) {
-            mobText.textContent = 'Mon Profil (' + data.user.firstName + ')';
-            mobLink.href = 'profile.html';
-          }
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+      let selectedAmount = 100;
+      const projectId =
+        new URLSearchParams(location.search).get("project") || "general";
+      function selectAmt(btn, amt) {
+        document.querySelectorAll("#amountGrid button").forEach((b) => {
+          b.className =
+            "py-3 px-4 border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface hover:border-primary transition-colors text-center";
+        });
+        btn.className =
+          "py-3 px-4 border-2 border-primary bg-primary-fixed text-on-primary-fixed rounded-lg font-body-md text-body-md text-center font-bold";
+        selectedAmount = amt;
+        if (amt === 0) {
+          const custom = prompt("Montant personnalisé (USD) :");
+          selectedAmount = Number(custom) || 0;
         }
-      } catch (e) {}
-    })();
-
-    // Mobile menu toggle
-    (function() {
-      const btn = document.getElementById('mobileMenuBtn');
-      const closeBtn = document.getElementById('closeMobileMenuBtn');
-      const overlay = document.getElementById('mobileMenuOverlay');
-      if (btn && overlay) {
-        btn.addEventListener('click', function() {
-          overlay.classList.remove('translate-x-full');
-        });
       }
-      if (closeBtn && overlay) {
-        closeBtn.addEventListener('click', function() {
-          overlay.classList.add('translate-x-full');
+
+      let selectedPaymentMethod = "card";
+      function selectPaymentMethod(method) {
+        selectedPaymentMethod = method;
+        document.querySelectorAll("#paymentMethodGrid button").forEach((b) => {
+          const m = b.getAttribute("data-method");
+          if (m === method) {
+            b.className =
+              "py-3 px-2 border-2 border-primary bg-primary-fixed text-on-primary-fixed rounded-lg font-body-sm text-body-sm text-center font-bold flex flex-col items-center justify-center gap-1";
+          } else {
+            b.className =
+              "py-3 px-2 border border-outline-variant rounded-lg font-body-sm text-body-sm text-on-surface hover:border-primary transition-colors text-center flex flex-col items-center justify-center gap-1";
+          }
         });
+
+        document.getElementById("cardFields").classList.add("hidden");
+        document.getElementById("mobileMoneyFields").classList.add("hidden");
+        document.getElementById("paypalFields").classList.add("hidden");
+
+        if (method === "card") {
+          document.getElementById("cardFields").classList.remove("hidden");
+        } else if (method === "mobile_money") {
+          document
+            .getElementById("mobileMoneyFields")
+            .classList.remove("hidden");
+        } else if (method === "paypal") {
+          document.getElementById("paypalFields").classList.remove("hidden");
+        }
       }
-    })();
-  </script>
 
-</body>
+      // Prefill form if user is already logged in
+      async function checkAuthPrefill() {
+        try {
+          const res = await fetch("/api/auth/me");
+          const data = await res.json();
+          if (data.authenticated && data.user) {
+            document.getElementById("donorFirst").value =
+              data.user.firstName || "";
+            document.getElementById("donorLast").value =
+              data.user.lastName || "";
+            document.getElementById("donorEmail").value = data.user.email || "";
+          }
+        } catch (e) {}
+      }
+      checkAuthPrefill();
 
+      async function submitDonation() {
+        const first = document.getElementById("donorFirst").value.trim();
+        const last = document.getElementById("donorLast").value.trim();
+        const email = document.getElementById("donorEmail").value.trim();
+        const monthly = document.getElementById("monthly").checked;
+        const msg = document.getElementById("donateMsg");
+        if (!selectedAmount || selectedAmount <= 0) {
+          alert("Sélectionnez un montant.");
+          return;
+        }
+        if (!first || !last || !email) {
+          alert("Merci de compléter vos informations.");
+          return;
+        }
+
+        try {
+          const res = await fetch("/api/donations", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              firstName: first,
+              lastName: last,
+              email: email,
+              slug: projectId,
+              amount: selectedAmount,
+              frequency: monthly ? "monthly" : "once",
+              paymentMethod: selectedPaymentMethod,
+            }),
+          });
+
+          const data = await res.json();
+          if (data.success) {
+            const d = data.donation;
+            generateReceipt(d);
+            msg.textContent =
+              "Don confirmé — votre reçu a été téléchargé avec la référence " +
+              d.reference;
+            msg.classList.remove("hidden");
+            setTimeout(() => (location.href = "dashboard.html"), 1500);
+          } else {
+            alert(data.message || "Erreur lors de la confirmation du don.");
+          }
+        } catch (err) {
+          alert("Erreur lors du traitement de la requête.");
+        }
+      }
+
+      function generateReceipt(d) {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(20);
+        doc.setTextColor(15, 44, 89);
+        doc.text("AMORA — Reçu de don", 20, 25);
+        doc.setFontSize(11);
+        doc.setTextColor(80, 80, 80);
+        doc.setFont("helvetica", "normal");
+        doc.text(
+          "Fondation AMORA — RDC (document académique, sans valeur fiscale réelle)",
+          20,
+          33,
+        );
+        doc.setDrawColor(226, 232, 240);
+        doc.line(20, 40, 190, 40);
+        doc.setTextColor(30, 41, 59);
+        const lines = [
+          ["Référence", d.reference || d.id],
+          ["Donateur", d.donor],
+          ["Email", d.email],
+          ["Projet", d.projectTitle || d.project],
+          ["Montant", d.amount + " $"],
+          ["Fréquence", d.frequency === "once" ? "Don unique" : "Don mensuel"],
+          ["Date", d.date],
+        ];
+        let y = 55;
+        lines.forEach(([k, v]) => {
+          doc.setFont("helvetica", "bold");
+          doc.text(k + " :", 20, y);
+          doc.setFont("helvetica", "normal");
+          doc.text(String(v), 80, y);
+          y += 10;
+        });
+        doc.save("recu-amora-" + (d.reference || d.id) + ".pdf");
+      }
+    </script>
+
+    <!-- Mobile Fullscreen Navigation Overlay -->
+    <div
+      id="mobileMenuOverlay"
+      class="fixed inset-0 bg-primary bg-opacity-98 z-[9999] transform translate-x-full transition-transform duration-300 flex flex-col items-center justify-center"
+    >
+      <button
+        id="closeMobileMenuBtn"
+        onclick="
+          document
+            .getElementById('mobileMenuOverlay')
+            ?.classList.add('translate-x-full')
+        "
+        class="absolute top-6 right-6 text-white focus:outline-none p-2"
+        aria-label="Fermer le menu"
+      >
+        <span class="material-symbols-outlined text-4xl">close</span>
+      </button>
+      <nav class="flex flex-col gap-6 text-center">
+        <a
+          class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors"
+          href="index.html"
+          >Impact</a
+        >
+        <a
+          class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors"
+          href="projects.html"
+          >Programmes</a
+        >
+        <a
+          class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors"
+          href="transparency.html"
+          >Transparence</a
+        >
+        <a
+          class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors"
+          href="about.html"
+          >Gouvernance</a
+        >
+        <a
+          class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors"
+          href="volunteer.html"
+          >Bénévolat</a
+        >
+        <a
+          class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors"
+          href="contact.html"
+          >Contact</a
+        >
+        <hr class="border-white opacity-20 my-2" />
+        <a
+          id="mobProfileLink"
+          class="text-white text-xl hover:text-secondary-fixed transition-colors"
+          href="login.html"
+        >
+          <span id="mobProfileText">Connexion / Mon Compte</span>
+        </a>
+        <a
+          class="bg-secondary text-on-secondary font-label-md py-3 px-8 rounded-full hover:bg-opacity-90 transition-opacity mt-2 inline-block text-lg shadow-sm"
+          href="donate.html"
+          >Faire un don</a
+        >
+      </nav>
+    </div>
+
+    <script>
+      // Dynamic Navbar Auth & Profile Routing
+      (async function checkNavbarAuth() {
+        try {
+          const res = await fetch("/api/auth/me");
+          const data = await res.json();
+          if (data.authenticated && data.user) {
+            const profileIcons = document.querySelectorAll(
+              "#navProfileLink, .nav-profile-icon",
+            );
+            profileIcons.forEach((el) => {
+              el.href = "profile.html";
+              el.title = "Mon Profil (" + data.user.firstName + ")";
+            });
+            const mobText = document.getElementById("mobProfileText");
+            const mobLink = document.getElementById("mobProfileLink");
+            if (mobText && mobLink) {
+              mobText.textContent = "Mon Profil (" + data.user.firstName + ")";
+              mobLink.href = "profile.html";
+            }
+          }
+        } catch (e) {}
+      })();
+
+      // Mobile menu toggle
+      (function () {
+        const btn = document.getElementById("mobileMenuBtn");
+        const closeBtn = document.getElementById("closeMobileMenuBtn");
+        const overlay = document.getElementById("mobileMenuOverlay");
+        if (btn && overlay) {
+          btn.addEventListener("click", function () {
+            overlay.classList.remove("translate-x-full");
+          });
+        }
+        if (closeBtn && overlay) {
+          closeBtn.addEventListener("click", function () {
+            overlay.classList.add("translate-x-full");
+          });
+        }
+      })();
+    </script>
+  </body>
 </html>

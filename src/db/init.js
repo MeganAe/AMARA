@@ -1,16 +1,18 @@
-import { neon } from '@neondatabase/serverless';
-import bcrypt from 'bcryptjs';
-import dotenv from 'dotenv';
+import { neon } from "@neondatabase/serverless";
+import bcrypt from "bcryptjs";
+import dotenv from "dotenv";
 
 dotenv.config();
 
 let initPromise = null;
 
 export async function ensureDbReady() {
-  const connectionString = process.env.DATABASE_URL || '';
-  
-  if (!connectionString || connectionString.includes('example-pooler')) {
-    throw new Error("DATABASE_URL n'est pas configurée ou contient une valeur fictive. Configurez DATABASE_URL dans Vercel.");
+  const connectionString = process.env.DATABASE_URL || "";
+
+  if (!connectionString || connectionString.includes("example-pooler")) {
+    throw new Error(
+      "DATABASE_URL n'est pas configurée ou contient une valeur fictive. Configurez DATABASE_URL dans Vercel.",
+    );
   }
 
   if (initPromise) return initPromise;
@@ -103,12 +105,13 @@ export async function ensureDbReady() {
       `;
 
       // Check if admin user exists, if not seed it
-      const adminEmail = process.env.ADMIN_EMAIL || 'admin@amora.org';
-      const existingAdmins = await sql`SELECT id FROM users WHERE email = ${adminEmail.toLowerCase()}`;
-      
+      const adminEmail = process.env.ADMIN_EMAIL || "admin@amora.org";
+      const existingAdmins =
+        await sql`SELECT id FROM users WHERE email = ${adminEmail.toLowerCase()}`;
+
       let adminId = null;
       if (existingAdmins.length === 0) {
-        const adminPass = process.env.ADMIN_PASSWORD || 'AdminPassword2026!';
+        const adminPass = process.env.ADMIN_PASSWORD || "AdminPassword2026!";
         const hash = await bcrypt.hash(adminPass, 10);
         const [insertedAdmin] = await sql`
           INSERT INTO users (email, password_hash, first_name, last_name, role)
@@ -121,15 +124,76 @@ export async function ensureDbReady() {
       }
 
       // Check if projects exist, if not seed them
-      const existingProjects = await sql`SELECT COUNT(*)::int as count FROM projects`;
+      const existingProjects =
+        await sql`SELECT COUNT(*)::int as count FROM projects`;
       if (existingProjects[0].count === 0) {
         const projectList = [
-          { slug: 'kivu-eau', title: "Forages d'eau potable au Kivu", axis: 'Eau & assainissement', province: 'Nord & Sud-Kivu', description: 'Construction et réhabilitation de forages pour alimenter plus de 15 000 personnes en eau potable au Nord et Sud-Kivu.', goalAmount: 50000, initialRaised: 38500, img: 'https://images.unsplash.com/photo-1541544741938-0af808871cc0?w=800&q=80' },
-          { slug: 'kin-sante', title: 'Centre de santé maternelle à Kinshasa', axis: 'Santé maternelle', province: 'Kinshasa', description: 'Équipement médical et prise en charge des soins pour 2 500 femmes enceintes dans les zones défavorisées de Kinshasa.', goalAmount: 80000, initialRaised: 61200, img: 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?w=800&q=80' },
-          { slug: 'katanga-edu', title: 'Écoles rurales du Katanga', axis: 'Éducation', province: 'Haut-Katanga', description: 'Rénovation de 12 écoles fondamentales et distribution de fournitures scolaires au Haut-Katanga.', goalAmount: 45000, initialRaised: 22750, img: 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=800&q=80' },
-          { slug: 'equateur-eau', title: "Assainissement à l'Équateur", axis: 'Eau & assainissement', province: 'Équateur', description: "Installation de latrines publiques et stations d'épuration pour préserver l'hygiène sanitaire des villages riverains.", goalAmount: 30000, initialRaised: 14300, img: 'https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=800&q=80' },
-          { slug: 'kasai-sante', title: 'Vaccination au Kasaï', axis: 'Santé maternelle', province: 'Kasaï', description: "Campagne de vaccination et distribution de kits nutritionnels d'urgence pour les enfants de moins de 5 ans.", goalAmount: 25000, initialRaised: 9800, img: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80' },
-          { slug: 'goma-edu', title: 'Bourses scolaires à Goma', axis: 'Éducation', province: 'Nord-Kivu', description: "Financement de bourses d'études et accompagnement pédagogique pour 500 jeunes déplacés à Goma.", goalAmount: 40000, initialRaised: 31000, img: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&q=80' }
+          {
+            slug: "kivu-eau",
+            title: "Forages d'eau potable au Kivu",
+            axis: "Eau & assainissement",
+            province: "Nord & Sud-Kivu",
+            description:
+              "Construction et réhabilitation de forages pour alimenter plus de 15 000 personnes en eau potable au Nord et Sud-Kivu.",
+            goalAmount: 50000,
+            initialRaised: 38500,
+            img: "https://images.unsplash.com/photo-1541544741938-0af808871cc0?w=800&q=80",
+          },
+          {
+            slug: "kin-sante",
+            title: "Centre de santé maternelle à Kinshasa",
+            axis: "Santé maternelle",
+            province: "Kinshasa",
+            description:
+              "Équipement médical et prise en charge des soins pour 2 500 femmes enceintes dans les zones défavorisées de Kinshasa.",
+            goalAmount: 80000,
+            initialRaised: 61200,
+            img: "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?w=800&q=80",
+          },
+          {
+            slug: "katanga-edu",
+            title: "Écoles rurales du Katanga",
+            axis: "Éducation",
+            province: "Haut-Katanga",
+            description:
+              "Rénovation de 12 écoles fondamentales et distribution de fournitures scolaires au Haut-Katanga.",
+            goalAmount: 45000,
+            initialRaised: 22750,
+            img: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=800&q=80",
+          },
+          {
+            slug: "equateur-eau",
+            title: "Assainissement à l'Équateur",
+            axis: "Eau & assainissement",
+            province: "Équateur",
+            description:
+              "Installation de latrines publiques et stations d'épuration pour préserver l'hygiène sanitaire des villages riverains.",
+            goalAmount: 30000,
+            initialRaised: 14300,
+            img: "https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=800&q=80",
+          },
+          {
+            slug: "kasai-sante",
+            title: "Vaccination au Kasaï",
+            axis: "Santé maternelle",
+            province: "Kasaï",
+            description:
+              "Campagne de vaccination et distribution de kits nutritionnels d'urgence pour les enfants de moins de 5 ans.",
+            goalAmount: 25000,
+            initialRaised: 9800,
+            img: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80",
+          },
+          {
+            slug: "goma-edu",
+            title: "Bourses scolaires à Goma",
+            axis: "Éducation",
+            province: "Nord-Kivu",
+            description:
+              "Financement de bourses d'études et accompagnement pédagogique pour 500 jeunes déplacés à Goma.",
+            goalAmount: 40000,
+            initialRaised: 31000,
+            img: "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&q=80",
+          },
         ];
 
         for (const p of projectList) {
@@ -149,23 +213,24 @@ export async function ensureDbReady() {
       }
 
       // Seed reports if empty
-      const existingReports = await sql`SELECT COUNT(*)::int as count FROM reports`;
+      const existingReports =
+        await sql`SELECT COUNT(*)::int as count FROM reports`;
       if (existingReports[0].count === 0) {
         const reportList = [
-          { title: 'Rapport d’Impact Global Q3 2025', fileUrl: '#' },
-          { title: 'États Financiers Consolidés 2025', fileUrl: '#' },
-          { title: 'Rapport d’Audit Indépendant 2025', fileUrl: '#' },
-          { title: 'Charte d’Éthique et Transparence', fileUrl: '#' },
+          { title: "Rapport d’Impact Global Q3 2025", fileUrl: "#" },
+          { title: "États Financiers Consolidés 2025", fileUrl: "#" },
+          { title: "Rapport d’Audit Indépendant 2025", fileUrl: "#" },
+          { title: "Charte d’Éthique et Transparence", fileUrl: "#" },
         ];
         for (const r of reportList) {
           await sql`INSERT INTO reports (title, file_url) VALUES (${r.title}, ${r.fileUrl})`;
         }
       }
 
-      console.log('✅ Auto DB Initialization complete!');
+      console.log("✅ Auto DB Initialization complete!");
     } catch (err) {
       initPromise = null; // reset so next request retries if it failed
-      console.error('❌ Auto DB Initialization error:', err);
+      console.error("❌ Auto DB Initialization error:", err);
       throw err;
     }
   })();

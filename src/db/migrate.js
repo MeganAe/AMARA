@@ -1,17 +1,17 @@
-import { neon } from '@neondatabase/serverless';
-import dotenv from 'dotenv';
+import { neon } from "@neondatabase/serverless";
+import dotenv from "dotenv";
 
 dotenv.config();
 
-const connectionString = process.env.DATABASE_URL || '';
+const connectionString = process.env.DATABASE_URL || "";
 
 async function runMigrations() {
   if (!connectionString) {
-    console.error('❌ DATABASE_URL missing in environment');
+    console.error("❌ DATABASE_URL missing in environment");
     process.exit(1);
   }
 
-  console.log('⚡ Running database table initialization on Neon...');
+  console.log("⚡ Running database table initialization on Neon...");
   const sql = neon(connectionString);
 
   // Execute schema DDL statements directly to ensure database tables exist
@@ -86,10 +86,10 @@ async function runMigrations() {
     );
   `;
 
-  console.log('✅ Tables initialized successfully on Neon!');
+  console.log("✅ Tables initialized successfully on Neon!");
 }
 
-runMigrations().catch(err => {
-  console.error('❌ Migration failed:', err);
+runMigrations().catch((err) => {
+  console.error("❌ Migration failed:", err);
   process.exit(1);
 });
