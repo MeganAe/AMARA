@@ -25,8 +25,6 @@ function setAuthCookie(res, token) {
     maxAge: 7 * 24 * 60 * 60 * 1000,
   });
 }
-
-// POST /api/donations (Create donation - public with rate limit)
 router.post("/", publicFormLimiter, optionalAuth, async (req, res) => {
   try {
     const {
@@ -49,8 +47,6 @@ router.post("/", publicFormLimiter, optionalAuth, async (req, res) => {
           message: "Le montant du don doit être supérieur à 0.",
         });
     }
-
-    // Resolve project
     let targetProject = null;
     if (projectId) {
       const found = await db
@@ -67,7 +63,6 @@ router.post("/", publicFormLimiter, optionalAuth, async (req, res) => {
       if (found.length > 0) targetProject = found[0];
     }
     if (!targetProject) {
-      // Fallback to first project if none specified
       const allP = await db.select().from(projects);
       if (allP.length > 0) targetProject = allP[0];
     }
@@ -82,8 +77,6 @@ router.post("/", publicFormLimiter, optionalAuth, async (req, res) => {
     let donorEmail = req.user?.email || email;
     let donorFirstName = req.user?.firstName || firstName || "Donateur";
     let donorLastName = req.user?.lastName || lastName || "Anonyme";
-
-    // If guest / unauthenticated
     if (!userId && donorEmail) {
       const cleanEmail = donorEmail.toLowerCase().trim();
       const existing = await db
@@ -96,7 +89,6 @@ router.post("/", publicFormLimiter, optionalAuth, async (req, res) => {
         donorFirstName = existing[0].firstName;
         donorLastName = existing[0].lastName;
       } else {
-        // Auto-create donor guest account
         const tempPassword =
           "GuestPass_" + Math.random().toString(36).slice(-8);
         const passwordHash = await bcrypt.hash(tempPassword, 10);
@@ -113,8 +105,6 @@ router.post("/", publicFormLimiter, optionalAuth, async (req, res) => {
           .returning();
 
         userId = newUser.id;
-
-        // Automatically sign in guest user
         const token = jwt.sign(
           {
             id: newUser.id,
@@ -173,8 +163,6 @@ router.post("/", publicFormLimiter, optionalAuth, async (req, res) => {
       });
   }
 });
-
-// GET /api/donations/me (My donations)
 router.get("/me", authenticateUser, async (req, res) => {
   try {
     const userDonations = await db
@@ -206,8 +194,6 @@ router.get("/me", authenticateUser, async (req, res) => {
     return res.status(500).json({ success: false, message: "Erreur serveur." });
   }
 });
-
-// GET /api/donations (Admin only - List all donations)
 router.get("/", authenticateUser, requireAdmin, async (req, res) => {
   try {
     const allDonations = await db
@@ -248,8 +234,6 @@ router.get("/", authenticateUser, requireAdmin, async (req, res) => {
     return res.status(500).json({ success: false, message: "Erreur serveur." });
   }
 });
-
-// GET /api/donations/export.csv (Admin only)
 router.get("/export.csv", authenticateUser, requireAdmin, async (req, res) => {
   try {
     const records = await db

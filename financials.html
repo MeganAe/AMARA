@@ -218,7 +218,7 @@
   </head>
 
   <body class="bg-surface text-on-surface flex min-h-screen">
-    <!-- Side NavBar -->
+
     <aside
       class="hidden md:flex bg-surface-container-low dark:bg-tertiary text-secondary dark:text-secondary-fixed-dim font-label-md text-label-md fixed left-0 top-0 h-screen w-sidebar-width flat no shadows flex flex-col h-full p-stack-md border-r border-outline-variant dark:border-tertiary-container z-50"
     >
@@ -314,7 +314,7 @@
         </a>
       </div>
     </aside>
-    <!-- Main Content -->
+
     <main class="flex-1 w-full md:pl-sidebar-width">
       <div
         class="max-w-container-max mx-auto p-margin-mobile md:p-margin-desktop space-y-stack-lg"
@@ -337,9 +337,9 @@
             New Report
           </button>
         </header>
-        <!-- Key Metrics Bento Grid -->
+
         <section class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-          <!-- Featured Metric -->
+
           <div
             class="bg-surface-container-lowest rounded-xl p-stack-lg shadow-[0px_4px_20px_rgba(15,44,89,0.05)] border-l-4 border-secondary flex flex-col justify-between"
           >
@@ -360,7 +360,7 @@
               +12% vs last year
             </div>
           </div>
-          <!-- Secondary Metric -->
+
           <div
             class="bg-surface-container-lowest rounded-xl p-stack-lg shadow-[0px_4px_20px_rgba(15,44,89,0.05)] flex flex-col justify-between"
           >
@@ -378,7 +378,7 @@
               Funds directed to programs
             </div>
           </div>
-          <!-- Secondary Metric -->
+
           <div
             class="bg-surface-container-lowest rounded-xl p-stack-lg shadow-[0px_4px_20px_rgba(15,44,89,0.05)] flex flex-col justify-between"
           >
@@ -397,9 +397,9 @@
             </div>
           </div>
         </section>
-        <!-- Detailed Analysis Section -->
+
         <section class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
-          <!-- Chart Area -->
+
           <div
             class="lg:col-span-2 bg-surface-container-lowest rounded-xl p-stack-lg shadow-[0px_4px_20px_rgba(15,44,89,0.05)]"
           >
@@ -407,7 +407,7 @@
               Fund Distribution
             </h3>
             <div class="flex flex-col md:flex-row items-center gap-8">
-              <!-- CSS Donut Chart representation -->
+
               <div
                 class="relative w-48 h-48 rounded-full flex items-center justify-center bg-[conic-gradient(#006c4a_0%_60%,#0f2c59_60%_85%,#e0e3e5_85%_100%)] shadow-inner"
               >
@@ -423,7 +423,7 @@
                   >
                 </div>
               </div>
-              <!-- Legend -->
+
               <div class="flex-1 space-y-4">
                 <div
                   class="flex justify-between items-center border-b border-surface-variant pb-2"
@@ -467,7 +467,7 @@
               </div>
             </div>
           </div>
-          <!-- Recent Expenditures List -->
+
           <div
             class="bg-surface-container-lowest rounded-xl p-stack-lg shadow-[0px_4px_20px_rgba(15,44,89,0.05)]"
           >
@@ -531,7 +531,7 @@
       </div>
     </main>
 
-    <!-- Mobile Fullscreen Navigation Overlay -->
+
     <div
       id="mobileMenuOverlay"
       class="fixed inset-0 bg-primary bg-opacity-98 z-50 transform translate-x-full transition-transform duration-300 flex flex-col items-center justify-center"
@@ -596,7 +596,6 @@
     </div>
 
     <script>
-      // Mobile menu toggle logic
       (function () {
         const btn = document.getElementById("mobileMenuBtn");
         const closeBtn = document.getElementById("closeMobileMenuBtn");

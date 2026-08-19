@@ -20,8 +20,6 @@ export async function ensureDbReady() {
   initPromise = (async () => {
     try {
       const sql = neon(connectionString);
-
-      // Create tables if they do not exist
       await sql`
         CREATE TABLE IF NOT EXISTS users (
           id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -103,8 +101,6 @@ export async function ensureDbReady() {
           created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW() NOT NULL
         );
       `;
-
-      // Check if admin user exists, if not seed it
       const adminEmail = process.env.ADMIN_EMAIL || "admin@amora.org";
       const existingAdmins =
         await sql`SELECT id FROM users WHERE email = ${adminEmail.toLowerCase()}`;
@@ -122,8 +118,6 @@ export async function ensureDbReady() {
       } else {
         adminId = existingAdmins[0].id;
       }
-
-      // Check if projects exist, if not seed them
       const existingProjects =
         await sql`SELECT COUNT(*)::int as count FROM projects`;
       if (existingProjects[0].count === 0) {
@@ -211,8 +205,6 @@ export async function ensureDbReady() {
           }
         }
       }
-
-      // Seed reports if empty
       const existingReports =
         await sql`SELECT COUNT(*)::int as count FROM reports`;
       if (existingReports[0].count === 0) {
@@ -227,10 +219,10 @@ export async function ensureDbReady() {
         }
       }
 
-      console.log("✅ Auto DB Initialization complete!");
+      console.log(" Auto DB Initialization complete!");
     } catch (err) {
-      initPromise = null; // reset so next request retries if it failed
-      console.error("❌ Auto DB Initialization error:", err);
+      initPromise = null;
+      console.error(" Auto DB Initialization error:", err);
       throw err;
     }
   })();

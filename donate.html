@@ -7,6 +7,10 @@
     <title>AMORA - Portail de dons</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
+      rel="stylesheet"
+    />
+    <link
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
       rel="stylesheet"
     />
@@ -177,7 +181,7 @@
   <body
     class="bg-background text-on-background min-h-screen flex flex-col font-body-md"
   >
-    <!-- TopNavBar -->
+
     <header
       class="bg-surface dark:bg-on-surface shadow-sm z-50 sticky top-0 w-full"
     >
@@ -234,11 +238,11 @@
         </div>
       </div>
     </header>
-    <!-- Main Content -->
+
     <main
       class="flex-grow flex flex-col items-center justify-start py-stack-lg md:py-margin-desktop px-margin-mobile md:px-margin-desktop w-full max-w-container-max mx-auto gap-stack-lg md:gap-gutter md:flex-row md:items-start"
     >
-      <!-- Left Column: Impact Stories & Trust Badges -->
+
       <div class="w-full md:w-1/2 flex flex-col gap-stack-lg">
         <div class="mb-stack-md">
           <h1
@@ -252,7 +256,7 @@
             building a sustainable future.
           </p>
         </div>
-        <!-- Impact Story Card -->
+
         <div
           class="bg-surface-container-lowest rounded-lg shadow-[0px_4px_20px_rgba(15,44,89,0.05)] overflow-hidden border-l-4 border-secondary flex flex-col"
         >
@@ -260,7 +264,7 @@
             class="h-48 w-full bg-cover bg-center"
             data-alt="A compelling, high-quality documentary-style photograph showing a diverse community engaged in an educational workshop. The setting is bright and hopeful, with natural sunlight streaming through large windows. People of various ages are collaborating over structural plans. The visual style is modern, professional, and authentic, aligning with an institutional NGO's global impact report. Warm, natural color palette."
             style="
-              background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuA0csS6bOZePdzAgkSK0uL17_ZLjqrM15EbM9uQ4oAh4ujjJYTezghHginw5iqeMpkbxIu3s1UedfKro6Ef55MXJym7TQsPEn4Plvqej8YOa4Wjk6eOyGYmKSs7Cla53e2aM07GXkelSGACwXfBxZpJq0FliLq8KuoZ87LZpnLSgG4CUzZiN5SyFM3u3tm9qW_f434bV883gRzcjROPxWNrZPRKN9gI3fA3e5_u-ed7Sf84oAtjPTZ7tw&quot;);
+              background-image: url(&quot;https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&amp;fit=crop&amp;q=80&amp;w=800&quot;);
             "
           ></div>
           <div class="p-stack-md flex flex-col gap-stack-sm">
@@ -281,7 +285,7 @@
             </p>
           </div>
         </div>
-        <!-- Trust Badges -->
+
         <div
           class="flex flex-wrap gap-stack-md items-center mt-stack-sm p-stack-md bg-surface-container-low rounded-lg"
         >
@@ -317,7 +321,7 @@
           </div>
         </div>
       </div>
-      <!-- Right Column: Donation Form -->
+
       <div
         class="w-full md:w-1/2 bg-surface-container-lowest rounded-xl shadow-[0px_12px_32px_rgba(15,44,89,0.1)] p-stack-lg border border-surface-variant"
       >
@@ -333,7 +337,7 @@
           >
         </div>
         <form class="flex flex-col gap-stack-lg">
-          <!-- Amount Selection -->
+
           <div class="flex flex-col gap-stack-md">
             <label class="font-label-md text-label-md text-primary"
               >Select Amount</label
@@ -403,7 +407,7 @@
               >Make this a recurring monthly donation</label
             >
           </div>
-          <!-- Personal Info (Simplified for Step 1 visual) -->
+
           <div class="flex flex-col gap-stack-md mt-stack-sm">
             <label class="font-label-md text-label-md text-primary"
               >Personal Details</label
@@ -434,7 +438,7 @@
             />
           </div>
 
-          <!-- Moyens de paiement -->
+
           <div class="flex flex-col gap-stack-md mt-stack-sm">
             <label class="font-label-md text-label-md text-primary"
               >Moyen de paiement</label
@@ -474,9 +478,9 @@
             </div>
           </div>
 
-          <!-- Champs Dynamiques de Paiement -->
+
           <div id="paymentFields" class="mt-2">
-            <!-- Section Carte -->
+
             <div id="cardFields" class="space-y-3">
               <input
                 type="text"
@@ -497,7 +501,7 @@
               </div>
             </div>
 
-            <!-- Section Mobile Money -->
+
             <div id="mobileMoneyFields" class="hidden space-y-3">
               <select
                 id="mobileProvider"
@@ -515,7 +519,7 @@
               />
             </div>
 
-            <!-- Section PayPal -->
+
             <div
               id="paypalFields"
               class="hidden p-4 bg-surface-container-low rounded-lg text-center text-on-surface-variant font-body-sm text-body-sm"
@@ -538,7 +542,7 @@
         </form>
       </div>
     </main>
-    <!-- Footer -->
+
     <footer class="bg-primary dark:bg-tertiary mt-auto full-width">
       <div
         class="flex flex-col md:flex-row justify-between items-center px-margin-desktop py-stack-lg w-full max-w-container-max mx-auto"
@@ -575,7 +579,7 @@
         <div
           class="text-on-primary-container dark:text-on-tertiary-container font-body-sm text-body-sm"
         >
-          © 2026 AMORA. Tous droits réservés.
+           2026 AMORA. Tous droits réservés.
         </div>
       </div>
     </footer>
@@ -585,7 +589,7 @@
       let selectedAmount = 100;
       const projectId =
         new URLSearchParams(location.search).get("project") || "general";
-      function selectAmt(btn, amt) {
+      async function selectAmt(btn, amt) {
         document.querySelectorAll("#amountGrid button").forEach((b) => {
           b.className =
             "py-3 px-4 border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface hover:border-primary transition-colors text-center";
@@ -594,7 +598,15 @@
           "py-3 px-4 border-2 border-primary bg-primary-fixed text-on-primary-fixed rounded-lg font-body-md text-body-md text-center font-bold";
         selectedAmount = amt;
         if (amt === 0) {
-          const custom = prompt("Montant personnalisé (USD) :");
+          const { value: custom } = await Swal.fire({
+            title: "Montant personnalisé",
+            input: "number",
+            inputLabel: "Montant en USD",
+            inputAttributes: { min: "1", step: "0.01" },
+            showCancelButton: true,
+            confirmButtonText: "Valider",
+            cancelButtonText: "Annuler",
+          });
           selectedAmount = Number(custom) || 0;
         }
       }
@@ -627,8 +639,6 @@
           document.getElementById("paypalFields").classList.remove("hidden");
         }
       }
-
-      // Prefill form if user is already logged in
       async function checkAuthPrefill() {
         try {
           const res = await fetch("/api/auth/me");
@@ -649,13 +659,12 @@
         const last = document.getElementById("donorLast").value.trim();
         const email = document.getElementById("donorEmail").value.trim();
         const monthly = document.getElementById("monthly").checked;
-        const msg = document.getElementById("donateMsg");
         if (!selectedAmount || selectedAmount <= 0) {
-          alert("Sélectionnez un montant.");
+          Swal.fire({ icon: "warning", text: "Sélectionnez un montant." });
           return;
         }
         if (!first || !last || !email) {
-          alert("Merci de compléter vos informations.");
+          Swal.fire({ icon: "warning", text: "Merci de compléter vos informations." });
           return;
         }
 
@@ -678,16 +687,20 @@
           if (data.success) {
             const d = data.donation;
             generateReceipt(d);
-            msg.textContent =
-              "Don confirmé — votre reçu a été téléchargé avec la référence " +
-              d.reference;
-            msg.classList.remove("hidden");
-            setTimeout(() => (location.href = "dashboard.html"), 1500);
+            await Swal.fire({
+              icon: "success",
+              text:
+                "Don confirmé — votre reçu a été téléchargé avec la référence " +
+                d.reference,
+              timer: 1500,
+              showConfirmButton: false,
+            });
+            location.href = "dashboard.html";
           } else {
-            alert(data.message || "Erreur lors de la confirmation du don.");
+            Swal.fire({ icon: "error", text: data.message || "Erreur lors de la confirmation du don." });
           }
         } catch (err) {
-          alert("Erreur lors du traitement de la requête.");
+          Swal.fire({ icon: "error", text: "Erreur lors du traitement de la requête." });
         }
       }
 
@@ -729,8 +742,9 @@
         doc.save("recu-amora-" + (d.reference || d.id) + ".pdf");
       }
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <!-- Mobile Fullscreen Navigation Overlay -->
+
     <div
       id="mobileMenuOverlay"
       class="fixed inset-0 bg-primary bg-opacity-98 z-[9999] transform translate-x-full transition-transform duration-300 flex flex-col items-center justify-center"
@@ -795,7 +809,6 @@
     </div>
 
     <script>
-      // Dynamic Navbar Auth & Profile Routing
       (async function checkNavbarAuth() {
         try {
           const res = await fetch("/api/auth/me");
@@ -817,8 +830,6 @@
           }
         } catch (e) {}
       })();
-
-      // Mobile menu toggle
       (function () {
         const btn = document.getElementById("mobileMenuBtn");
         const closeBtn = document.getElementById("closeMobileMenuBtn");

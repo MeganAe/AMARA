@@ -7,8 +7,6 @@ import { authenticateUser, requireAdmin } from "../middleware/auth.js";
 const router = express.Router();
 
 import bcrypt from "bcryptjs";
-
-// PUT /api/users/profile (Authenticated user)
 router.put("/profile", authenticateUser, async (req, res) => {
   try {
     const userId = req.user.id;
@@ -64,8 +62,6 @@ router.put("/profile", authenticateUser, async (req, res) => {
       });
   }
 });
-
-// PATCH /api/users/:id/role (Admin only)
 router.patch("/:id/role", authenticateUser, requireAdmin, async (req, res) => {
   try {
     const { id } = req.params;

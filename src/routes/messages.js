@@ -5,21 +5,16 @@ import { eq, or, and, desc, asc, sql } from "drizzle-orm";
 import { authenticateUser, requireAdmin } from "../middleware/auth.js";
 
 const router = express.Router();
-
-// GET /api/messages - Retrieve messages (for donor: thread with admin; for admin: list of donor conversations)
 router.get("/", authenticateUser, async (req, res) => {
   try {
     const user = req.user;
 
     if (user.role === "donor") {
-      // Find admin user
       const [adminUser] = await db
         .select({ id: users.id })
         .from(users)
         .where(eq(users.role, "admin"))
         .limit(1);
-
-      // Fetch all messages involving this donor
       const messageList = await db
         .select({
           id: messages.id,
@@ -38,8 +33,6 @@ router.get("/", authenticateUser, async (req, res) => {
           or(eq(messages.senderId, user.id), eq(messages.recipientId, user.id)),
         )
         .orderBy(asc(messages.createdAt));
-
-      // Mark unread messages sent to this donor as read
       await db
         .update(messages)
         .set({ isRead: true })
@@ -54,7 +47,6 @@ router.get("/", authenticateUser, async (req, res) => {
         messages: messageList,
       });
     } else {
-      // Admin: retrieve conversations grouped by donor
       const donorList = await db
         .select({
           id: users.id,
@@ -64,8 +56,6 @@ router.get("/", authenticateUser, async (req, res) => {
         })
         .from(users)
         .where(eq(users.role, "donor"));
-
-      // For each donor, find latest message and unread count
       const conversations = [];
 
       for (const donor of donorList) {
@@ -98,7 +88,6 @@ router.get("/", authenticateUser, async (req, res) => {
             totalMessages: donorMessages.length,
           });
         } else {
-          // Donor without messages yet
           conversations.push({
             donor,
             lastMessage: null,
@@ -107,8 +96,6 @@ router.get("/", authenticateUser, async (req, res) => {
           });
         }
       }
-
-      // Sort conversations: those with unread messages first, then by latest message date
       conversations.sort((a, b) => {
         if (a.unreadCount !== b.unreadCount) {
           return b.unreadCount - a.unreadCount;
@@ -138,8 +125,6 @@ router.get("/", authenticateUser, async (req, res) => {
       });
   }
 });
-
-// GET /api/messages/conversation/:donorId (Admin only)
 router.get(
   "/conversation/:donorId",
   authenticateUser,
@@ -182,8 +167,6 @@ router.get(
           or(eq(messages.senderId, donorId), eq(messages.recipientId, donorId)),
         )
         .orderBy(asc(messages.createdAt));
-
-      // Mark messages sent by this donor as read
       await db
         .update(messages)
         .set({ isRead: true })
@@ -202,8 +185,6 @@ router.get(
     }
   },
 );
-
-// POST /api/messages - Send a message
 router.post("/", authenticateUser, async (req, res) => {
   try {
     const user = req.user;
@@ -221,7 +202,6 @@ router.post("/", authenticateUser, async (req, res) => {
     let targetRecipientId = recipientId;
 
     if (user.role === "donor") {
-      // If donor, target recipient is the admin
       if (!targetRecipientId) {
         const [adminUser] = await db
           .select({ id: users.id })
@@ -232,7 +212,6 @@ router.post("/", authenticateUser, async (req, res) => {
         targetRecipientId = adminUser ? adminUser.id : null;
       }
     } else {
-      // Admin must specify recipient donor
       if (!targetRecipientId) {
         return res
           .status(400)
@@ -275,8 +254,6 @@ router.post("/", authenticateUser, async (req, res) => {
       .json({ success: false, message: "Erreur lors de l'envoi du message." });
   }
 });
-
-// GET /api/messages/unread-count - Get total unread messages count
 router.get("/unread-count", authenticateUser, async (req, res) => {
   try {
     const user = req.user;
@@ -291,7 +268,6 @@ router.get("/unread-count", authenticateUser, async (req, res) => {
         );
       unreadCount = result[0]?.count || 0;
     } else {
-      // For admin: count unread messages from donors
       const result = await db
         .select({ count: sql`count(*)::int` })
         .from(messages)

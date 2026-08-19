@@ -14,7 +14,7 @@ export const users = pgTable("users", {
   passwordHash: text("password_hash").notNull(),
   firstName: text("first_name").notNull(),
   lastName: text("last_name").notNull(),
-  role: text("role").notNull().default("donor"), // 'donor' | 'admin'
+  role: text("role").notNull().default("donor"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
@@ -22,7 +22,7 @@ export const projects = pgTable("projects", {
   id: uuid("id").defaultRandom().primaryKey(),
   slug: text("slug").notNull().unique(),
   title: text("title").notNull(),
-  axis: text("axis").notNull(), // 'Eau & assainissement' | 'Santé maternelle' | 'Éducation'
+  axis: text("axis").notNull(),
   province: text("province").notNull(),
   description: text("description").notNull(),
   goalAmount: numeric("goal_amount", { precision: 12, scale: 2 }).notNull(),
@@ -37,9 +37,9 @@ export const donations = pgTable("donations", {
     .references(() => projects.id, { onDelete: "cascade" })
     .notNull(),
   amount: numeric("amount", { precision: 12, scale: 2 }).notNull(),
-  frequency: text("frequency").notNull().default("once"), // 'once' | 'monthly'
+  frequency: text("frequency").notNull().default("once"),
   paymentMethod: text("payment_method").notNull().default("card"),
-  status: text("status").notNull().default("completed"), // 'pending' | 'completed' | 'failed'
+  status: text("status").notNull().default("completed"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 

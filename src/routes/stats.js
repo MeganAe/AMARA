@@ -4,11 +4,8 @@ import { donations, projects } from "../db/schema.js";
 import { eq, sql } from "drizzle-orm";
 
 const router = express.Router();
-
-// GET /api/stats/transparency
 router.get("/transparency", async (req, res) => {
   try {
-    // Total Raised & Total Donors from SQL
     const overallStats = await db
       .select({
         totalRaised: sql`COALESCE(SUM(${donations.amount}), 0)`,
@@ -20,14 +17,10 @@ router.get("/transparency", async (req, res) => {
 
     const raisedTotal = Number(overallStats[0]?.totalRaised || 0);
     const donorTotal = Number(overallStats[0]?.totalDonors || 0);
-
-    // Total Projects
     const projectCountRes = await db
       .select({ count: sql`COUNT(*)` })
       .from(projects);
     const projectTotal = Number(projectCountRes[0]?.count || 0);
-
-    // Sector breakdown via SQL
     const sectorStats = await db
       .select({
         axis: projects.axis,

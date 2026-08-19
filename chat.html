@@ -6,6 +6,10 @@
     <title>AMORA - Messagerie &amp; Chat</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
+      rel="stylesheet"
+    />
+    <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;display=swap"
       rel="stylesheet"
     />
@@ -123,11 +127,11 @@
   <body
     class="bg-background text-on-surface font-body-md antialiased h-screen overflow-hidden flex"
   >
-    <!-- Desktop Sidebar -->
+
     <aside
       class="hidden md:flex bg-surface-container-low text-secondary font-label-md fixed left-0 top-0 h-screen w-sidebar-width flex-col p-stack-md border-r border-outline-variant z-40"
     >
-      <!-- Brand / Header -->
+
       <div class="mb-stack-lg flex items-center gap-4">
         <div>
           <h2 class="font-headline-sm text-headline-sm text-primary">
@@ -141,9 +145,9 @@
           </p>
         </div>
       </div>
-      <!-- Navigation Links -->
+
       <nav class="flex-1 space-y-2">
-        <!-- Tableau de bord -->
+
         <a
           class="flex items-center gap-stack-md text-on-surface-variant p-stack-md rounded-lg hover:bg-surface-container-high transition-all"
           href="dashboard.html"
@@ -151,7 +155,7 @@
           <span class="material-symbols-outlined">dashboard</span>
           <span>Tableau de bord</span>
         </a>
-        <!-- Impact Global -->
+
         <a
           class="flex items-center gap-stack-md text-on-surface-variant p-stack-md rounded-lg hover:bg-surface-container-high transition-all"
           href="transparency.html"
@@ -159,7 +163,7 @@
           <span class="material-symbols-outlined">public</span>
           <span>Impact Global</span>
         </a>
-        <!-- Finances (Admin uniquement) -->
+
         <a
           id="navFinancials"
           class="hidden flex items-center gap-stack-md text-on-surface-variant p-stack-md rounded-lg hover:bg-surface-container-high transition-all"
@@ -168,7 +172,7 @@
           <span class="material-symbols-outlined">account_balance_wallet</span>
           <span>Finances</span>
         </a>
-        <!-- Donateurs (Admin uniquement) -->
+
         <a
           id="navAdminDonors"
           class="hidden flex items-center gap-stack-md text-on-surface-variant p-stack-md rounded-lg hover:bg-surface-container-high transition-all"
@@ -177,7 +181,7 @@
           <span class="material-symbols-outlined">group</span>
           <span>Gestion Donateurs</span>
         </a>
-        <!-- Rapports (Admin uniquement) -->
+
         <a
           id="navReports"
           class="hidden flex items-center gap-stack-md text-on-surface-variant p-stack-md rounded-lg hover:bg-surface-container-high transition-all"
@@ -186,7 +190,7 @@
           <span class="material-symbols-outlined">description</span>
           <span>Rapports</span>
         </a>
-        <!-- Chat / Messagerie (Active) -->
+
         <a
           class="flex items-center justify-between bg-secondary-container text-on-secondary-container rounded-lg p-stack-md border-l-4 border-secondary transition-all"
           href="chat.html"
@@ -205,7 +209,7 @@
             >0</span
           >
         </a>
-        <!-- Mon Profil -->
+
         <a
           class="flex items-center gap-stack-md text-on-surface-variant p-stack-md rounded-lg hover:bg-surface-container-high transition-all"
           href="profile.html"
@@ -214,7 +218,7 @@
           <span>Mon Profil</span>
         </a>
       </nav>
-      <!-- CTA -->
+
       <div class="mt-auto mb-stack-lg">
         <button
           onclick="location.href = 'donate.html'"
@@ -223,7 +227,7 @@
           Faire un don
         </button>
       </div>
-      <!-- Footer Links -->
+
       <div class="space-y-2 border-t border-outline-variant pt-stack-md">
         <a
           class="flex items-center gap-stack-md text-on-surface-variant p-2 rounded-lg hover:bg-surface-container-high transition-all"
@@ -242,7 +246,7 @@
       </div>
     </aside>
 
-    <!-- Mobile Topbar -->
+
     <div
       class="md:hidden w-full h-16 bg-surface border-b border-outline-variant flex items-center justify-between px-margin-mobile fixed top-0 z-50"
     >
@@ -258,7 +262,7 @@
       </button>
     </div>
 
-    <!-- Mobile Fullscreen Navigation Overlay -->
+
     <div
       id="mobileMenuOverlay"
       class="fixed inset-0 bg-primary bg-opacity-98 z-[9999] transform translate-x-full transition-transform duration-300 flex flex-col items-center justify-center"
@@ -323,11 +327,11 @@
       </nav>
     </div>
 
-    <!-- Main Content Area -->
+
     <main
       class="flex-1 ml-0 md:ml-sidebar-width h-[calc(100dvh-4rem)] md:h-screen flex flex-col mt-16 md:mt-0 overflow-hidden bg-background"
     >
-      <!-- Top Header -->
+
       <header
         class="h-14 md:h-16 bg-white border-b border-outline-variant px-4 md:px-6 flex items-center justify-between shrink-0"
       >
@@ -363,9 +367,9 @@
         </div>
       </header>
 
-      <!-- Chat Container -->
+
       <div class="flex-1 flex overflow-hidden">
-        <!-- Admin: Donor Conversations List (Visible only to Admin) -->
+
         <aside
           id="conversationsPanel"
           class="hidden w-full md:w-80 border-r border-outline-variant bg-white flex flex-col shrink-0"
@@ -382,19 +386,19 @@
             class="flex-1 overflow-y-auto divide-y divide-surface-variant"
             id="conversationsList"
           >
-            <!-- Conversation items dynamically injected here -->
+
             <div class="p-4 text-center text-sm text-on-surface-variant">
               Chargement des conversations...
             </div>
           </div>
         </aside>
 
-        <!-- Chat Thread Panel -->
+
         <section
           id="chatThreadPanel"
           class="flex-1 flex flex-col h-full bg-surface-container-lowest overflow-hidden"
         >
-          <!-- Messages Scroll Area -->
+
           <div
             class="flex-1 overflow-y-auto p-3 md:p-6 space-y-3 md:space-y-4"
             id="messagesContainer"
@@ -404,7 +408,7 @@
             </div>
           </div>
 
-          <!-- Message Input Bar (Always pinned and visible) -->
+
           <div
             class="p-3 md:p-4 bg-white border-t border-outline-variant shrink-0 shadow-[0_-4px_12px_rgba(0,0,0,0.05)] md:shadow-none z-10"
           >
@@ -435,8 +439,6 @@
       let currentUser = null;
       let currentDonorId = null;
       let pollInterval = null;
-
-      // Mobile Menu Toggle
       const mobileMenuBtn = document.getElementById("mobileMenuBtn");
       const closeMobileMenuBtn = document.getElementById("closeMobileMenuBtn");
       const mobileMenuOverlay = document.getElementById("mobileMenuOverlay");
@@ -500,11 +502,7 @@
               "Discussion en direct avec l'équipe AMORA";
             await loadDonorMessages();
           }
-
-          // Remove anti-flash guard
           document.getElementById("antiClickjack")?.remove();
-
-          // Start polling every 3.5 seconds
           pollInterval = setInterval(() => {
             if (isAdmin) {
               if (currentDonorId) loadAdminThread(currentDonorId, false);
@@ -519,8 +517,6 @@
           location.href = "login.html";
         }
       }
-
-      // DONOR VIEW: Load messages
       async function loadDonorMessages(scroll = true) {
         try {
           const res = await fetch("/api/messages");
@@ -590,8 +586,6 @@
           container.scrollTop = container.scrollHeight;
         }
       }
-
-      // ADMIN VIEW: Load conversations
       let cachedConversations = [];
       async function loadAdminConversations(renderFirst = true) {
         try {
@@ -748,8 +742,6 @@
           container.scrollTop = container.scrollHeight;
         }
       }
-
-      // Submit Message
       document
         .getElementById("messageForm")
         .addEventListener("submit", async (e) => {
@@ -761,7 +753,7 @@
           const payload = { content };
           if (currentUser.role === "admin") {
             if (!currentDonorId) {
-              alert("Veuillez sélectionner un donateur.");
+              Swal.fire({ icon: "warning", text: "Veuillez sélectionner un donateur." });
               return;
             }
             payload.recipientId = currentDonorId;
@@ -783,7 +775,7 @@
                 loadDonorMessages(true);
               }
             } else {
-              alert(data.message || "Erreur lors de l'envoi.");
+              Swal.fire({ icon: "error", text: data.message || "Erreur lors de l'envoi." });
             }
           } catch (err) {
             console.error("Send message error:", err);
@@ -820,5 +812,6 @@
 
       initChat();
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </body>
 </html>

@@ -189,11 +189,11 @@
   <body
     class="bg-background text-on-surface font-body-md antialiased h-screen overflow-hidden flex"
   >
-    <!-- SideNavBar Component -->
+
     <aside
       class="hidden md:flex bg-surface-container-low text-secondary font-label-md fixed left-0 top-0 h-screen w-sidebar-width flex-col p-stack-md border-r border-outline-variant z-40"
     >
-      <!-- Brand / Header -->
+
       <div class="mb-stack-lg flex items-center gap-4">
         <div>
           <h2 class="font-headline-sm text-headline-sm text-primary">
@@ -204,9 +204,9 @@
           </p>
         </div>
       </div>
-      <!-- Navigation Links -->
+
       <nav class="flex-1 space-y-2">
-        <!-- Tableau de bord -->
+
         <a
           class="flex items-center gap-stack-md text-on-surface-variant p-stack-md rounded-lg hover:bg-surface-container-high transition-all"
           href="dashboard.html"
@@ -214,7 +214,7 @@
           <span class="material-symbols-outlined">dashboard</span>
           <span>Tableau de bord</span>
         </a>
-        <!-- Impact Global -->
+
         <a
           class="flex items-center gap-stack-md text-on-surface-variant p-stack-md rounded-lg hover:bg-surface-container-high transition-all"
           href="transparency.html"
@@ -222,7 +222,7 @@
           <span class="material-symbols-outlined">public</span>
           <span>Impact Global</span>
         </a>
-        <!-- Finances -->
+
         <a
           class="flex items-center gap-stack-md bg-secondary-container text-on-secondary-container rounded-lg p-stack-md border-l-4 border-secondary transition-all"
           href="financials.html"
@@ -234,7 +234,7 @@
           >
           <span>Finances</span>
         </a>
-        <!-- Donateurs -->
+
         <a
           class="flex items-center gap-stack-md text-on-surface-variant p-stack-md rounded-lg hover:bg-surface-container-high transition-all"
           href="admin.html"
@@ -242,7 +242,7 @@
           <span class="material-symbols-outlined">group</span>
           <span>Gestion Donateurs</span>
         </a>
-        <!-- Paramètres -->
+
         <a
           class="flex items-center gap-stack-md text-on-surface-variant p-stack-md rounded-lg hover:bg-surface-container-high transition-all"
           href="profile.html"
@@ -251,7 +251,7 @@
           <span>Mon Profil</span>
         </a>
       </nav>
-      <!-- CTA -->
+
       <div class="mt-auto mb-stack-lg">
         <button
           onclick="location.href = 'donate.html'"
@@ -260,7 +260,7 @@
           Faire un don
         </button>
       </div>
-      <!-- Footer Links -->
+
       <div class="space-y-2 border-t border-outline-variant pt-stack-md">
         <a
           class="flex items-center gap-stack-md text-on-surface-variant p-2 rounded-lg hover:bg-surface-container-high transition-all"
@@ -282,7 +282,7 @@
         </a>
       </div>
     </aside>
-    <!-- Mobile TopBar Substitute (To satisfy structural requirements if needed, though strictly a side-nav layout is requested) -->
+
     <div
       class="md:hidden w-full h-16 bg-surface border-b border-outline-variant flex items-center justify-between px-margin-mobile fixed top-0 z-50"
     >
@@ -302,11 +302,11 @@
         <span class="material-symbols-outlined text-3xl">menu</span>
       </button>
     </div>
-    <!-- Main Content Area -->
+
     <main
       class="flex-1 ml-0 md:ml-sidebar-width h-screen overflow-y-auto mt-16 md:mt-0 pb-20"
     >
-      <!-- Header Section -->
+
       <header
         class="bg-primary text-on-primary py-12 px-margin-mobile md:px-margin-desktop rounded-b-3xl"
       >
@@ -326,9 +326,9 @@
       <div
         class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg space-y-gutter"
       >
-        <!-- Bento Layout for Tools and Stats -->
+
         <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
-          <!-- Generate Report Tool -->
+
           <div
             class="col-span-1 md:col-span-8 bg-surface-container-lowest rounded-xl shadow-level-1 p-stack-lg border-l-4 border-secondary flex flex-col justify-between"
           >
@@ -398,7 +398,7 @@
               </button>
             </div>
           </div>
-          <!-- Download Tracking Dashboard -->
+
           <div
             class="col-span-1 md:col-span-4 bg-surface-container-lowest rounded-xl shadow-level-1 p-stack-lg"
           >
@@ -468,7 +468,7 @@
             </div>
           </div>
         </div>
-        <!-- Documents Grid -->
+
         <div>
           <div class="flex justify-between items-end mb-6">
             <h2 class="font-headline-md text-headline-md text-primary">
@@ -496,7 +496,7 @@
           <div
             class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-gutter"
           >
-            <!-- Card 1 -->
+
             <div
               class="bg-surface-container-lowest rounded-xl shadow-level-1 hover:shadow-level-2 transition-shadow duration-300 overflow-hidden flex flex-col border-l-4 border-secondary cursor-pointer group"
             >
@@ -537,7 +537,7 @@
                 </div>
               </div>
             </div>
-            <!-- Card 2 -->
+
             <div
               class="bg-surface-container-lowest rounded-xl shadow-level-1 hover:shadow-level-2 transition-shadow duration-300 overflow-hidden flex flex-col border-l-4 border-outline-variant cursor-pointer group"
             >
@@ -578,7 +578,7 @@
                 </div>
               </div>
             </div>
-            <!-- Card 3 -->
+
             <div
               class="bg-surface-container-lowest rounded-xl shadow-level-1 hover:shadow-level-2 transition-shadow duration-300 overflow-hidden flex flex-col border-l-4 border-secondary cursor-pointer group"
             >
@@ -619,7 +619,7 @@
                 </div>
               </div>
             </div>
-            <!-- Card 4 -->
+
             <div
               class="bg-surface-container-lowest rounded-xl shadow-level-1 hover:shadow-level-2 transition-shadow duration-300 overflow-hidden flex flex-col border-l-4 border-outline-variant cursor-pointer group"
             >
@@ -665,7 +665,7 @@
       </div>
     </main>
 
-    <!-- Mobile Fullscreen Navigation Overlay -->
+
     <div
       id="mobileMenuOverlay"
       class="fixed inset-0 bg-primary bg-opacity-98 z-50 transform translate-x-full transition-transform duration-300 flex flex-col items-center justify-center"
@@ -730,7 +730,6 @@
     </div>
 
     <script>
-      // Mobile menu toggle logic
       (function () {
         const btn = document.getElementById("mobileMenuBtn");
         const closeBtn = document.getElementById("closeMobileMenuBtn");

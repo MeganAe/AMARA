@@ -25,8 +25,6 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-
-// Auto-initialize DB tables on first API call
 app.use("/api", async (req, res, next) => {
   if (req.path === "/health") return next();
   try {
@@ -40,8 +38,6 @@ app.use("/api", async (req, res, next) => {
     });
   }
 });
-
-// Mount API routes
 app.use("/api/auth", authRouter);
 app.use("/api/projects", projectsRouter);
 app.use("/api/donations", donationsRouter);
@@ -51,8 +47,6 @@ app.use("/api/contact", contactRouter);
 app.use("/api/reports", reportsRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/messages", messagesRouter);
-
-// Health check
 app.get("/api/health", (req, res) => {
   res.json({ status: "ok", timestamp: new Date().toISOString() });
 });

@@ -126,7 +126,7 @@
   <body
     class="bg-surface text-on-surface font-body-md antialiased flex flex-col min-h-screen"
   >
-    <!-- TopNavBar -->
+
     <header class="sticky top-0 z-50 bg-surface shadow-sm">
       <nav
         class="flex justify-between items-center px-margin-mobile md:px-margin-desktop w-full h-20 max-w-container-max mx-auto"
@@ -188,7 +188,7 @@
     </header>
 
     <main class="flex-grow">
-      <!-- Hero Section -->
+
       <section
         class="relative w-full h-[600px] flex items-center justify-center"
       >
@@ -220,7 +220,7 @@
             Soutenir notre mission
           </button>
         </div>
-        <!-- Overlapping Statistics Bar -->
+
         <div
           class="absolute bottom-0 left-0 right-0 translate-y-1/2 z-20 px-margin-mobile md:px-margin-desktop w-full max-w-container-max mx-auto"
         >
@@ -270,10 +270,10 @@
         </div>
       </section>
 
-      <!-- Spacer for overlapping stats -->
+
       <div class="h-32 md:h-24"></div>
 
-      <!-- Our Impact Section -->
+
       <section
         class="py-20 px-margin-mobile md:px-margin-desktop w-full max-w-container-max mx-auto"
       >
@@ -284,7 +284,7 @@
           <div class="w-16 h-1 bg-secondary rounded-full"></div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
-          <!-- Impact Card 1 -->
+
           <div
             class="bg-white rounded-[16px] shadow-level-1 overflow-hidden group hover:shadow-level-2 transition-shadow duration-300 border-l-4 border-secondary flex flex-col h-full"
           >
@@ -306,7 +306,7 @@
               </p>
             </div>
           </div>
-          <!-- Impact Card 2 -->
+
           <div
             class="bg-white rounded-[16px] shadow-level-1 overflow-hidden group hover:shadow-level-2 transition-shadow duration-300 border-l-4 border-transparent flex flex-col h-full"
           >
@@ -328,7 +328,7 @@
               </p>
             </div>
           </div>
-          <!-- Impact Card 3 -->
+
           <div
             class="bg-white rounded-[16px] shadow-level-1 overflow-hidden group hover:shadow-level-2 transition-shadow duration-300 border-l-4 border-transparent flex flex-col h-full"
           >
@@ -353,7 +353,7 @@
         </div>
       </section>
 
-      <!-- CTA Section -->
+
       <section
         class="bg-primary py-24 px-margin-mobile md:px-margin-desktop relative overflow-hidden"
       >
@@ -381,7 +381,7 @@
       </section>
     </main>
 
-    <!-- Footer -->
+
     <footer class="bg-primary w-full">
       <div
         class="flex flex-col md:flex-row justify-between items-center px-margin-mobile md:px-margin-desktop py-stack-lg w-full max-w-container-max mx-auto border-t border-on-primary-fixed-variant"
@@ -413,12 +413,12 @@
         <div
           class="font-body-sm text-body-sm text-on-primary-container text-center md:text-right"
         >
-          © 2026 AMORA. Tous droits réservés.
+           2026 AMORA. Tous droits réservés.
         </div>
       </div>
     </footer>
 
-    <!-- Mobile Fullscreen Navigation Overlay -->
+
     <div
       id="mobileMenuOverlay"
       class="fixed inset-0 bg-primary bg-opacity-98 z-[9999] transform translate-x-full transition-transform duration-300 flex flex-col items-center justify-center"
@@ -500,8 +500,6 @@
         }
       }
       loadTransparencyStats();
-
-      // Dynamic Navbar Auth Check
       (async function checkNavbarAuth() {
         try {
           const res = await fetch("/api/auth/me");
@@ -523,8 +521,6 @@
           }
         } catch (e) {}
       })();
-
-      // Mobile menu toggle
       (function () {
         const btn = document.getElementById("mobileMenuBtn");
         const closeBtn = document.getElementById("closeMobileMenuBtn");

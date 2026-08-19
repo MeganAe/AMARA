@@ -319,7 +319,7 @@
         <div
           class="font-body-sm text-body-sm text-on-primary-container text-center md:text-right"
         >
-          © 2026 AMORA. Tous droits réservés.
+           2026 AMORA. Tous droits réservés.
         </div>
       </div>
     </footer>
@@ -396,7 +396,7 @@
       fetchProjects();
     </script>
 
-    <!-- Mobile Fullscreen Navigation Overlay -->
+
     <div
       id="mobileMenuOverlay"
       class="fixed inset-0 bg-primary bg-opacity-98 z-[9999] transform translate-x-full transition-transform duration-300 flex flex-col items-center justify-center"
@@ -461,7 +461,6 @@
     </div>
 
     <script>
-      // Dynamic Navbar Auth & Profile Routing
       (async function checkNavbarAuth() {
         try {
           const res = await fetch("/api/auth/me");
@@ -483,8 +482,6 @@
           }
         } catch (e) {}
       })();
-
-      // Mobile menu toggle
       (function () {
         const btn = document.getElementById("mobileMenuBtn");
         const closeBtn = document.getElementById("closeMobileMenuBtn");

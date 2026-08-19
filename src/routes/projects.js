@@ -4,8 +4,6 @@ import { projects, donations } from "../db/schema.js";
 import { eq, sql } from "drizzle-orm";
 
 const router = express.Router();
-
-// GET /api/projects
 router.get("/", async (req, res) => {
   try {
     const allProjects = await db.select().from(projects);
@@ -53,8 +51,6 @@ router.get("/", async (req, res) => {
       });
   }
 });
-
-// GET /api/projects/:slug
 router.get("/:slug", async (req, res) => {
   try {
     const { slug } = req.params;

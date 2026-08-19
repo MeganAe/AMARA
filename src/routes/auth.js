@@ -17,11 +17,9 @@ function setAuthCookie(res, token) {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax",
-    maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+    maxAge: 7 * 24 * 60 * 60 * 1000,
   });
 }
-
-// POST /api/auth/register
 router.post("/register", async (req, res) => {
   try {
     const { email, password, firstName, lastName } = req.body;
@@ -47,8 +45,6 @@ router.post("/register", async (req, res) => {
           message: "Le mot de passe doit contenir au moins 6 caractères.",
         });
     }
-
-    // Check existing email
     const existingUsers = await db
       .select()
       .from(users)
@@ -63,8 +59,6 @@ router.post("/register", async (req, res) => {
     }
 
     const passwordHash = await bcrypt.hash(password, 10);
-
-    // Always enforce role = 'donor' on public registration
     const [newUser] = await db
       .insert(users)
       .values({
@@ -101,8 +95,6 @@ router.post("/register", async (req, res) => {
       });
   }
 });
-
-// POST /api/auth/login
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -156,8 +148,6 @@ router.post("/login", async (req, res) => {
       });
   }
 });
-
-// POST /api/auth/logout
 router.post("/logout", (req, res) => {
   res.clearCookie("amora_token", {
     httpOnly: true,
@@ -166,8 +156,6 @@ router.post("/logout", (req, res) => {
   });
   return res.json({ success: true, message: "Déconnecté avec succès." });
 });
-
-// GET /api/auth/me
 router.get("/me", optionalAuth, (req, res) => {
   if (req.user) {
     return res.json({

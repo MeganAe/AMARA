@@ -5,6 +5,10 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>AMORA | Connexion</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
+      rel="stylesheet"
+    />
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link
@@ -208,7 +212,7 @@
         const email = document.getElementById("loginEmail").value.trim();
         const password = document.getElementById("loginPass").value;
         if (!email || !password) {
-          alert("Veuillez saisir votre email et votre mot de passe.");
+          Swal.fire({ icon: "warning", text: "Veuillez saisir votre email et votre mot de passe." });
           return;
         }
         try {
@@ -222,12 +226,13 @@
             location.href =
               data.user.role === "admin" ? "admin.html" : "dashboard.html";
           } else {
-            alert(data.message || "Identifiants incorrects.");
+            Swal.fire({ icon: "error", text: data.message || "Identifiants incorrects." });
           }
         } catch (err) {
-          alert("Erreur de connexion au serveur.");
+          Swal.fire({ icon: "error", text: "Erreur de connexion au serveur." });
         }
       }
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </body>
 </html>

@@ -1,8 +1,8 @@
 import rateLimit from "express-rate-limit";
 
 export const publicFormLimiter = rateLimit({
-  windowMs: 60 * 1000, // 1 minute window
-  max: 5, // Limit each IP to 5 requests per windowMs
+  windowMs: 60 * 1000,
+  max: 5,
   standardHeaders: true,
   legacyHeaders: false,
   message: {

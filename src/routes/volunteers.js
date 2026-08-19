@@ -4,8 +4,6 @@ import { volunteerApplications } from "../db/schema.js";
 import { publicFormLimiter } from "../middleware/rateLimit.js";
 
 const router = express.Router();
-
-// POST /api/volunteers (Rate limited)
 router.post("/", publicFormLimiter, async (req, res) => {
   try {
     const { firstName, lastName, email, domain, message } = req.body;

@@ -4,8 +4,6 @@ import { contactMessages } from "../db/schema.js";
 import { publicFormLimiter } from "../middleware/rateLimit.js";
 
 const router = express.Router();
-
-// POST /api/contact (Rate limited)
 router.post("/", publicFormLimiter, async (req, res) => {
   try {
     const { name, email, subject, message } = req.body;

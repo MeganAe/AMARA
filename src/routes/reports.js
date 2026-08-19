@@ -4,8 +4,6 @@ import { reports } from "../db/schema.js";
 import { desc } from "drizzle-orm";
 
 const router = express.Router();
-
-// GET /api/reports
 router.get("/", async (req, res) => {
   try {
     const allReports = await db

@@ -123,11 +123,11 @@
   <body
     class="bg-background text-on-surface font-body-md antialiased h-screen overflow-hidden flex"
   >
-    <!-- Sidebar -->
+
     <aside
       class="hidden md:flex bg-surface-container-low text-secondary font-label-md fixed left-0 top-0 h-screen w-sidebar-width flex-col p-stack-md border-r border-outline-variant z-40"
     >
-      <!-- Brand / Header -->
+
       <div class="mb-stack-lg flex items-center gap-4">
         <div>
           <h2 class="font-headline-sm text-headline-sm text-primary">
@@ -141,9 +141,9 @@
           </p>
         </div>
       </div>
-      <!-- Navigation Links -->
+
       <nav class="flex-1 space-y-2">
-        <!-- Tableau de bord -->
+
         <a
           class="flex items-center gap-stack-md text-on-surface-variant p-stack-md rounded-lg hover:bg-surface-container-high transition-all"
           href="dashboard.html"
@@ -151,7 +151,7 @@
           <span class="material-symbols-outlined">dashboard</span>
           <span>Tableau de bord</span>
         </a>
-        <!-- Impact Global -->
+
         <a
           class="flex items-center gap-stack-md text-on-surface-variant p-stack-md rounded-lg hover:bg-surface-container-high transition-all"
           href="transparency.html"
@@ -159,7 +159,7 @@
           <span class="material-symbols-outlined">public</span>
           <span>Impact Global</span>
         </a>
-        <!-- Finances (Admin uniquement) -->
+
         <a
           id="navFinancials"
           class="hidden flex items-center gap-stack-md text-on-surface-variant p-stack-md rounded-lg hover:bg-surface-container-high transition-all"
@@ -168,7 +168,7 @@
           <span class="material-symbols-outlined">account_balance_wallet</span>
           <span>Finances</span>
         </a>
-        <!-- Donateurs (Admin uniquement) -->
+
         <a
           id="navAdminDonors"
           class="hidden flex items-center gap-stack-md text-on-surface-variant p-stack-md rounded-lg hover:bg-surface-container-high transition-all"
@@ -177,7 +177,7 @@
           <span class="material-symbols-outlined">group</span>
           <span>Gestion Donateurs</span>
         </a>
-        <!-- Rapports (Admin uniquement) -->
+
         <a
           id="navReports"
           class="hidden flex items-center gap-stack-md text-on-surface-variant p-stack-md rounded-lg hover:bg-surface-container-high transition-all"
@@ -186,7 +186,7 @@
           <span class="material-symbols-outlined">description</span>
           <span>Rapports</span>
         </a>
-        <!-- Paramètres -->
+
         <a
           class="flex items-center gap-stack-md bg-secondary-container text-on-secondary-container rounded-lg p-stack-md border-l-4 border-secondary transition-all"
           href="profile.html"
@@ -199,7 +199,7 @@
           <span>Mon Profil</span>
         </a>
       </nav>
-      <!-- CTA -->
+
       <div class="mt-auto mb-stack-lg">
         <button
           onclick="location.href = 'donate.html'"
@@ -208,7 +208,7 @@
           Faire un don
         </button>
       </div>
-      <!-- Footer Links -->
+
       <div class="space-y-2 border-t border-outline-variant pt-stack-md">
         <a
           class="flex items-center gap-stack-md text-on-surface-variant p-2 rounded-lg hover:bg-surface-container-high transition-all"
@@ -227,7 +227,7 @@
       </div>
     </aside>
 
-    <!-- Mobile Topbar -->
+
     <div
       class="md:hidden w-full h-16 bg-surface border-b border-outline-variant flex items-center justify-between px-margin-mobile fixed top-0 z-50"
     >
@@ -248,7 +248,7 @@
       </button>
     </div>
 
-    <!-- Mobile Fullscreen Navigation Overlay -->
+
     <div
       id="mobileMenuOverlay"
       class="fixed inset-0 bg-primary bg-opacity-98 z-50 transform translate-x-full transition-transform duration-350 flex flex-col items-center justify-center"
@@ -312,7 +312,7 @@
       </nav>
     </div>
 
-    <!-- Main Content -->
+
     <main
       class="flex-1 ml-0 md:ml-sidebar-width h-screen overflow-y-auto mt-16 md:mt-0 p-margin-mobile md:p-margin-desktop"
     >
@@ -421,8 +421,6 @@
 
     <script>
       let currentUser = null;
-
-      // Mobile Menu Triggers
       const mobileMenuBtn = document.getElementById("mobileMenuBtn");
       const closeMobileMenuBtn = document.getElementById("closeMobileMenuBtn");
       const mobileMenuOverlay = document.getElementById("mobileMenuOverlay");
@@ -450,16 +448,12 @@
           document.getElementById("sidebarUserLabel").textContent = isAdmin
             ? `${nameStr} (Admin)`
             : nameStr;
-
-          // Display labels and fill values
           document.getElementById("firstName").value = currentUser.firstName;
           document.getElementById("lastName").value = currentUser.lastName;
           document.getElementById("email").value = currentUser.email;
           document.getElementById("role").value = isAdmin
             ? "Administrateur"
             : "Donateur";
-
-          // Toggle admin links
           if (isAdmin) {
             document
               .getElementById("navFinancials")
@@ -478,15 +472,11 @@
               .getElementById("mobNavReports")
               ?.classList.remove("hidden");
           }
-
-          // Show body after complete load
           document.getElementById("antiClickjack")?.remove();
         } catch (err) {
           location.href = "login.html";
         }
       }
-
-      // Submit profile form
       document
         .getElementById("profileForm")
         .addEventListener("submit", async (e) => {
@@ -511,9 +501,7 @@
                 "Votre profil a été mis à jour avec succès.";
               feedback.className =
                 "block bg-secondary-container text-on-secondary-container text-sm p-4 rounded-lg";
-              document.getElementById("password").value = ""; // clear password field
-
-              // Update sidebar label
+              document.getElementById("password").value = "";
               const nameStr = `${firstName} ${lastName}`.trim();
               document.getElementById("sidebarUserLabel").textContent =
                 currentUser.role === "admin" ? `${nameStr} (Admin)` : nameStr;

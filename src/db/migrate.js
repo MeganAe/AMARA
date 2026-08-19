@@ -7,14 +7,12 @@ const connectionString = process.env.DATABASE_URL || "";
 
 async function runMigrations() {
   if (!connectionString) {
-    console.error("❌ DATABASE_URL missing in environment");
+    console.error(" DATABASE_URL missing in environment");
     process.exit(1);
   }
 
-  console.log("⚡ Running database table initialization on Neon...");
+  console.log(" Running database table initialization on Neon...");
   const sql = neon(connectionString);
-
-  // Execute schema DDL statements directly to ensure database tables exist
   await sql`
     CREATE TABLE IF NOT EXISTS users (
       id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -86,10 +84,10 @@ async function runMigrations() {
     );
   `;
 
-  console.log("✅ Tables initialized successfully on Neon!");
+  console.log(" Tables initialized successfully on Neon!");
 }
 
 runMigrations().catch((err) => {
-  console.error("❌ Migration failed:", err);
+  console.error(" Migration failed:", err);
   process.exit(1);
 });

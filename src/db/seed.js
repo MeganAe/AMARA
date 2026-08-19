@@ -6,9 +6,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export async function seedDatabase() {
-  console.log("🌱 Seeding database...");
-
-  // 1. Seed Initial Admin Account
+  console.log(" Seeding database...");
   const adminEmail = process.env.ADMIN_EMAIL || "admin@amora.org";
   const adminPassword = process.env.ADMIN_PASSWORD || "AdminPassword2026!";
   const adminHash = await bcrypt.hash(adminPassword, 10);
@@ -31,13 +29,11 @@ export async function seedDatabase() {
       })
       .returning();
     adminUser = insertedAdmin;
-    console.log(`✅ Admin user seeded: ${adminEmail}`);
+    console.log(` Admin user seeded: ${adminEmail}`);
   } else {
     adminUser = existingAdmins[0];
-    console.log(`ℹ️ Admin user already exists: ${adminEmail}`);
+    console.log(` Admin user already exists: ${adminEmail}`);
   }
-
-  // Seed sample donor user
   const donorEmail = "donateur@amora.org";
   const donorHash = await bcrypt.hash("DonorPassword2026!", 10);
   let donorUser;
@@ -58,8 +54,6 @@ export async function seedDatabase() {
   } else {
     donorUser = foundDonor;
   }
-
-  // 2. Seed Initial 6 Projects & Baseline Seed Donations
   const projectList = [
     {
       slug: "kivu-eau",
@@ -152,10 +146,8 @@ export async function seedDatabase() {
         })
         .returning();
       proj = newProj;
-      console.log(`✅ Project seeded: ${p.title}`);
+      console.log(` Project seeded: ${p.title}`);
     }
-
-    // Check if initial donation exists for this project
     const existingDonations = await db.select().from(donations);
     const hasInitialDonation = existingDonations.some(
       (d) => d.projectId === proj.id,
@@ -170,12 +162,10 @@ export async function seedDatabase() {
         status: "completed",
       });
       console.log(
-        `💰 Baseline seed donation added for ${p.title}: $${p.initialRaised}`,
+        ` Baseline seed donation added for ${p.title}: $${p.initialRaised}`,
       );
     }
   }
-
-  // 3. Seed Reports
   const reportList = [
     { title: "Rapport d’Impact Global Q3 2025", fileUrl: "#" },
     { title: "États Financiers Consolidés 2025", fileUrl: "#" },
@@ -191,15 +181,15 @@ export async function seedDatabase() {
         fileUrl: r.fileUrl,
       });
     }
-    console.log("✅ Reports seeded");
+    console.log(" Reports seeded");
   }
 
-  console.log("🎉 Seeding completed successfully!");
+  console.log(" Seeding completed successfully!");
 }
 
 if (process.argv[1]?.includes("seed.js")) {
   seedDatabase().catch((err) => {
-    console.error("❌ Error during seeding:", err);
+    console.error(" Error during seeding:", err);
     process.exit(1);
   });
 }
