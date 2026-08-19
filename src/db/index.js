@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const connectionString = process.env.DATABASE_URL || "";
+const connectionString = process.env.DATABASE_URL || process.env.POSTGRES_URL || "";
 const sql = neon(connectionString);
 
 export const db = drizzle(sql, { schema });

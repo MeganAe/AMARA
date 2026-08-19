@@ -7,7 +7,7 @@ dotenv.config();
 let initPromise = null;
 
 export async function ensureDbReady() {
-  const connectionString = process.env.DATABASE_URL || "";
+  const connectionString = process.env.DATABASE_URL || process.env.POSTGRES_URL || "";
 
   if (!connectionString || connectionString.includes("example-pooler")) {
     throw new Error(
@@ -117,6 +117,7 @@ export async function ensureDbReady() {
         adminId = insertedAdmin.id;
       } else {
         adminId = existingAdmins[0].id;
+        await sql`UPDATE users SET role = 'admin' WHERE id = ${adminId} AND role <> 'admin'`;
       }
       const existingProjects =
         await sql`SELECT COUNT(*)::int as count FROM projects`;
