@@ -5,6 +5,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>AMORA | Contact</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet" />
     <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;display=swap"
       rel="stylesheet"
@@ -373,8 +374,6 @@
             const message = document
               .getElementById("ctMessageText")
               .value.trim();
-            const msgEl = document.getElementById("ctMsg");
-
             try {
               const res = await fetch("/api/contact", {
                 method: "POST",
@@ -383,22 +382,13 @@
               });
               const data = await res.json();
               if (data.success) {
-                msgEl.textContent = data.message;
-                msgEl.className =
-                  "font-body-sm text-body-sm text-center mt-2 text-secondary";
-                msgEl.classList.remove("hidden");
+                Swal.fire({ icon: "success", text: data.message });
                 this.reset();
               } else {
-                msgEl.textContent = data.message || "Erreur lors de l’envoi.";
-                msgEl.className =
-                  "font-body-sm text-body-sm text-center mt-2 text-error";
-                msgEl.classList.remove("hidden");
+                Swal.fire({ icon: "error", text: data.message || "Erreur lors de l’envoi." });
               }
             } catch (err) {
-              msgEl.textContent = "Erreur de connexion au serveur.";
-              msgEl.className =
-                "font-body-sm text-body-sm text-center mt-2 text-error";
-              msgEl.classList.remove("hidden");
+              Swal.fire({ icon: "error", text: "Erreur de connexion au serveur." });
             }
           });
       </script>
@@ -546,5 +536,6 @@
         }
       })();
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </body>
 </html>

@@ -5,6 +5,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>AMORA - Mon Profil</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet" />
     <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;display=swap"
       rel="stylesheet"
@@ -188,7 +189,7 @@
         </a>
 
         <a
-          class="flex items-center gap-stack-md bg-secondary-container text-on-secondary-container rounded-lg p-stack-md border-l-4 border-secondary transition-all"
+          class="flex items-center gap-stack-md bg-secondary-container text-on-secondary-container rounded-lg p-stack-md transition-all"
           href="profile.html"
         >
           <span
@@ -497,24 +498,16 @@
             const data = await res.json();
 
             if (data.success) {
-              feedback.textContent =
-                "Votre profil a été mis à jour avec succès.";
-              feedback.className =
-                "block bg-secondary-container text-on-secondary-container text-sm p-4 rounded-lg";
+              Swal.fire({ icon: "success", text: "Votre profil a été mis à jour avec succès." });
               document.getElementById("password").value = "";
               const nameStr = `${firstName} ${lastName}`.trim();
               document.getElementById("sidebarUserLabel").textContent =
                 currentUser.role === "admin" ? `${nameStr} (Admin)` : nameStr;
             } else {
-              feedback.textContent = data.message || "Une erreur est survenue.";
-              feedback.className =
-                "block bg-error-container text-on-error-container text-sm p-4 rounded-lg";
+              Swal.fire({ icon: "error", text: data.message || "Une erreur est survenue." });
             }
           } catch (err) {
-            feedback.textContent =
-              "Erreur lors de la communication avec le serveur.";
-            feedback.className =
-              "block bg-error-container text-on-error-container text-sm p-4 rounded-lg";
+            Swal.fire({ icon: "error", text: "Erreur lors de la communication avec le serveur." });
           }
         });
 
@@ -525,5 +518,6 @@
 
       initProfile();
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </body>
 </html>

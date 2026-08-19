@@ -5,10 +5,11 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>AMORA | Créer un compte</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600&amp;family=Playfair+Display:wght@600;700&amp;display=swap"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Plus+Jakarta+Sans:ital,wght@0,200..800&amp;display=swap"
       rel="stylesheet"
     />
     <link
@@ -250,10 +251,7 @@
         const passConfirm = document.getElementById("regPassConfirm").value;
         const msg = document.getElementById("regMsg");
         function showError(t) {
-          msg.textContent = t;
-          msg.className =
-            "text-center font-body-sm text-body-sm mt-1 text-error";
-          msg.classList.remove("hidden");
+          Swal.fire({ icon: "warning", text: t });
         }
         if (!first || !last || !email || !pass) {
           showError("Merci de remplir tous les champs.");
@@ -281,11 +279,13 @@
           });
           const data = await res.json();
           if (data.success) {
-            msg.textContent = "Compte créé avec succès — redirection...";
-            msg.className =
-              "text-center font-body-sm text-body-sm mt-1 text-secondary";
-            msg.classList.remove("hidden");
-            setTimeout(() => (location.href = "dashboard.html"), 800);
+            await Swal.fire({
+              icon: "success",
+              text: "Compte créé avec succès.",
+              timer: 800,
+              showConfirmButton: false,
+            });
+            location.href = "dashboard.html";
           } else {
             showError(data.message || "Erreur lors de la création du compte.");
           }
@@ -294,5 +294,6 @@
         }
       }
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </body>
 </html>
