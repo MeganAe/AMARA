@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 3000;
 
 if (process.env.NODE_ENV !== 'production' && !process.env.VERCEL) {
   app.listen(PORT, () => {
-    console.log(` AMARA Backend Server listening on http://localhost:${PORT}`);
+    console.log(` AMORA Backend Server listening on http://localhost:${PORT}`);
   });
 }
 

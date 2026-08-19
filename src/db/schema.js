@@ -1,4 +1,4 @@
-import { pgTable, text, timestamp, numeric, uuid, integer } from 'drizzle-orm/pg-core';
+import { pgTable, text, timestamp, numeric, uuid, integer, boolean } from 'drizzle-orm/pg-core';
 
 export const users = pgTable('users', {
   id: uuid('id').defaultRandom().primaryKey(),
@@ -57,4 +57,13 @@ export const reports = pgTable('reports', {
   title: text('title').notNull(),
   fileUrl: text('file_url').notNull(),
   publishedAt: timestamp('published_at').defaultNow().notNull(),
+});
+
+export const messages = pgTable('messages', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  senderId: uuid('sender_id').references(() => users.id, { onDelete: 'cascade' }).notNull(),
+  recipientId: uuid('recipient_id').references(() => users.id, { onDelete: 'cascade' }),
+  content: text('content').notNull(),
+  isRead: boolean('is_read').notNull().default(false),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
 });

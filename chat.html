@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>AMORA - Messagerie &amp; Chat</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-surface": "#191c1e",
+            "secondary": "#006c4a",
+            "secondary-fixed-dim": "#68dba9",
+            "secondary-fixed": "#85f8c4",
+            "on-primary-fixed-variant": "#2d4674",
+            "on-tertiary": "#ffffff",
+            "on-error-container": "#93000a",
+            "tertiary": "#08192c",
+            "tertiary-container": "#1e2e42",
+            "on-secondary-fixed": "#002114",
+            "on-tertiary-container": "#8596ae",
+            "on-secondary-fixed-variant": "#005137",
+            "on-background": "#191c1e",
+            "tertiary-fixed-dim": "#b7c8e1",
+            "primary-fixed-dim": "#aec7fd",
+            "on-surface-variant": "#44474f",
+            "on-tertiary-fixed-variant": "#38485d",
+            "primary": "#00173b",
+            "surface-variant": "#e0e3e5",
+            "inverse-on-surface": "#eff1f3",
+            "error": "#ba1a1a",
+            "on-primary": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "outline": "#747780",
+            "inverse-surface": "#2d3133",
+            "surface-tint": "#465e8e",
+            "inverse-primary": "#aec7fd",
+            "on-primary-container": "#7c94c8",
+            "outline-variant": "#c4c6d0",
+            "surface-bright": "#f7f9fb",
+            "surface-container-high": "#e6e8ea",
+            "surface-container": "#eceef0",
+            "secondary-container": "#82f5c1",
+            "surface-container-highest": "#e0e3e5",
+            "primary-fixed": "#d8e2ff",
+            "surface-container-low": "#f2f4f6",
+            "surface-dim": "#d8dadc",
+            "on-secondary-container": "#00714e",
+            "background": "#f7f9fb",
+            "surface": "#f7f9fb",
+            "on-tertiary-fixed": "#0b1c30",
+            "on-error": "#ffffff",
+            "on-secondary": "#ffffff",
+            "tertiary-fixed": "#d3e4fe",
+            "on-primary-fixed": "#001a41",
+            "primary-container": "#0f2c59",
+            "error-container": "#ffdad6"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin-mobile": "16px",
+            "stack-lg": "32px",
+            "margin-desktop": "40px",
+            "sidebar-width": "280px",
+            "gutter": "24px",
+            "stack-md": "16px",
+            "stack-sm": "8px"
+          },
+          "fontFamily": {
+            "headline": ["Playfair Display", "serif"],
+            "body-md": ["Plus Jakarta Sans", "sans-serif"],
+            "label-md": ["Plus Jakarta Sans", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
+  <style id="antiClickjack">body { display: none !important; }</style>
+</head>
+
+<body class="bg-background text-on-surface font-body-md antialiased h-screen overflow-hidden flex">
+  <!-- Desktop Sidebar -->
+  <aside
+    class="hidden md:flex bg-surface-container-low text-secondary font-label-md fixed left-0 top-0 h-screen w-sidebar-width flex-col p-stack-md border-r border-outline-variant z-40">
+    <!-- Brand / Header -->
+    <div class="mb-stack-lg flex items-center gap-4">
+      <div>
+        <h2 class="font-headline-sm text-headline-sm text-primary">Portail AMORA</h2>
+        <p class="text-on-surface-variant text-xs opacity-80" id="sidebarUserLabel">Espace membre</p>
+      </div>
+    </div>
+    <!-- Navigation Links -->
+    <nav class="flex-1 space-y-2">
+      <!-- Tableau de bord -->
+      <a class="flex items-center gap-stack-md text-on-surface-variant p-stack-md rounded-lg hover:bg-surface-container-high transition-all"
+        href="dashboard.html">
+        <span class="material-symbols-outlined">dashboard</span>
+        <span>Tableau de bord</span>
+      </a>
+      <!-- Impact Global -->
+      <a class="flex items-center gap-stack-md text-on-surface-variant p-stack-md rounded-lg hover:bg-surface-container-high transition-all"
+        href="transparency.html">
+        <span class="material-symbols-outlined">public</span>
+        <span>Impact Global</span>
+      </a>
+      <!-- Finances (Admin uniquement) -->
+      <a id="navFinancials" class="hidden flex items-center gap-stack-md text-on-surface-variant p-stack-md rounded-lg hover:bg-surface-container-high transition-all"
+        href="financials.html">
+        <span class="material-symbols-outlined">account_balance_wallet</span>
+        <span>Finances</span>
+      </a>
+      <!-- Donateurs (Admin uniquement) -->
+      <a id="navAdminDonors" class="hidden flex items-center gap-stack-md text-on-surface-variant p-stack-md rounded-lg hover:bg-surface-container-high transition-all"
+        href="admin.html">
+        <span class="material-symbols-outlined">group</span>
+        <span>Gestion Donateurs</span>
+      </a>
+      <!-- Rapports (Admin uniquement) -->
+      <a id="navReports" class="hidden flex items-center gap-stack-md text-on-surface-variant p-stack-md rounded-lg hover:bg-surface-container-high transition-all"
+        href="reports.html">
+        <span class="material-symbols-outlined">description</span>
+        <span>Rapports</span>
+      </a>
+      <!-- Chat / Messagerie (Active) -->
+      <a class="flex items-center justify-between bg-secondary-container text-on-secondary-container rounded-lg p-stack-md border-l-4 border-secondary transition-all"
+        href="chat.html">
+        <div class="flex items-center gap-stack-md">
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">chat</span>
+          <span>Messagerie</span>
+        </div>
+        <span id="unreadBadge" class="hidden bg-error text-white text-xs px-2 py-0.5 rounded-full font-bold">0</span>
+      </a>
+      <!-- Mon Profil -->
+      <a class="flex items-center gap-stack-md text-on-surface-variant p-stack-md rounded-lg hover:bg-surface-container-high transition-all"
+        href="profile.html">
+        <span class="material-symbols-outlined">account_circle</span>
+        <span>Mon Profil</span>
+      </a>
+    </nav>
+    <!-- CTA -->
+    <div class="mt-auto mb-stack-lg">
+      <button onclick="location.href='donate.html'"
+        class="w-full bg-secondary text-on-secondary font-label-md py-3 rounded-lg hover:bg-opacity-90 transition-opacity shadow-sm">Faire un don</button>
+    </div>
+    <!-- Footer Links -->
+    <div class="space-y-2 border-t border-outline-variant pt-stack-md">
+      <a class="flex items-center gap-stack-md text-on-surface-variant p-2 rounded-lg hover:bg-surface-container-high transition-all"
+        href="#">
+        <span class="material-symbols-outlined text-sm">help</span>
+        <span class="text-sm">Aide</span>
+      </a>
+      <a class="flex items-center gap-stack-md text-on-surface-variant p-2 rounded-lg hover:bg-surface-container-high transition-all cursor-pointer"
+        onclick="doLogout()">
+        <span class="material-symbols-outlined text-sm">logout</span>
+        <span class="text-sm">Déconnexion</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Mobile Topbar -->
+  <div
+    class="md:hidden w-full h-16 bg-surface border-b border-outline-variant flex items-center justify-between px-margin-mobile fixed top-0 z-50">
+    <h1 class="font-headline-sm text-headline-sm text-primary">Portail AMORA</h1>
+    <button id="mobileMenuBtn" class="text-primary focus:outline-none p-2" aria-label="Ouvrir le menu">
+      <span class="material-symbols-outlined text-3xl">menu</span>
+    </button>
+  </div>
+
+  <!-- Mobile Fullscreen Navigation Overlay -->
+  <div id="mobileMenuOverlay" class="fixed inset-0 bg-primary bg-opacity-98 z-[9999] transform translate-x-full transition-transform duration-300 flex flex-col items-center justify-center">
+    <button id="closeMobileMenuBtn" class="absolute top-6 right-6 text-white focus:outline-none p-2" aria-label="Fermer le menu">
+      <span class="material-symbols-outlined text-4xl">close</span>
+    </button>
+    <nav class="flex flex-col gap-6 text-center">
+      <a class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="dashboard.html">Tableau de bord</a>
+      <a class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="transparency.html">Impact Global</a>
+      <a id="mobNavFinancials" class="hidden text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="financials.html">Finances</a>
+      <a id="mobNavAdminDonors" class="hidden text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="admin.html">Gestion Donateurs</a>
+      <a id="mobNavReports" class="hidden text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="reports.html">Rapports</a>
+      <a class="text-secondary-fixed text-2xl font-headline font-bold" href="chat.html">Messagerie / Chat</a>
+      <a class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="profile.html">Mon Profil</a>
+      <hr class="border-white opacity-20 my-2">
+      <a class="bg-secondary text-on-secondary font-label-md py-3 px-8 rounded-full hover:bg-opacity-90 transition-opacity inline-block text-lg" href="donate.html">Faire un don</a>
+      <a class="text-white text-xl hover:text-secondary-fixed transition-colors cursor-pointer mt-2" onclick="doLogout()">Déconnexion</a>
+    </nav>
+  </div>
+
+  <!-- Main Content Area -->
+  <main class="flex-1 ml-0 md:ml-sidebar-width h-screen flex flex-col mt-16 md:mt-0 overflow-hidden bg-background">
+    <!-- Top Header -->
+    <header class="h-16 bg-white border-b border-outline-variant px-6 flex items-center justify-between shrink-0">
+      <div>
+        <h1 class="font-headline-sm text-headline-sm text-primary flex items-center gap-2">
+          <span class="material-symbols-outlined text-secondary">chat</span>
+          <span>Messagerie AMORA</span>
+        </h1>
+        <p class="text-xs text-on-surface-variant" id="chatSubHeader">Échange direct entre donateurs et administration</p>
+      </div>
+      <div id="activeRecipientHeader" class="hidden text-right">
+        <span class="font-bold text-primary text-sm" id="activeRecipientName">Nom</span>
+        <p class="text-xs text-on-surface-variant" id="activeRecipientEmail">email@example.com</p>
+      </div>
+    </header>
+
+    <!-- Chat Container -->
+    <div class="flex-1 flex overflow-hidden">
+      <!-- Admin: Donor Conversations List (Visible only to Admin) -->
+      <aside id="conversationsPanel" class="hidden w-full md:w-80 border-r border-outline-variant bg-white flex flex-col shrink-0">
+        <div class="p-4 border-b border-outline-variant">
+          <input type="text" id="donorSearchInput" placeholder="Rechercher un donateur..."
+            class="w-full text-sm rounded-lg border-outline-variant focus:border-secondary focus:ring-secondary py-2 px-3 bg-surface-container-low" />
+        </div>
+        <div class="flex-1 overflow-y-auto divide-y divide-surface-variant" id="conversationsList">
+          <!-- Conversation items dynamically injected here -->
+          <div class="p-4 text-center text-sm text-on-surface-variant">Chargement des conversations...</div>
+        </div>
+      </aside>
+
+      <!-- Chat Thread Panel -->
+      <section id="chatThreadPanel" class="flex-1 flex flex-col bg-surface-container-lowest overflow-hidden">
+        <!-- Messages Scroll Area -->
+        <div class="flex-1 overflow-y-auto p-4 md:p-6 space-y-4" id="messagesContainer">
+          <div class="text-center text-sm text-on-surface-variant py-8">Chargement des messages...</div>
+        </div>
+
+        <!-- Message Input Bar -->
+        <div class="p-4 bg-white border-t border-outline-variant shrink-0">
+          <form id="messageForm" class="flex items-center gap-3">
+            <input type="text" id="messageInput" placeholder="Écrivez votre message..." required autocomplete="off"
+              class="flex-1 rounded-full border-outline-variant focus:border-secondary focus:ring-secondary px-5 py-3 text-sm bg-surface-container-low" />
+            <button type="submit" id="sendBtn"
+              class="bg-secondary text-on-secondary rounded-full px-6 py-3 font-label-md text-sm hover:bg-on-secondary-container transition-colors flex items-center gap-2 shadow-sm">
+              <span>Envoyer</span>
+              <span class="material-symbols-outlined text-sm">send</span>
+            </button>
+          </form>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    let currentUser = null;
+    let currentDonorId = null;
+    let pollInterval = null;
+
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const closeMobileMenuBtn = document.getElementById('closeMobileMenuBtn');
+    const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+
+    if (mobileMenuBtn && mobileMenuOverlay) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenuOverlay.classList.remove('translate-x-full');
+      });
+    }
+
+    if (closeMobileMenuBtn && mobileMenuOverlay) {
+      closeMobileMenuBtn.addEventListener('click', () => {
+        mobileMenuOverlay.classList.add('translate-x-full');
+      });
+    }
+
+    async function initChat() {
+      try {
+        const res = await fetch('/api/auth/me');
+        const data = await res.json();
+
+        if (!data.authenticated || !data.user) {
+          location.href = 'login.html';
+          return;
+        }
+
+        currentUser = data.user;
+        const isAdmin = currentUser.role === 'admin';
+        const nameStr = `${currentUser.firstName} ${currentUser.lastName}`.trim();
+        document.getElementById('sidebarUserLabel').textContent = isAdmin ? `${nameStr} (Admin)` : nameStr;
+
+        if (isAdmin) {
+          document.getElementById('navFinancials')?.classList.remove('hidden');
+          document.getElementById('navAdminDonors')?.classList.remove('hidden');
+          document.getElementById('navReports')?.classList.remove('hidden');
+          document.getElementById('mobNavFinancials')?.classList.remove('hidden');
+          document.getElementById('mobNavAdminDonors')?.classList.remove('hidden');
+          document.getElementById('mobNavReports')?.classList.remove('hidden');
+          document.getElementById('conversationsPanel')?.classList.remove('hidden');
+          document.getElementById('chatSubHeader').textContent = 'Gestion des échanges avec les donateurs';
+          
+          await loadAdminConversations();
+        } else {
+          document.getElementById('chatSubHeader').textContent = 'Discussion en direct avec l\'équipe AMORA';
+          await loadDonorMessages();
+        }
+
+        // Remove anti-flash guard
+        document.getElementById('antiClickjack')?.remove();
+
+        // Start polling every 3.5 seconds
+        pollInterval = setInterval(() => {
+          if (isAdmin) {
+            if (currentDonorId) loadAdminThread(currentDonorId, false);
+            loadAdminConversations(false);
+          } else {
+            loadDonorMessages(false);
+          }
+          updateUnreadBadge();
+        }, 3500);
+
+      } catch (err) {
+        console.error('Chat init error:', err);
+        location.href = 'login.html';
+      }
+    }
+
+    // DONOR VIEW: Load messages
+    async function loadDonorMessages(scroll = true) {
+      try {
+        const res = await fetch('/api/messages');
+        const data = await res.json();
+        if (data.success && data.messages) {
+          renderDonorMessages(data.messages, scroll);
+        }
+      } catch (e) {
+        console.error('Error fetching donor messages:', e);
+      }
+    }
+
+    function renderDonorMessages(messages, scroll) {
+      const container = document.getElementById('messagesContainer');
+      if (messages.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-12">
+            <div class="inline-flex p-4 rounded-full bg-secondary-container text-on-secondary-container mb-3">
+              <span class="material-symbols-outlined text-3xl">chat</span>
+            </div>
+            <h3 class="font-headline text-lg text-primary font-bold">Bienvenue sur le chat AMORA</h3>
+            <p class="text-sm text-on-surface-variant max-w-sm mx-auto mt-1">Posez toutes vos questions à l'équipe sur vos dons, nos projets ou la transparence de la fondation.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = messages.map(m => {
+        const isMe = m.senderId === currentUser.id;
+        const timeStr = new Date(m.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        const dateStr = new Date(m.createdAt).toLocaleDateString([], { day: 'numeric', month: 'short' });
+
+        if (isMe) {
+          return `
+            <div class="flex justify-end items-end gap-2">
+              <div class="max-w-md bg-secondary text-on-secondary rounded-2xl rounded-br-none p-4 shadow-sm">
+                <p class="text-sm leading-relaxed">${escapeHtml(m.content)}</p>
+                <span class="block text-right text-[10px] text-secondary-fixed mt-1 opacity-80">${timeStr}</span>
+              </div>
+            </div>
+          `;
+        } else {
+          return `
+            <div class="flex justify-start items-end gap-2">
+              <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-xs font-bold shrink-0">
+                A
+              </div>
+              <div class="max-w-md bg-surface-container-high text-on-surface rounded-2xl rounded-bl-none p-4 shadow-sm">
+                <span class="block text-[11px] font-bold text-primary mb-1">Administration AMORA</span>
+                <p class="text-sm leading-relaxed">${escapeHtml(m.content)}</p>
+                <span class="block text-left text-[10px] text-on-surface-variant mt-1">${dateStr} à ${timeStr}</span>
+              </div>
+            </div>
+          `;
+        }
+      }).join('');
+
+      if (scroll) {
+        container.scrollTop = container.scrollHeight;
+      }
+    }
+
+    // ADMIN VIEW: Load conversations
+    let cachedConversations = [];
+    async function loadAdminConversations(renderFirst = true) {
+      try {
+        const res = await fetch('/api/messages');
+        const data = await res.json();
+        if (data.success && data.conversations) {
+          cachedConversations = data.conversations;
+          renderAdminConversations();
+          
+          if (renderFirst && cachedConversations.length > 0 && !currentDonorId) {
+            selectDonorConversation(cachedConversations[0].donor.id);
+          }
+        }
+      } catch (e) {
+        console.error('Error fetching admin conversations:', e);
+      }
+    }
+
+    function renderAdminConversations() {
+      const listEl = document.getElementById('conversationsList');
+      const searchTerm = document.getElementById('donorSearchInput')?.value.toLowerCase() || '';
+
+      const filtered = cachedConversations.filter(c => {
+        const full = `${c.donor.firstName} ${c.donor.lastName} ${c.donor.email}`.toLowerCase();
+        return full.includes(searchTerm);
+      });
+
+      if (filtered.length === 0) {
+        listEl.innerHTML = '<div class="p-4 text-center text-xs text-on-surface-variant">Aucun donateur trouvé.</div>';
+        return;
+      }
+
+      listEl.innerHTML = filtered.map(c => {
+        const isSelected = c.donor.id === currentDonorId;
+        const name = `${c.donor.firstName} ${c.donor.lastName}`.trim();
+        const lastMsg = c.lastMessage ? c.lastMessage.content : 'Nouvel échange';
+        const timeStr = c.lastMessage ? new Date(c.lastMessage.createdAt).toLocaleDateString([], { day: 'numeric', month: 'short' }) : '';
+
+        return `
+          <div onclick="selectDonorConversation('${c.donor.id}')"
+            class="p-4 cursor-pointer transition-colors flex items-center gap-3 ${isSelected ? 'bg-secondary-container text-on-secondary-container' : 'hover:bg-surface-container'}">
+            <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm shrink-0">
+              ${c.donor.firstName ? c.donor.firstName[0].toUpperCase() : 'D'}
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-sm truncate text-primary">${escapeHtml(name)}</span>
+                <span class="text-[10px] text-on-surface-variant">${timeStr}</span>
+              </div>
+              <p class="text-xs text-on-surface-variant truncate mt-0.5">${escapeHtml(lastMsg)}</p>
+            </div>
+            ${c.unreadCount > 0 ? `<span class="bg-error text-white text-[10px] font-bold px-2 py-0.5 rounded-full">${c.unreadCount}</span>` : ''}
+          </div>
+        `;
+      }).join('');
+    }
+
+    document.getElementById('donorSearchInput')?.addEventListener('input', renderAdminConversations);
+
+    async function selectDonorConversation(donorId) {
+      currentDonorId = donorId;
+      renderAdminConversations();
+      await loadAdminThread(donorId, true);
+    }
+
+    async function loadAdminThread(donorId, scroll = true) {
+      try {
+        const res = await fetch(`/api/messages/conversation/${donorId}`);
+        const data = await res.json();
+        if (data.success) {
+          const donor = data.donor;
+          document.getElementById('activeRecipientHeader').classList.remove('hidden');
+          document.getElementById('activeRecipientName').textContent = `${donor.firstName} ${donor.lastName}`.trim();
+          document.getElementById('activeRecipientEmail').textContent = donor.email;
+          renderAdminMessages(data.messages, scroll);
+        }
+      } catch (e) {
+        console.error('Error loading thread:', e);
+      }
+    }
+
+    function renderAdminMessages(messages, scroll) {
+      const container = document.getElementById('messagesContainer');
+      if (messages.length === 0) {
+        container.innerHTML = '<div class="text-center py-12 text-sm text-on-surface-variant">Aucun message pour le moment avec ce donateur.</div>';
+        return;
+      }
+
+      container.innerHTML = messages.map(m => {
+        const isAdminSender = m.senderRole === 'admin' || m.senderId === currentUser.id;
+        const timeStr = new Date(m.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        const dateStr = new Date(m.createdAt).toLocaleDateString([], { day: 'numeric', month: 'short' });
+
+        if (isAdminSender) {
+          return `
+            <div class="flex justify-end items-end gap-2">
+              <div class="max-w-md bg-secondary text-on-secondary rounded-2xl rounded-br-none p-4 shadow-sm">
+                <span class="block text-[10px] text-secondary-fixed font-bold mb-1">Vous (Admin)</span>
+                <p class="text-sm leading-relaxed">${escapeHtml(m.content)}</p>
+                <span class="block text-right text-[10px] text-secondary-fixed mt-1 opacity-80">${timeStr}</span>
+              </div>
+            </div>
+          `;
+        } else {
+          return `
+            <div class="flex justify-start items-end gap-2">
+              <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-xs font-bold shrink-0">
+                ${m.senderFirstName ? m.senderFirstName[0].toUpperCase() : 'D'}
+              </div>
+              <div class="max-w-md bg-surface-container-high text-on-surface rounded-2xl rounded-bl-none p-4 shadow-sm">
+                <span class="block text-[11px] font-bold text-primary mb-1">${escapeHtml(m.senderFirstName || 'Donateur')}</span>
+                <p class="text-sm leading-relaxed">${escapeHtml(m.content)}</p>
+                <span class="block text-left text-[10px] text-on-surface-variant mt-1">${dateStr} à ${timeStr}</span>
+              </div>
+            </div>
+          `;
+        }
+      }).join('');
+
+      if (scroll) {
+        container.scrollTop = container.scrollHeight;
+      }
+    }
+
+    // Submit Message
+    document.getElementById('messageForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const input = document.getElementById('messageInput');
+      const content = input.value.trim();
+      if (!content) return;
+
+      const payload = { content };
+      if (currentUser.role === 'admin') {
+        if (!currentDonorId) {
+          alert('Veuillez sélectionner un donateur.');
+          return;
+        }
+        payload.recipientId = currentDonorId;
+      }
+
+      input.value = '';
+      try {
+        const res = await fetch('/api/messages', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (data.success) {
+          if (currentUser.role === 'admin') {
+            loadAdminThread(currentDonorId, true);
+            loadAdminConversations(false);
+          } else {
+            loadDonorMessages(true);
+          }
+        } else {
+          alert(data.message || 'Erreur lors de l\'envoi.');
+        }
+      } catch (err) {
+        console.error('Send message error:', err);
+      }
+    });
+
+    async function updateUnreadBadge() {
+      try {
+        const res = await fetch('/api/messages/unread-count');
+        const data = await res.json();
+        const badge = document.getElementById('unreadBadge');
+        if (data.success && data.unreadCount > 0) {
+          badge.textContent = data.unreadCount;
+          badge.classList.remove('hidden');
+        } else {
+          badge.classList.add('hidden');
+        }
+      } catch (e) {}
+    }
+
+    async function doLogout() {
+      await fetch('/api/auth/logout', { method: 'POST' });
+      location.href = 'index.html';
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    initChat();
+  </script>
+</body>
+
+</html>

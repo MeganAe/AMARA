@@ -4,7 +4,7 @@
 <head>
         <meta charset="utf-8" />
         <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-        <title>AMARA | À propos &amp; Gouvernance</title>
+        <title>AMORA | À propos &amp; Gouvernance</title>
         <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
         <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;display=swap"
                 rel="stylesheet" />
@@ -222,7 +222,7 @@
                 <nav
                         class="flex justify-between items-center px-margin-mobile md:px-margin-desktop w-full h-20 max-w-container-max mx-auto">
                         <div class="font-headline-md text-headline-md font-bold text-primary">
-                                AMARA
+                                AMORA
                         </div>
                         <div class="hidden md:flex gap-stack-lg items-center">
                                 <a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors duration-200"
@@ -238,12 +238,10 @@
                                         onclick="location.href='donate.html'">
                                         Donate
                                 </button>
-                                <a href="login.html"
-                                        class="hidden md:flex items-center text-on-surface-variant hover:text-secondary transition-colors"
-                                        title="Connexion">
+                                <a href="login.html" id="navProfileLink" class="nav-profile-icon hidden md:flex items-center text-on-surface-variant hover:text-secondary transition-colors" title="Connexion">
                                         <span class="material-symbols-outlined">account_circle</span>
                                 </a>
-                                <button class="md:hidden text-primary" id="mobileMenuBtn">
+                                <button class="md:hidden text-primary focus:outline-none p-2" id="mobileMenuBtn" onclick="document.getElementById('mobileMenuOverlay')?.classList.remove('translate-x-full')" aria-label="Ouvrir le menu">
                                         <span class="material-symbols-outlined text-3xl">menu</span>
                                 </button>
                         </div>
@@ -253,10 +251,10 @@
 
                 <section class="py-20 px-margin-mobile md:px-margin-desktop w-full max-w-container-max mx-auto">
                         <div class="mb-16 max-w-2xl">
-                                <h1 class="font-headline-lg text-headline-lg text-primary mb-4">Pourquoi AMARA existe
+                                <h1 class="font-headline-lg text-headline-lg text-primary mb-4">Pourquoi AMORA existe
                                 </h1>
                                 <div class="w-16 h-1 bg-secondary rounded-full mb-6"></div>
-                                <p class="font-body-lg text-body-lg text-on-surface-variant">Fondée en 2014, AMARA
+                                <p class="font-body-lg text-body-lg text-on-surface-variant">Fondée en 2014, AMORA
                                         accompagne les communautés rurales et urbaines de la RDC dans trois domaines
                                         essentiels : l'eau potable, la santé maternelle et l'éducation. Nous travaillons
                                         en partenariat direct avec les autorités locales et les associations de terrain.
@@ -338,7 +336,7 @@
                 <div
                         class="flex flex-col md:flex-row justify-between items-center px-margin-mobile md:px-margin-desktop py-stack-lg w-full max-w-container-max mx-auto border-t border-on-primary-fixed-variant">
                         <div class="font-headline-sm text-headline-sm text-on-primary mb-stack-md md:mb-0">
-                                AMARA
+                                AMORA
                         </div>
                         <div class="flex flex-wrap justify-center gap-stack-md md:gap-stack-lg mb-stack-md md:mb-0">
                                 <a class="font-body-sm text-body-sm text-on-primary-container hover:text-secondary-fixed transition-colors"
@@ -351,15 +349,16 @@
                                         href="#">Nous contacter</a>
                         </div>
                         <div class="font-body-sm text-body-sm text-on-primary-container text-center md:text-right">
-                                © 2026 AMARA. Tous droits réservés.
+                                © 2026 AMORA. Tous droits réservés.
                         </div>
                 </div>
         </footer>
 
 
+  
   <!-- Mobile Fullscreen Navigation Overlay -->
-  <div id="mobileMenuOverlay" class="fixed inset-0 bg-primary bg-opacity-98 z-50 transform translate-x-full transition-transform duration-300 flex flex-col items-center justify-center">
-    <button id="closeMobileMenuBtn" class="absolute top-6 right-6 text-white focus:outline-none">
+  <div id="mobileMenuOverlay" class="fixed inset-0 bg-primary bg-opacity-98 z-[9999] transform translate-x-full transition-transform duration-300 flex flex-col items-center justify-center">
+    <button id="closeMobileMenuBtn" onclick="document.getElementById('mobileMenuOverlay')?.classList.add('translate-x-full')" class="absolute top-6 right-6 text-white focus:outline-none p-2" aria-label="Fermer le menu">
       <span class="material-symbols-outlined text-4xl">close</span>
     </button>
     <nav class="flex flex-col gap-6 text-center">
@@ -370,12 +369,37 @@
       <a class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="volunteer.html">Bénévolat</a>
       <a class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="contact.html">Contact</a>
       <hr class="border-white opacity-20 my-2">
-      <a class="text-white text-xl hover:text-secondary-fixed transition-colors" href="login.html">Mon Compte</a>
-      <a class="bg-secondary text-on-secondary font-label-md py-3 px-8 rounded-full hover:bg-opacity-90 transition-opacity mt-4 inline-block text-lg" href="donate.html">Faire un don</a>
+      <a id="mobProfileLink" class="text-white text-xl hover:text-secondary-fixed transition-colors" href="login.html">
+        <span id="mobProfileText">Connexion / Mon Compte</span>
+      </a>
+      <a class="bg-secondary text-on-secondary font-label-md py-3 px-8 rounded-full hover:bg-opacity-90 transition-opacity mt-2 inline-block text-lg shadow-sm" href="donate.html">Faire un don</a>
     </nav>
   </div>
 
+
   <script>
+    // Dynamic Navbar Auth & Profile Routing
+    (async function checkNavbarAuth() {
+      try {
+        const res = await fetch('/api/auth/me');
+        const data = await res.json();
+        if (data.authenticated && data.user) {
+          const profileIcons = document.querySelectorAll('#navProfileLink, .nav-profile-icon');
+          profileIcons.forEach(el => {
+            el.href = 'profile.html';
+            el.title = 'Mon Profil (' + data.user.firstName + ')';
+          });
+          const mobText = document.getElementById('mobProfileText');
+          const mobLink = document.getElementById('mobProfileLink');
+          if (mobText && mobLink) {
+            mobText.textContent = 'Mon Profil (' + data.user.firstName + ')';
+            mobLink.href = 'profile.html';
+          }
+        }
+      } catch (e) {}
+    })();
+
+    // Mobile menu toggle
     (function() {
       const btn = document.getElementById('mobileMenuBtn');
       const closeBtn = document.getElementById('closeMobileMenuBtn');

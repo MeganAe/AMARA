@@ -1,6 +1,6 @@
-# AMARA Backend — Node.js / Express + Neon Postgres + Vercel
+# AMORA Backend — Node.js / Express + Neon Postgres + Vercel
 
-Backend API REST fonctionnel pour la plateforme de dons **AMARA** (Fondation caritative en République Démocratique du Congo), développé avec **Node.js, Express, Neon Postgres serverless, et Drizzle ORM**, déployé sur **Vercel Serverless Functions**.
+Backend API REST fonctionnel pour la plateforme de dons **AMORA** (Fondation caritative en République Démocratique du Congo), développé avec **Node.js, Express, Neon Postgres serverless, et Drizzle ORM**, déployé sur **Vercel Serverless Functions**.
 
 ---
 
@@ -33,7 +33,7 @@ DATABASE_URL="postgresql://user:password@ep-example-pooler.us-east-2.aws.neon.te
 JWT_SECRET="votre_cle_secrete_super_securisee_2026"
 
 # Identifiants du tout premier compte Administrateur (utilisés lors du seed)
-ADMIN_EMAIL="admin@amara.org"
+ADMIN_EMAIL="admin@amora.org"
 ADMIN_PASSWORD="AdminPassword2026!"
 
 # Port de développement local
@@ -58,7 +58,7 @@ PORT=3000
    ```bash
    npm run db:seed
    ```
-   > *Le script d'initialisation crée les 6 projets officiels d'AMARA avec leurs montants de départ, le compte admin défini dans `.env`, des rapports d'exemple et les dons initiaux.*
+   > *Le script d'initialisation crée les 6 projets officiels d'AMORA avec leurs montants de départ, le compte admin défini dans `.env`, des rapports d'exemple et les dons initiaux.*
 
 ---
 

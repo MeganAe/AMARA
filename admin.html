@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>Portail AMARA - Gestion des donateurs</title>
+  <title>Portail AMORA - Gestion des donateurs</title>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=Plus+Jakarta+Sans:wght@400;600&amp;display=swap"
@@ -137,8 +137,10 @@
         try {
           const res = await fetch('/api/auth/me');
           const data = await res.json();
-          if (!data.authenticated || data.user.role !== 'admin') {
+          if (!data.authenticated) {
             location.href = 'login.html';
+          } else if (data.user.role !== 'admin') {
+            location.href = 'dashboard.html';
           } else {
             document.getElementById('mobNavFinancials')?.classList.remove('hidden');
             document.getElementById('mobNavAdminDonors')?.classList.remove('hidden');
@@ -161,7 +163,7 @@
     class="hidden md:flex flex-col h-full p-stack-md border-r border-outline-variant bg-surface-container-low w-sidebar-width fixed left-0 top-0 h-screen z-40">
     <div class="mb-stack-lg flex items-center gap-stack-md">
       <div>
-        <h1 class="font-headline-sm text-headline-sm text-primary">Portail AMARA</h1>
+        <h1 class="font-headline-sm text-headline-sm text-primary">Portail AMORA</h1>
         <p class="font-body-sm text-body-sm text-on-surface-variant">Accès Administrateur</p>
       </div>
     </div>
@@ -366,6 +368,7 @@
       <a id="mobNavFinancials" class="hidden text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="financials.html">Finances</a>
       <a id="mobNavAdminDonors" class="hidden text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="admin.html">Gestion Donateurs</a>
       <a id="mobNavReports" class="hidden text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="reports.html">Rapports</a>
+      <a class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="chat.html">Messagerie / Chat</a>
       <a class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="profile.html">Mon Profil</a>
       <hr class="border-white opacity-20 my-2">
       <a class="text-white text-xl hover:text-secondary-fixed transition-colors" href="donate.html">Faire un don</a>

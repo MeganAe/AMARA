@@ -10,10 +10,10 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const router = express.Router();
-const JWT_SECRET = process.env.JWT_SECRET || 'amara_secret_key_2026';
+const JWT_SECRET = process.env.JWT_SECRET || 'amora_secret_key_2026';
 
 function setAuthCookie(res, token) {
-  res.cookie('amara_token', token, {
+  res.cookie('amora_token', token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
     sameSite: 'lax',
@@ -120,7 +120,7 @@ router.post('/login', async (req, res) => {
 
 // POST /api/auth/logout
 router.post('/logout', (req, res) => {
-  res.clearCookie('amara_token', {
+  res.clearCookie('amora_token', {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
     sameSite: 'lax',

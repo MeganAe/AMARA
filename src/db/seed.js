@@ -9,7 +9,7 @@ export async function seedDatabase() {
   console.log('🌱 Seeding database...');
 
   // 1. Seed Initial Admin Account
-  const adminEmail = process.env.ADMIN_EMAIL || 'admin@amara.org';
+  const adminEmail = process.env.ADMIN_EMAIL || 'admin@amora.org';
   const adminPassword = process.env.ADMIN_PASSWORD || 'AdminPassword2026!';
   const adminHash = await bcrypt.hash(adminPassword, 10);
 
@@ -21,7 +21,7 @@ export async function seedDatabase() {
       email: adminEmail,
       passwordHash: adminHash,
       firstName: 'Admin',
-      lastName: 'AMARA',
+      lastName: 'AMORA',
       role: 'admin',
     }).returning();
     adminUser = insertedAdmin;
@@ -32,7 +32,7 @@ export async function seedDatabase() {
   }
 
   // Seed sample donor user
-  const donorEmail = 'donateur@amara.org';
+  const donorEmail = 'donateur@amora.org';
   const donorHash = await bcrypt.hash('DonorPassword2026!', 10);
   let donorUser;
   const existingDonors = await db.select().from(users);

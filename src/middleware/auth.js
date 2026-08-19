@@ -3,10 +3,10 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const JWT_SECRET = process.env.JWT_SECRET || 'amara_secret_key_2026';
+const JWT_SECRET = process.env.JWT_SECRET || 'amora_secret_key_2026';
 
 export function authenticateUser(req, res, next) {
-  const token = req.cookies?.amara_token;
+  const token = (req.cookies?.amora_token || req.cookies?.amara_token);
   if (!token) {
     return res.status(401).json({ success: false, message: 'Non authentifié. Token manquant.' });
   }
@@ -28,7 +28,7 @@ export function requireAdmin(req, res, next) {
 }
 
 export function optionalAuth(req, res, next) {
-  const token = req.cookies?.amara_token;
+  const token = (req.cookies?.amora_token || req.cookies?.amara_token);
   if (!token) {
     req.user = null;
     return next();

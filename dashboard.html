@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>AMARA Portal - Mon espace donateur</title>
+  <title>AMORA Portal - Mon espace donateur</title>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link href="https://fonts.googleapis.com" rel="preconnect" />
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
@@ -131,7 +131,7 @@
     <!-- Brand / Header -->
     <div class="mb-stack-lg flex items-center gap-4">
       <div>
-        <h2 class="font-headline-sm text-headline-sm text-primary">Portail AMARA</h2>
+        <h2 class="font-headline-sm text-headline-sm text-primary">Portail AMORA</h2>
         <p class="text-on-surface-variant text-xs opacity-80" id="sidebarUserLabel">Espace donateur</p>
       </div>
     </div>
@@ -195,8 +195,8 @@
   </aside>
   <div
     class="md:hidden w-full h-16 bg-surface border-b border-outline-variant flex items-center justify-between px-margin-mobile fixed top-0 z-50">
-    <h1 class="font-headline-sm text-headline-sm text-primary">Portail AMARA</h1>
-    <button id="mobileMenuBtn" class="text-primary focus:outline-none">
+    <h1 class="font-headline-sm text-headline-sm text-primary">Portail AMORA</h1>
+    <button id="mobileMenuBtn" onclick="document.getElementById('mobileMenuOverlay')?.classList.remove('translate-x-full')" class="text-primary focus:outline-none p-2" aria-label="Ouvrir le menu">
       <span class="material-symbols-outlined text-3xl">menu</span>
     </button>
   </div>
@@ -241,11 +241,27 @@
 
         content.innerHTML = `
       <h1 class="font-headline-lg text-headline-lg text-primary mb-1">Bonjour, ${currentUser.firstName}</h1>
-      <p class="font-body-md text-body-md text-on-surface-variant mb-8">Voici un résumé de votre engagement avec AMARA.</p>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-10">
+      <p class="font-body-md text-body-md text-on-surface-variant mb-8">Voici un résumé de votre engagement avec AMORA.</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-6">
         <div class="bg-white rounded-[16px] shadow-level-1 p-stack-lg"><div class="font-headline-md text-headline-md text-primary">${total.toLocaleString()} $</div><div class="font-label-md text-label-md text-on-surface-variant uppercase mt-1">Total donné</div></div>
         <div class="bg-white rounded-[16px] shadow-level-1 p-stack-lg"><div class="font-headline-md text-headline-md text-primary">${mine.length}</div><div class="font-label-md text-label-md text-on-surface-variant uppercase mt-1">Dons effectués</div></div>
         <div class="bg-white rounded-[16px] shadow-level-1 p-stack-lg"><div class="font-headline-md text-headline-md text-primary">${uniqueProjects}</div><div class="font-label-md text-label-md text-on-surface-variant uppercase mt-1">Projets soutenus</div></div>
+      </div>
+      <!-- Quick Chat Card -->
+      <div class="bg-gradient-to-r from-primary to-primary-container text-white rounded-[16px] p-6 mb-8 flex flex-col md:flex-row items-center justify-between gap-4 shadow-level-1">
+        <div class="flex items-center gap-4">
+          <div class="p-3 bg-white/10 rounded-full text-secondary-fixed">
+            <span class="material-symbols-outlined text-3xl">chat</span>
+          </div>
+          <div>
+            <h3 class="font-headline text-lg font-bold">Une question sur vos dons ou nos actions ?</h3>
+            <p class="text-xs text-primary-fixed opacity-90">Discutez directement en direct avec les administrateurs et l'équipe AMORA.</p>
+          </div>
+        </div>
+        <a href="chat.html" class="bg-secondary text-on-secondary font-label-md px-6 py-3 rounded-full hover:bg-on-secondary-container transition-all text-sm shrink-0 flex items-center gap-2 shadow-sm">
+          <span>Ouvrir la messagerie</span>
+          <span class="material-symbols-outlined text-sm">arrow_forward</span>
+        </a>
       </div>
       <div class="bg-white rounded-[16px] shadow-level-1 overflow-hidden">
         <div class="p-stack-lg border-b border-outline-variant"><h3 class="font-headline-sm text-headline-sm text-primary">Mes dons &amp; reçus</h3></div>
@@ -275,9 +291,9 @@
       const { jsPDF } = window.jspdf;
       const doc = new jsPDF();
       doc.setFont('helvetica', 'bold'); doc.setFontSize(20); doc.setTextColor(15, 44, 89);
-      doc.text('AMARA — Reçu de don', 20, 25);
+      doc.text('AMORA — Reçu de don', 20, 25);
       doc.setFontSize(11); doc.setTextColor(80, 80, 80); doc.setFont('helvetica', 'normal');
-      doc.text('Fondation AMARA — RDC (document académique, sans valeur fiscale réelle)', 20, 33);
+      doc.text('Fondation AMORA — RDC (document académique, sans valeur fiscale réelle)', 20, 33);
       doc.setDrawColor(226, 232, 240); doc.line(20, 40, 190, 40);
       doc.setTextColor(30, 41, 59);
       const donorName = currentUser ? `${currentUser.firstName} ${currentUser.lastName}` : 'Donateur';
@@ -285,7 +301,7 @@
       const lines = [['Référence', d.reference], ['Donateur', donorName], ['Email', emailStr], ['Projet', d.projectTitle], ['Montant', d.amount + ' $'], ['Date', d.date]];
       let y = 55;
       lines.forEach(([k, v]) => { doc.setFont('helvetica', 'bold'); doc.text(k + ' :', 20, y); doc.setFont('helvetica', 'normal'); doc.text(String(v), 80, y); y += 10; });
-      doc.save('recu-amara-' + d.reference + '.pdf');
+      doc.save('recu-amora-' + d.reference + '.pdf');
     }
 
     initDashboard();
@@ -302,6 +318,7 @@
       <a id="mobNavFinancials" class="hidden text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="financials.html">Finances</a>
       <a id="mobNavAdminDonors" class="hidden text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="admin.html">Gestion Donateurs</a>
       <a id="mobNavReports" class="hidden text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="reports.html">Rapports</a>
+      <a class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="chat.html">Messagerie / Chat</a>
       <a class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="profile.html">Mon Profil</a>
       <hr class="border-white opacity-20 my-2">
       <a class="text-white text-xl hover:text-secondary-fixed transition-colors" href="donate.html">Faire un don</a>

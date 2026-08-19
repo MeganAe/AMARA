@@ -11,10 +11,10 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const router = express.Router();
-const JWT_SECRET = process.env.JWT_SECRET || 'amara_secret_key_2026';
+const JWT_SECRET = process.env.JWT_SECRET || 'amora_secret_key_2026';
 
 function setAuthCookie(res, token) {
-  res.cookie('amara_token', token, {
+  res.cookie('amora_token', token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
     sameSite: 'lax',
@@ -110,7 +110,7 @@ router.post('/', publicFormLimiter, optionalAuth, async (req, res) => {
       success: true,
       donation: {
         id: newDonation.id,
-        reference: `REF-AMARA-${shortRef}`,
+        reference: `REF-AMORA-${shortRef}`,
         donor: `${donorFirstName} ${donorLastName}`.trim(),
         email: donorEmail,
         amount: numAmount,
@@ -148,7 +148,7 @@ router.get('/me', authenticateUser, async (req, res) => {
     const formatted = userDonations.map(d => ({
       ...d,
       amount: Number(d.amount),
-      reference: `REF-AMARA-${d.id.slice(0, 8).toUpperCase()}`,
+      reference: `REF-AMORA-${d.id.slice(0, 8).toUpperCase()}`,
       date: new Date(d.createdAt).toISOString().slice(0, 10),
     }));
 
@@ -181,7 +181,7 @@ router.get('/', authenticateUser, requireAdmin, async (req, res) => {
 
     const formatted = allDonations.map(d => ({
       id: d.id,
-      reference: `REF-AMARA-${d.id.slice(0, 8).toUpperCase()}`,
+      reference: `REF-AMORA-${d.id.slice(0, 8).toUpperCase()}`,
       donorName: d.userFirstName ? `${d.userFirstName} ${d.userLastName}` : 'Donateur Anonyme',
       email: d.userEmail || 'N/A',
       projectTitle: d.projectTitle,
@@ -219,7 +219,7 @@ router.get('/export.csv', authenticateUser, requireAdmin, async (req, res) => {
 
     let csvContent = 'ID,Reference,Date,Donateur,Email,Projet,Montant ($),Frequence,Statut\n';
     records.forEach(r => {
-      const ref = `REF-AMARA-${r.id.slice(0, 8).toUpperCase()}`;
+      const ref = `REF-AMORA-${r.id.slice(0, 8).toUpperCase()}`;
       const date = new Date(r.createdAt).toISOString().slice(0, 10);
       const name = r.userFirstName ? `"${r.userFirstName} ${r.userLastName}"` : '"Donateur Anonyme"';
       const email = `"${r.userEmail || 'N/A'}"`;
@@ -228,7 +228,7 @@ router.get('/export.csv', authenticateUser, requireAdmin, async (req, res) => {
     });
 
     res.setHeader('Content-Type', 'text/csv');
-    res.setHeader('Content-Disposition', 'attachment; filename="amara-donations-export.csv"');
+    res.setHeader('Content-Disposition', 'attachment; filename="amora-donations-export.csv"');
     return res.status(200).send(csvContent);
   } catch (err) {
     console.error('Error in GET /api/donations/export.csv:', err);

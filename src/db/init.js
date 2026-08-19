@@ -91,8 +91,19 @@ export async function ensureDbReady() {
         );
       `;
 
+      await sql`
+        CREATE TABLE IF NOT EXISTS messages (
+          id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+          sender_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+          recipient_id UUID REFERENCES users(id) ON DELETE CASCADE,
+          content TEXT NOT NULL,
+          is_read BOOLEAN NOT NULL DEFAULT FALSE,
+          created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW() NOT NULL
+        );
+      `;
+
       // Check if admin user exists, if not seed it
-      const adminEmail = process.env.ADMIN_EMAIL || 'admin@amara.org';
+      const adminEmail = process.env.ADMIN_EMAIL || 'admin@amora.org';
       const existingAdmins = await sql`SELECT id FROM users WHERE email = ${adminEmail.toLowerCase()}`;
       
       let adminId = null;
@@ -101,7 +112,7 @@ export async function ensureDbReady() {
         const hash = await bcrypt.hash(adminPass, 10);
         const [insertedAdmin] = await sql`
           INSERT INTO users (email, password_hash, first_name, last_name, role)
-          VALUES (${adminEmail.toLowerCase()}, ${hash}, 'Admin', 'AMARA', 'admin')
+          VALUES (${adminEmail.toLowerCase()}, ${hash}, 'Admin', 'AMORA', 'admin')
           RETURNING id
         `;
         adminId = insertedAdmin.id;

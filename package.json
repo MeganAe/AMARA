@@ -1,7 +1,7 @@
 {
-  "name": "amara-backend",
+  "name": "amora-backend",
   "version": "1.0.0",
-  "description": "AMARA Foundation Backend API - Node.js Express + Neon Postgres + Vercel",
+  "description": "AMORA Foundation Backend API - Node.js Express + Neon Postgres + Vercel",
   "main": "api/index.js",
   "type": "module",
   "scripts": {
