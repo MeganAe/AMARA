@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="fr">
+
+<head>
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>AMORA | Renforcer les communautés, bâtir l'avenir</title>
+        <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;display=swap"
+                rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+                rel="stylesheet" />
+        <script id="tailwind-config">
+                tailwind.config = {
+                        darkMode: "class",
+                        theme: {
+                                extend: {
+                                        "colors": {
+                                                "on-surface": "#191c1e",
+                                                "secondary": "#006c4a",
+                                                "secondary-fixed-dim": "#68dba9",
+                                                "secondary-fixed": "#85f8c4",
+                                                "on-primary-fixed-variant": "#2d4674",
+                                                "on-tertiary": "#ffffff",
+                                                "on-error-container": "#93000a",
+                                                "tertiary": "#08192c",
+                                                "tertiary-container": "#1e2e42",
+                                                "on-secondary-fixed": "#002114",
+                                                "on-tertiary-container": "#8596ae",
+                                                "on-secondary-fixed-variant": "#005137",
+                                                "on-background": "#191c1e",
+                                                "tertiary-fixed-dim": "#b7c8e1",
+                                                "primary-fixed-dim": "#aec7fd",
+                                                "on-surface-variant": "#44474f",
+                                                "on-tertiary-fixed-variant": "#38485d",
+                                                "primary": "#00173b",
+                                                "surface-variant": "#e0e3e5",
+                                                "inverse-on-surface": "#eff1f3",
+                                                "error": "#ba1a1a",
+                                                "on-primary": "#ffffff",
+                                                "surface-container-lowest": "#ffffff",
+                                                "outline": "#747780",
+                                                "inverse-surface": "#2d3133",
+                                                "surface-tint": "#465e8e",
+                                                "inverse-primary": "#aec7fd",
+                                                "on-primary-container": "#7c94c8",
+                                                "outline-variant": "#c4c6d0",
+                                                "surface-bright": "#f7f9fb",
+                                                "surface-container-high": "#e6e8ea",
+                                                "surface-container": "#eceef0",
+                                                "secondary-container": "#82f5c1",
+                                                "surface-container-highest": "#e0e3e5",
+                                                "primary-fixed": "#d8e2ff",
+                                                "surface-container-low": "#f2f4f6",
+                                                "surface-dim": "#d8dadc",
+                                                "on-secondary-container": "#00714e",
+                                                "background": "#f7f9fb",
+                                                "surface": "#f7f9fb",
+                                                "on-tertiary-fixed": "#0b1c30",
+                                                "on-error": "#ffffff",
+                                                "on-secondary": "#ffffff",
+                                                "tertiary-fixed": "#d3e4fe",
+                                                "on-primary-fixed": "#001a41",
+                                                "primary-container": "#0f2c59",
+                                                "error-container": "#ffdad6"
+                                        },
+                                        "borderRadius": {
+                                                "DEFAULT": "0.25rem",
+                                                "lg": "0.5rem",
+                                                "xl": "0.75rem",
+                                                "full": "9999px"
+                                        },
+                                        "spacing": {
+                                                "margin-mobile": "16px",
+                                                "stack-lg": "32px",
+                                                "margin-desktop": "40px",
+                                                "sidebar-width": "280px",
+                                                "gutter": "24px",
+                                                "stack-md": "16px",
+                                                "stack-sm": "8px"
+                                        },
+                                        "fontFamily": {
+                                                "headline": ["Playfair Display", "serif"],
+                                                "body-md": ["Plus Jakarta Sans", "sans-serif"],
+                                                "label-md": ["Plus Jakarta Sans", "sans-serif"]
+                                        }
+                                }
+                        }
+                };
+        </script>
+        <style>
+                body {
+                        font-family: 'Plus Jakarta Sans', sans-serif;
+                }
+
+                h1,
+                h2,
+                h3,
+                h4,
+                h5,
+                h6 {
+                        font-family: 'Playfair Display', serif;
+                }
+
+                .material-symbols-outlined {
+                        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+                }
+
+                .hero-gradient {
+                        background: linear-gradient(180deg, rgba(0, 23, 59, 0.4) 0%, rgba(0, 23, 59, 0.8) 100%);
+                }
+        </style>
+</head>
+
+<body class="bg-surface text-on-surface font-body-md antialiased flex flex-col min-h-screen">
+        <!-- TopNavBar -->
+        <header class="sticky top-0 z-50 bg-surface shadow-sm">
+                <nav
+                        class="flex justify-between items-center px-margin-mobile md:px-margin-desktop w-full h-20 max-w-container-max mx-auto">
+                        <div class="font-headline-md text-headline-md font-bold text-primary">
+                                AMORA
+                        </div>
+                        <div class="hidden md:flex gap-stack-lg items-center">
+                                <a class="font-body-md text-body-md text-secondary font-bold border-b-2 border-secondary pb-1 hover:text-secondary transition-colors duration-200"
+                                        href="index.html">Impact</a>
+                                <a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors duration-200"
+                                        href="projects.html">Programmes</a>
+                                <a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors duration-200"
+                                        href="transparency.html">Transparence</a>
+                                <a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors duration-200"
+                                        href="about.html">Gouvernance</a>
+                        </div>
+                        <div class="flex items-center gap-stack-md">
+                                <button class="hidden md:flex bg-secondary text-on-secondary rounded-full px-6 py-2 font-label-md text-label-md hover:bg-on-secondary-container transition-colors"
+                                        onclick="location.href='donate.html'">
+                                        Faire un don
+                                </button>
+                                <a href="login.html" id="navProfileLink"
+                                        class="nav-profile-icon hidden md:flex items-center text-on-surface-variant hover:text-secondary transition-colors"
+                                        title="Connexion">
+                                        <span class="material-symbols-outlined">account_circle</span>
+                                </a>
+                                <button class="md:hidden text-primary focus:outline-none p-2" id="mobileMenuBtn" onclick="document.getElementById('mobileMenuOverlay')?.classList.remove('translate-x-full')" aria-label="Ouvrir le menu">
+                                        <span class="material-symbols-outlined text-3xl">menu</span>
+                                </button>
+                        </div>
+                </nav>
+        </header>
+
+        <main class="flex-grow">
+                <!-- Hero Section -->
+                <section class="relative w-full h-[600px] flex items-center justify-center">
+                        <div class="absolute inset-0 bg-cover bg-center"
+                                style="background-image: url('https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&q=80&w=1600')">
+                        </div>
+                        <div class="absolute inset-0 hero-gradient"></div>
+                        <div
+                                class="relative z-10 text-center px-margin-mobile md:px-margin-desktop max-w-4xl mx-auto flex flex-col items-center">
+                                <h1
+                                        class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-xl md:text-headline-xl text-white mb-stack-md">
+                                        Transparence &amp; Impact Réel
+                                </h1>
+                                <p class="font-body-lg text-body-lg text-surface-container-low max-w-2xl mb-stack-lg">
+                                        Chaque dollar est tracé et alloué directement aux projets sur le terrain en République Démocratique du Congo.
+                                </p>
+                                <button class="bg-secondary text-on-secondary rounded-full px-8 py-3 font-label-md text-label-md hover:bg-on-secondary-container transition-all shadow-level-1 hover:shadow-level-2 transform hover:-translate-y-1"
+                                        onclick="location.href='donate.html'">
+                                        Soutenir notre mission
+                                </button>
+                        </div>
+                        <!-- Overlapping Statistics Bar -->
+                        <div class="absolute bottom-0 left-0 right-0 translate-y-1/2 z-20 px-margin-mobile md:px-margin-desktop w-full max-w-container-max mx-auto">
+                                <div class="bg-white rounded-xl shadow-level-2 p-stack-lg grid grid-cols-1 md:grid-cols-3 gap-gutter divide-y md:divide-y-0 md:divide-x divide-surface-variant">
+                                        <div class="flex flex-col items-center text-center py-stack-sm md:py-0">
+                                                <span class="font-headline-lg text-headline-lg text-primary mb-2" id="statTotalRaised">0 $</span>
+                                                <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Fonds Récoltés</span>
+                                        </div>
+                                        <div class="flex flex-col items-center text-center py-stack-sm md:py-0">
+                                                <span class="font-headline-lg text-headline-lg text-primary mb-2" id="statTotalDonors">0</span>
+                                                <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Donateurs Uniques</span>
+                                        </div>
+                                        <div class="flex flex-col items-center text-center py-stack-sm md:py-0">
+                                                <span class="font-headline-lg text-headline-lg text-primary mb-2" id="statEfficiency">98.5%</span>
+                                                <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Efficacité des Fonds</span>
+                                        </div>
+                                </div>
+                        </div>
+                </section>
+
+                <!-- Spacer for overlapping stats -->
+                <div class="h-32 md:h-24"></div>
+
+                <!-- Our Impact Section -->
+                <section class="py-20 px-margin-mobile md:px-margin-desktop w-full max-w-container-max mx-auto">
+                        <div class="mb-16">
+                                <h2 class="font-headline-lg text-headline-lg text-primary mb-4">Nos domaines d'impact</h2>
+                                <div class="w-16 h-1 bg-secondary rounded-full"></div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+                                <!-- Impact Card 1 -->
+                                <div
+                                        class="bg-white rounded-[16px] shadow-level-1 overflow-hidden group hover:shadow-level-2 transition-shadow duration-300 border-l-4 border-secondary flex flex-col h-full">
+                                        <div class="h-48 bg-cover bg-center"
+                                                style="background-image: url('https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&q=80&w=800')">
+                                        </div>
+                                        <div class="p-stack-lg flex-grow flex flex-col">
+                                                <h3 class="font-headline-sm text-headline-sm text-primary mb-2">Accès à l'Éducation</h3>
+                                                <p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-grow">
+                                                        Construction d'écoles et bourses scolaires pour garantir l'accès à une éducation de qualité.
+                                                </p>
+                                        </div>
+                                </div>
+                                <!-- Impact Card 2 -->
+                                <div
+                                        class="bg-white rounded-[16px] shadow-level-1 overflow-hidden group hover:shadow-level-2 transition-shadow duration-300 border-l-4 border-transparent flex flex-col h-full">
+                                        <div class="h-48 bg-cover bg-center"
+                                                style="background-image: url('https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&q=80&w=800')">
+                                        </div>
+                                        <div class="p-stack-lg flex-grow flex flex-col">
+                                                <h3 class="font-headline-sm text-headline-sm text-primary mb-2">Eau &amp; Assainissement</h3>
+                                                <p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-grow">
+                                                        Installations de forages modernes pour fournir de l'eau potable aux communautés rurales.
+                                                </p>
+                                        </div>
+                                </div>
+                                <!-- Impact Card 3 -->
+                                <div
+                                        class="bg-white rounded-[16px] shadow-level-1 overflow-hidden group hover:shadow-level-2 transition-shadow duration-300 border-l-4 border-transparent flex flex-col h-full">
+                                        <div class="h-48 bg-cover bg-center"
+                                                style="background-image: url('https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&q=80&w=800')">
+                                        </div>
+                                        <div class="p-stack-lg flex-grow flex flex-col">
+                                                <h3 class="font-headline-sm text-headline-sm text-primary mb-2">Santé Maternelle</h3>
+                                                <p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-grow">
+                                                        Centres de santé équipés et campagnes de soins pédiatriques pour les femmes et enfants.
+                                                </p>
+                                        </div>
+                                </div>
+                        </div>
+                </section>
+
+                <!-- CTA Section -->
+                <section class="bg-primary py-24 px-margin-mobile md:px-margin-desktop relative overflow-hidden">
+                        <div class="relative z-10 w-full max-w-4xl mx-auto text-center">
+                                <h2 class="font-headline-lg text-headline-lg text-white mb-stack-md">Votre soutien transforme des vies</h2>
+                                <p class="font-body-lg text-body-lg text-surface-container-low mb-stack-lg max-w-2xl mx-auto">
+                                        Rejoignez notre mouvement humanitaire en République Démocratique du Congo.
+                                </p>
+                                <div class="flex flex-col sm:flex-row gap-stack-md justify-center items-center">
+                                        <button class="bg-secondary text-on-secondary rounded-full px-8 py-4 font-label-md text-label-md hover:bg-on-secondary-container transition-all shadow-level-1 w-full sm:w-auto text-lg"
+                                                onclick="location.href='donate.html'">
+                                                Faire un don
+                                        </button>
+                                </div>
+                        </div>
+                </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-primary w-full">
+                <div
+                        class="flex flex-col md:flex-row justify-between items-center px-margin-mobile md:px-margin-desktop py-stack-lg w-full max-w-container-max mx-auto border-t border-on-primary-fixed-variant">
+                        <div class="font-headline-sm text-headline-sm text-on-primary mb-stack-md md:mb-0">
+                                AMORA
+                        </div>
+                        <div class="flex flex-wrap justify-center gap-stack-md md:gap-stack-lg mb-stack-md md:mb-0">
+                                <a class="font-body-sm text-body-sm text-on-primary-container hover:text-secondary-fixed transition-colors"
+                                        href="#">Politique de confidentialité</a>
+                                <a class="font-body-sm text-body-sm text-on-primary-container hover:text-secondary-fixed transition-colors"
+                                        href="#">Conditions d'utilisation</a>
+                                <a class="font-body-sm text-body-sm text-on-primary-container hover:text-secondary-fixed transition-colors"
+                                        href="contact.html">Nous contacter</a>
+                        </div>
+                        <div class="font-body-sm text-body-sm text-on-primary-container text-center md:text-right">
+                                © 2026 AMORA. Tous droits réservés.
+                        </div>
+                </div>
+        </footer>
+
+        <!-- Mobile Fullscreen Navigation Overlay -->
+        <div id="mobileMenuOverlay" class="fixed inset-0 bg-primary bg-opacity-98 z-[9999] transform translate-x-full transition-transform duration-300 flex flex-col items-center justify-center">
+                <button id="closeMobileMenuBtn" onclick="document.getElementById('mobileMenuOverlay')?.classList.add('translate-x-full')" class="absolute top-6 right-6 text-white focus:outline-none p-2" aria-label="Fermer le menu">
+                        <span class="material-symbols-outlined text-4xl">close</span>
+                </button>
+                <nav class="flex flex-col gap-6 text-center">
+                        <a class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="index.html">Impact</a>
+                        <a class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="projects.html">Programmes</a>
+                        <a class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="transparency.html">Transparence</a>
+                        <a class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="about.html">Gouvernance</a>
+                        <a class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="volunteer.html">Bénévolat</a>
+                        <a class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="contact.html">Contact</a>
+                        <hr class="border-white opacity-20 my-2">
+                        <a id="mobProfileLink" class="text-white text-xl hover:text-secondary-fixed transition-colors" href="login.html">
+                                <span id="mobProfileText">Connexion / Mon Compte</span>
+                        </a>
+                        <a class="bg-secondary text-on-secondary font-label-md py-3 px-8 rounded-full hover:bg-opacity-90 transition-opacity mt-2 inline-block text-lg shadow-sm" href="donate.html">Faire un don</a>
+                </nav>
+        </div>
+
+        <script>
+                async function loadTransparencyStats() {
+                        try {
+                                const res = await fetch('/api/stats/transparency');
+                                const data = await res.json();
+                                if (data.success && data.stats) {
+                                        document.getElementById('statTotalRaised').textContent = data.stats.totalRaised.toLocaleString() + ' $';
+                                        document.getElementById('statTotalDonors').textContent = data.stats.totalDonors.toLocaleString();
+                                        document.getElementById('statEfficiency').textContent = data.stats.fundEfficiency;
+                                }
+                        } catch (e) {
+                                console.error('Error fetching transparency stats:', e);
+                        }
+                }
+                loadTransparencyStats();
+
+                // Dynamic Navbar Auth Check
+                (async function checkNavbarAuth() {
+                        try {
+                                const res = await fetch('/api/auth/me');
+                                const data = await res.json();
+                                if (data.authenticated && data.user) {
+                                        const profileIcons = document.querySelectorAll('#navProfileLink, .nav-profile-icon');
+                                        profileIcons.forEach(el => {
+                                                el.href = 'profile.html';
+                                                el.title = 'Mon Profil (' + data.user.firstName + ')';
+                                        });
+                                        const mobText = document.getElementById('mobProfileText');
+                                        const mobLink = document.getElementById('mobProfileLink');
+                                        if (mobText && mobLink) {
+                                                mobText.textContent = 'Mon Profil (' + data.user.firstName + ')';
+                                                mobLink.href = 'profile.html';
+                                        }
+                                }
+                        } catch (e) {}
+                })();
+
+                // Mobile menu toggle
+                (function() {
+                        const btn = document.getElementById('mobileMenuBtn');
+                        const closeBtn = document.getElementById('closeMobileMenuBtn');
+                        const overlay = document.getElementById('mobileMenuOverlay');
+                        if (btn && overlay) {
+                                btn.addEventListener('click', function() {
+                                        overlay.classList.remove('translate-x-full');
+                                });
+                        }
+                        if (closeBtn && overlay) {
+                                closeBtn.addEventListener('click', function() {
+                                        overlay.classList.add('translate-x-full');
+                                });
+                        }
+                })();
+        </script>
+</body>
+
+</html>

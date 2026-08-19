@@ -213,19 +213,19 @@
   </div>
 
   <!-- Main Content Area -->
-  <main class="flex-1 ml-0 md:ml-sidebar-width h-screen flex flex-col mt-16 md:mt-0 overflow-hidden bg-background">
+  <main class="flex-1 ml-0 md:ml-sidebar-width h-[calc(100dvh-4rem)] md:h-screen flex flex-col mt-16 md:mt-0 overflow-hidden bg-background">
     <!-- Top Header -->
-    <header class="h-16 bg-white border-b border-outline-variant px-6 flex items-center justify-between shrink-0">
+    <header class="h-14 md:h-16 bg-white border-b border-outline-variant px-4 md:px-6 flex items-center justify-between shrink-0">
       <div>
-        <h1 class="font-headline-sm text-headline-sm text-primary flex items-center gap-2">
-          <span class="material-symbols-outlined text-secondary">chat</span>
+        <h1 class="font-headline-sm text-base md:text-headline-sm text-primary flex items-center gap-2">
+          <span class="material-symbols-outlined text-secondary text-xl md:text-2xl">chat</span>
           <span>Messagerie AMORA</span>
         </h1>
-        <p class="text-xs text-on-surface-variant" id="chatSubHeader">Échange direct entre donateurs et administration</p>
+        <p class="text-[11px] md:text-xs text-on-surface-variant" id="chatSubHeader">Échange direct entre donateurs et administration</p>
       </div>
       <div id="activeRecipientHeader" class="hidden text-right">
-        <span class="font-bold text-primary text-sm" id="activeRecipientName">Nom</span>
-        <p class="text-xs text-on-surface-variant" id="activeRecipientEmail">email@example.com</p>
+        <span class="font-bold text-primary text-xs md:text-sm" id="activeRecipientName">Nom</span>
+        <p class="text-[10px] md:text-xs text-on-surface-variant" id="activeRecipientEmail">email@example.com</p>
       </div>
     </header>
 
@@ -233,9 +233,9 @@
     <div class="flex-1 flex overflow-hidden">
       <!-- Admin: Donor Conversations List (Visible only to Admin) -->
       <aside id="conversationsPanel" class="hidden w-full md:w-80 border-r border-outline-variant bg-white flex flex-col shrink-0">
-        <div class="p-4 border-b border-outline-variant">
+        <div class="p-3 md:p-4 border-b border-outline-variant">
           <input type="text" id="donorSearchInput" placeholder="Rechercher un donateur..."
-            class="w-full text-sm rounded-lg border-outline-variant focus:border-secondary focus:ring-secondary py-2 px-3 bg-surface-container-low" />
+            class="w-full text-xs md:text-sm rounded-lg border-outline-variant focus:border-secondary focus:ring-secondary py-2 px-3 bg-surface-container-low" />
         </div>
         <div class="flex-1 overflow-y-auto divide-y divide-surface-variant" id="conversationsList">
           <!-- Conversation items dynamically injected here -->
@@ -244,19 +244,19 @@
       </aside>
 
       <!-- Chat Thread Panel -->
-      <section id="chatThreadPanel" class="flex-1 flex flex-col bg-surface-container-lowest overflow-hidden">
+      <section id="chatThreadPanel" class="flex-1 flex flex-col h-full bg-surface-container-lowest overflow-hidden">
         <!-- Messages Scroll Area -->
-        <div class="flex-1 overflow-y-auto p-4 md:p-6 space-y-4" id="messagesContainer">
+        <div class="flex-1 overflow-y-auto p-3 md:p-6 space-y-3 md:space-y-4" id="messagesContainer">
           <div class="text-center text-sm text-on-surface-variant py-8">Chargement des messages...</div>
         </div>
 
-        <!-- Message Input Bar -->
-        <div class="p-4 bg-white border-t border-outline-variant shrink-0">
-          <form id="messageForm" class="flex items-center gap-3">
+        <!-- Message Input Bar (Always pinned and visible) -->
+        <div class="p-3 md:p-4 bg-white border-t border-outline-variant shrink-0 shadow-[0_-4px_12px_rgba(0,0,0,0.05)] md:shadow-none z-10">
+          <form id="messageForm" class="flex items-center gap-2 md:gap-3">
             <input type="text" id="messageInput" placeholder="Écrivez votre message..." required autocomplete="off"
-              class="flex-1 rounded-full border-outline-variant focus:border-secondary focus:ring-secondary px-5 py-3 text-sm bg-surface-container-low" />
+              class="flex-1 rounded-full border-outline-variant focus:border-secondary focus:ring-secondary px-4 py-2.5 md:px-5 md:py-3 text-xs md:text-sm bg-surface-container-low" />
             <button type="submit" id="sendBtn"
-              class="bg-secondary text-on-secondary rounded-full px-6 py-3 font-label-md text-sm hover:bg-on-secondary-container transition-colors flex items-center gap-2 shadow-sm">
+              class="bg-secondary text-on-secondary rounded-full px-4 py-2.5 md:px-6 md:py-3 font-label-md text-xs md:text-sm hover:bg-on-secondary-container transition-colors flex items-center gap-1.5 shadow-sm shrink-0">
               <span>Envoyer</span>
               <span class="material-symbols-outlined text-sm">send</span>
             </button>
