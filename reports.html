@@ -11,6 +11,7 @@
             location.href = 'login.html';
           }
     </script>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link
@@ -346,7 +347,7 @@
                     class="block font-label-md text-label-md text-primary mb-2"
                     >Report Type</label
                   >
-                  <select
+                  <select id="reportType"
                     class="w-full bg-surface border border-outline-variant rounded-lg p-2 focus:ring-2 focus:ring-primary focus:border-primary text-sm"
                   >
                     <option>Comprehensive Annual</option>
@@ -359,7 +360,7 @@
                     class="block font-label-md text-label-md text-primary mb-2"
                     >Fiscal Year</label
                   >
-                  <select
+                  <select id="reportYear"
                     class="w-full bg-surface border border-outline-variant rounded-lg p-2 focus:ring-2 focus:ring-primary focus:border-primary text-sm"
                   >
                     <option>2026</option>
@@ -372,7 +373,7 @@
                     class="block font-label-md text-label-md text-primary mb-2"
                     >Region</label
                   >
-                  <select
+                  <select id="reportRegion"
                     class="w-full bg-surface border border-outline-variant rounded-lg p-2 focus:ring-2 focus:ring-primary focus:border-primary text-sm"
                   >
                     <option>Global Overview</option>
@@ -383,12 +384,12 @@
               </div>
             </div>
             <div class="flex justify-end gap-4 mt-4">
-              <button
+              <button id="previewReport"
                 class="px-6 py-2 border-2 border-secondary text-secondary rounded-lg font-label-md hover:bg-secondary-container transition-colors"
               >
                 Preview Data
               </button>
-              <button
+              <button id="printReport"
                 class="px-6 py-2 bg-primary text-on-primary rounded-lg font-label-md hover:bg-opacity-90 transition-opacity flex items-center gap-2"
               >
                 <span class="material-symbols-outlined text-sm"
@@ -420,7 +421,7 @@
                     class="font-label-md text-label-md text-on-surface-variant"
                     >Total Downloads</span
                   >
-                  <span class="font-headline-sm text-headline-sm text-primary"
+                  <span id="liveDonationCount" class="font-headline-sm text-headline-sm text-primary"
                     >12,450</span
                   >
                 </div>
@@ -485,7 +486,7 @@
                   class="material-symbols-outlined absolute left-3 top-2.5 text-on-surface-variant text-sm"
                   >search</span
                 >
-                <input
+                <input id="reportSearch"
                   class="pl-9 pr-4 py-2 bg-surface border border-outline-variant rounded-lg text-sm focus:ring-2 focus:ring-primary focus:border-primary w-48 md:w-64"
                   placeholder="Search documents..."
                   type="text"
@@ -493,7 +494,7 @@
               </div>
             </div>
           </div>
-          <div
+          <div id="reportGrid"
             class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-gutter"
           >
 
@@ -666,6 +667,78 @@
     </main>
 
 
+    <script>
+      const reportGrid = document.getElementById("reportGrid");
+
+      function escapeHtml(value) {
+        return String(value ?? "").replace(/[&<>'"]/g, (character) => ({
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          "'": "&#39;",
+          '"': "&quot;",
+        })[character]);
+      }
+
+      function renderReports(items) {
+        if (!items.length) {
+          reportGrid.innerHTML = '<p class="text-on-surface-variant">Aucun document publié pour le moment.</p>';
+          return;
+        }
+        reportGrid.innerHTML = items.map((report) => `
+          <a href="${escapeHtml(report.fileUrl)}" target="_blank" rel="noopener" class="bg-surface-container-lowest rounded-xl shadow-level-1 hover:shadow-level-2 transition-shadow duration-300 overflow-hidden flex flex-col group">
+            <div class="h-32 bg-surface-container flex items-center justify-center relative">
+              <span class="material-symbols-outlined text-4xl text-primary opacity-50">picture_as_pdf</span>
+            </div>
+            <div class="p-4 flex-1 flex flex-col">
+              <div class="text-xs text-on-surface-variant mb-1">${new Date(report.publishedAt).toLocaleDateString("fr-FR")}</div>
+              <h3 class="font-headline-sm text-lg text-primary mb-2">${escapeHtml(report.title)}</h3>
+              <span class="mt-auto text-sm text-secondary">Ouvrir le document</span>
+            </div>
+          </a>
+        `).join("");
+      }
+
+      async function loadLiveReports() {
+        try {
+          const [reportsResponse, statsResponse] = await Promise.all([
+            fetch("/api/reports"),
+            fetch("/api/stats/transparency"),
+          ]);
+          const reportsData = await reportsResponse.json();
+          const statsData = await statsResponse.json();
+          if (reportsData.success) renderReports(reportsData.reports);
+          if (statsData.success) {
+            window.liveReportStats = statsData.stats;
+            document.getElementById("liveDonationCount").textContent = statsData.stats.totalDonations.toLocaleString("fr-FR");
+          }
+        } catch (error) {
+          reportGrid.innerHTML = '<p class="text-error">Impossible de charger les données.</p>';
+        }
+      }
+
+      document.getElementById("reportSearch").addEventListener("input", async (event) => {
+        const response = await fetch("/api/reports");
+        const data = await response.json();
+        if (data.success) {
+          const query = event.target.value.trim().toLowerCase();
+          renderReports(data.reports.filter((report) => report.title.toLowerCase().includes(query)));
+        }
+      });
+
+      document.getElementById("previewReport").addEventListener("click", () => {
+        const stats = window.liveReportStats;
+        if (!stats) return;
+        Swal.fire({
+          title: "Aperçu du rapport",
+          html: `<strong>${escapeHtml(document.getElementById("reportType").value)}</strong><br>Collecté : ${stats.totalRaised.toLocaleString("fr-FR")} $<br>Dons : ${stats.totalDonations}<br>Donateurs : ${stats.totalDonors}`,
+        });
+      });
+
+      document.getElementById("printReport").addEventListener("click", () => window.print());
+      loadLiveReports();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <div
       id="mobileMenuOverlay"
       class="fixed inset-0 bg-primary bg-opacity-98 z-50 transform translate-x-full transition-transform duration-300 flex flex-col items-center justify-center"
@@ -689,19 +762,19 @@
         >
         <a
           id="mobNavFinancials"
-          class="hidden text-white text-2xl font-headline hover:text-secondary-fixed transition-colors"
+          class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors"
           href="financials.html"
           >Finances</a
         >
         <a
           id="mobNavAdminDonors"
-          class="hidden text-white text-2xl font-headline hover:text-secondary-fixed transition-colors"
+          class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors"
           href="admin.html"
           >Gestion Donateurs</a
         >
         <a
           id="mobNavReports"
-          class="hidden text-white text-2xl font-headline hover:text-secondary-fixed transition-colors"
+          class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors"
           href="reports.html"
           >Rapports</a
         >
