@@ -1,18 +1,13 @@
 <!DOCTYPE html>
-
 <html lang="fr">
-
 <head>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>Portail AMORA - Gestion des donateurs</title>
+  <title>AMORA | Administration &bull; Gestion Temps Réel</title>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet" />
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Plus+Jakarta+Sans:ital,wght@0,200..800&amp;display=swap"
-    rel="stylesheet" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
     rel="stylesheet" />
   <link
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
@@ -97,217 +92,448 @@
             "headline-lg": ["Playfair Display"],
             "body-lg": ["Plus Jakarta Sans"],
             "headline-md": ["Playfair Display"]
-          },
-          "fontSize": {
-            "label-md": ["14px", { "lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "600" }],
-            "headline-sm": ["22px", { "lineHeight": "1.4", "fontWeight": "600" }],
-            "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
-            "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
-            "headline-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
-            "headline-xl": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
-            "headline-lg": ["36px", { "lineHeight": "1.2", "fontWeight": "700" }],
-            "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
-            "headline-md": ["28px", { "lineHeight": "1.3", "fontWeight": "600" }]
           }
         }
       }
     }
   </script>
   <style>
-    .glass-card {
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-    }
-
-    .shadow-level-1 {
-      box-shadow: 0px 4px 20px rgba(15, 44, 89, 0.05);
-    }
-
-    .shadow-level-2 {
-      box-shadow: 0px 12px 32px rgba(15, 44, 89, 0.1);
-    }
-
+    .shadow-level-1 { box-shadow: 0px 4px 20px rgba(15, 44, 89, 0.05); }
+    .shadow-level-2 { box-shadow: 0px 12px 32px rgba(15, 44, 89, 0.1); }
   </style>
   <script>
-      (async function guardAdmin() {
-        try {
-          const res = await fetch('/api/auth/me');
-          const data = await res.json();
-          if (!data.authenticated) {
-            location.href = 'login.html';
-          } else if (data.user.role !== 'admin') {
-            location.href = 'dashboard.html';
-          } else {
-            document.getElementById('mobNavFinancials')?.classList.remove('hidden');
-            document.getElementById('mobNavAdminDonors')?.classList.remove('hidden');
-            document.getElementById('mobNavReports')?.classList.remove('hidden');
-            document.getElementById('navReports')?.classList.remove('hidden');
-            document.getElementById('navReportsLi')?.classList.remove('hidden');
-            document.getElementById('antiClickjack')?.remove();
-          }
-        } catch (e) {
+    (async function guardAdmin() {
+      try {
+        const res = await fetch('/api/auth/me');
+        const data = await res.json();
+        if (!data.authenticated) {
           location.href = 'login.html';
+        } else if (data.user.role !== 'admin') {
+          location.href = 'dashboard.html';
+        } else {
+          document.getElementById('antiClickjack')?.remove();
         }
-      })();
+      } catch (e) {
+        location.href = 'login.html';
+      }
+    })();
   </script>
-<style id="antiClickjack">body { display: none !important; }</style>
+  <style id="antiClickjack">body { display: none !important; }</style>
 </head>
 
 <body class="bg-background text-on-background font-body-md min-h-screen flex antialiased">
 
-  <nav
-    class="hidden md:flex flex-col h-full p-stack-md border-r border-outline-variant bg-surface-container-low w-sidebar-width fixed left-0 top-0 h-screen z-40">
+  <!-- Sidebar -->
+  <nav class="hidden md:flex flex-col h-full p-stack-md border-r border-outline-variant bg-surface-container-low w-sidebar-width fixed left-0 top-0 h-screen z-40">
     <div class="mb-stack-lg flex items-center gap-stack-md">
       <div>
-        <h1 class="font-headline-sm text-headline-sm text-primary">Portail AMORA</h1>
-        <p class="font-body-sm text-body-sm text-on-surface-variant">Accès Administrateur</p>
+        <h1 class="font-headline-sm text-headline-sm text-primary">AMORA Admin</h1>
+        <p class="font-body-sm text-body-sm text-on-surface-variant">Siège Bukavu (Sud-Kivu)</p>
       </div>
     </div>
     <ul class="flex-1 space-y-2">
       <li>
-        <a class="flex items-center gap-stack-md text-on-surface-variant p-stack-md hover:bg-surface-container-high transition-all rounded-lg font-label-md text-label-md"
-          href="dashboard.html">
-          <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+        <a class="flex items-center gap-stack-md bg-secondary-container text-on-secondary-container rounded-lg p-stack-md font-label-md text-label-md" href="admin.html">
+          <span class="material-symbols-outlined">admin_panel_settings</span>
+          Gestion Live &bull; Admin
+        </a>
+      </li>
+      <li>
+        <a class="flex items-center gap-stack-md text-on-surface-variant p-stack-md hover:bg-surface-container-high transition-all rounded-lg font-label-md text-label-md" href="dashboard.html">
+          <span class="material-symbols-outlined">dashboard</span>
           Tableau de bord
         </a>
       </li>
       <li>
-        <a class="flex items-center gap-stack-md text-on-surface-variant p-stack-md hover:bg-surface-container-high transition-all rounded-lg font-label-md text-label-md"
-          href="transparency.html">
-          <span class="material-symbols-outlined" data-icon="public">public</span>
-          Impact Global
+        <a class="flex items-center gap-stack-md text-on-surface-variant p-stack-md hover:bg-surface-container-high transition-all rounded-lg font-label-md text-label-md" href="projects.html">
+          <span class="material-symbols-outlined">folder_special</span>
+          Programmes Sud-Kivu
         </a>
       </li>
       <li>
-        <a class="flex items-center gap-stack-md text-on-surface-variant p-stack-md hover:bg-surface-container-high transition-all rounded-lg font-label-md text-label-md"
-          href="financials.html">
-          <span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+        <a class="flex items-center gap-stack-md text-on-surface-variant p-stack-md hover:bg-surface-container-high transition-all rounded-lg font-label-md text-label-md" href="financials.html">
+          <span class="material-symbols-outlined">account_balance_wallet</span>
           Finances
         </a>
       </li>
       <li>
-        <a class="flex items-center gap-stack-md bg-secondary-container text-on-secondary-container rounded-lg p-stack-md font-label-md text-label-md"
-          href="admin.html">
-          <span class="material-symbols-outlined" data-icon="group">group</span>
-          Gestion Donateurs
-        </a>
-      </li>
-      <li>
-        <a class="flex items-center gap-stack-md text-on-surface-variant p-stack-md hover:bg-surface-container-high transition-all rounded-lg font-label-md text-label-md"
-          href="reports.html">
+        <a class="flex items-center gap-stack-md text-on-surface-variant p-stack-md hover:bg-surface-container-high transition-all rounded-lg font-label-md text-label-md" href="reports.html">
           <span class="material-symbols-outlined">description</span>
-          Rapports
+          Rapports annuels
         </a>
       </li>
       <li>
-        <a class="flex items-center gap-stack-md text-on-surface-variant p-stack-md hover:bg-surface-container-high transition-all rounded-lg font-label-md text-label-md"
-          href="profile.html">
-          <span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+        <a class="flex items-center gap-stack-md text-on-surface-variant p-stack-md hover:bg-surface-container-high transition-all rounded-lg font-label-md text-label-md" href="profile.html">
+          <span class="material-symbols-outlined">account_circle</span>
           Mon Profil
         </a>
       </li>
     </ul>
     <div class="mt-auto pt-stack-md border-t border-outline-variant space-y-2">
-      <a class="flex items-center gap-stack-md text-on-surface-variant p-stack-md hover:bg-surface-container-high transition-all rounded-lg font-label-md text-label-md"
-        href="#">
-        <span class="material-symbols-outlined" data-icon="help">help</span>
-        Aide
+      <a class="flex items-center gap-stack-md text-on-surface-variant p-stack-md hover:bg-surface-container-high transition-all rounded-lg font-label-md text-label-md" href="help.html">
+        <span class="material-symbols-outlined">help</span>
+        Centre d'Aide
       </a>
-      <a class="flex items-center gap-stack-md text-on-surface-variant p-stack-md hover:bg-surface-container-high transition-all rounded-lg font-label-md text-label-md cursor-pointer"
-        onclick="doLogout()">
-        <span class="material-symbols-outlined" data-icon="logout">logout</span>
+      <a class="flex items-center gap-stack-md text-on-surface-variant p-stack-md hover:bg-surface-container-high transition-all rounded-lg font-label-md text-label-md cursor-pointer" onclick="doLogout()">
+        <span class="material-symbols-outlined">logout</span>
         Déconnexion
       </a>
     </div>
   </nav>
 
+  <!-- Main Content -->
   <main class="flex-1 md:ml-sidebar-width p-margin-mobile md:p-margin-desktop min-h-screen">
-
     <header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-stack-lg gap-stack-md">
       <div>
-        <h2 class="font-headline-lg text-headline-lg text-primary mb-2">User Management</h2>
-        <p class="font-body-md text-body-md text-on-surface-variant">Manage administrative access, roles, and review
-          activity logs across the institution.</p>
+        <div class="flex items-center gap-2">
+          <span class="bg-secondary text-white text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">Temps Réel</span>
+          <span class="text-xs text-on-surface-variant">Siège de Bukavu</span>
+        </div>
+        <h2 class="font-headline-lg text-primary mt-1">Console d'Administration Globale</h2>
+        <p class="font-body-md text-on-surface-variant">Ajoutez des événements, programmes et actualités en direct avec répercussion instantanée.</p>
       </div>
-      <div class="flex gap-3">
-        <a href="/api/donations/export.csv"
-          class="bg-primary text-on-primary px-6 py-3 rounded-full font-label-md text-label-md hover:opacity-90 transition-opacity flex items-center gap-2 shadow-level-1">
-          <span class="material-symbols-outlined" data-icon="download">download</span> Export CSV
+      <div class="flex flex-wrap gap-3">
+        <a href="/api/donations/export.csv" class="bg-primary text-on-primary px-5 py-2.5 rounded-full font-label-md hover:opacity-90 transition-opacity flex items-center gap-2 shadow-level-1 text-sm">
+          <span class="material-symbols-outlined text-sm">download</span> Exporter CSV
         </a>
-        <button
-          class="bg-secondary text-on-secondary px-6 py-3 rounded-full font-label-md text-label-md hover:opacity-90 transition-opacity flex items-center gap-2 shadow-level-1"
-          onclick="inviteUser()">
-          <span class="material-symbols-outlined" data-icon="add">add</span> Invite New User
+        <button class="bg-secondary text-on-secondary px-5 py-2.5 rounded-full font-label-md hover:opacity-90 transition-opacity flex items-center gap-2 shadow-level-1 text-sm" onclick="inviteUser()">
+          <span class="material-symbols-outlined text-sm">person_add</span> Nouvel Utilisateur
         </button>
       </div>
     </header>
 
-    <div
-      class="bg-surface-container-lowest p-stack-md rounded-xl shadow-level-1 mb-gutter flex flex-col md:flex-row gap-stack-md items-center">
-      <div class="relative flex-1 w-full">
-        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant"
-          data-icon="search">search</span>
-        <input id="adminSearch"
-          class="w-full pl-12 pr-4 py-3 bg-surface border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md"
-          placeholder="Rechercher par donateur, email ou projet..." type="text" oninput="filterAdminTable()" />
+    <!-- Stat Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-stack-lg">
+      <div class="bg-white p-6 rounded-2xl shadow-level-1 border border-surface-variant">
+        <span class="text-xs font-bold text-secondary uppercase tracking-wider">Total Collecté</span>
+        <div class="font-headline-md text-primary font-bold mt-1" id="statTotalRaised">-- $</div>
+        <p class="text-xs text-on-surface-variant mt-1">Sur l'ensemble du Sud-Kivu</p>
+      </div>
+      <div class="bg-white p-6 rounded-2xl shadow-level-1 border border-surface-variant">
+        <span class="text-xs font-bold text-secondary uppercase tracking-wider">Donateurs Enregistrés</span>
+        <div class="font-headline-md text-primary font-bold mt-1" id="statDonors">--</div>
+        <p class="text-xs text-on-surface-variant mt-1">Acteurs de changement</p>
+      </div>
+      <div class="bg-white p-6 rounded-2xl shadow-level-1 border border-surface-variant">
+        <span class="text-xs font-bold text-secondary uppercase tracking-wider">Programmes Actifs</span>
+        <div class="font-headline-md text-primary font-bold mt-1" id="statProjects">--</div>
+        <p class="text-xs text-on-surface-variant mt-1">Territoires du Sud-Kivu</p>
+      </div>
+      <div class="bg-white p-6 rounded-2xl shadow-level-1 border border-surface-variant">
+        <span class="text-xs font-bold text-secondary uppercase tracking-wider">Événements en cours</span>
+        <div class="font-headline-md text-primary font-bold mt-1" id="statEvents">--</div>
+        <p class="text-xs text-on-surface-variant mt-1">Actions directes terrain</p>
       </div>
     </div>
 
+    <!-- Section 1 : GESTION DES ÉVÉNEMENTS (TEMPS RÉEL) -->
+    <div class="bg-surface-container-lowest rounded-[24px] shadow-level-1 p-6 md:p-8 mb-stack-lg border border-surface-variant">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 pb-4 border-b border-surface-variant">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-secondary bg-secondary-fixed px-3 py-1 rounded-full">Nouveau Module</span>
+          <h3 class="font-headline-sm text-primary font-bold mt-2">Gestion des Événements &amp; Caravanes Terrain</h3>
+          <p class="text-sm text-on-surface-variant">Créez des événements qui s'affichent instantanément sur la page d'accueil.</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <!-- Formulaire Événement -->
+        <form id="eventForm" class="lg:col-span-5 bg-surface-bright p-6 rounded-2xl border border-surface-variant space-y-4">
+          <h4 class="font-headline-sm text-primary text-lg font-bold flex items-center gap-2">
+            <span class="material-symbols-outlined text-secondary">add_circle</span> Ajouter un Événement
+          </h4>
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-1">Titre de l'événement</label>
+            <input name="title" required placeholder="Ex. Caravane Eau Potable à Kabare" class="w-full border border-outline-variant rounded-lg p-3 text-sm focus:ring-1 focus:ring-secondary focus:border-secondary" />
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-1">Catégorie</label>
+              <select name="category" class="w-full border border-outline-variant rounded-lg p-3 text-sm">
+                <option value="Eau & Assainissement">Eau &amp; Assainissement</option>
+                <option value="Santé Maternelle">Santé Maternelle</option>
+                <option value="Agriculture Durable">Agriculture Durable</option>
+                <option value="Éducation">Éducation</option>
+                <option value="Environnement">Environnement</option>
+                <option value="Communautaire">Communautaire</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-1">Date &amp; Heure</label>
+              <input name="eventDate" type="datetime-local" required class="w-full border border-outline-variant rounded-lg p-3 text-sm" />
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-1">Lieu au Sud-Kivu</label>
+              <input name="location" required placeholder="Ex. Commune d'Ibanda, Bukavu" class="w-full border border-outline-variant rounded-lg p-3 text-sm" />
+            </div>
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-1">Capacité / Places</label>
+              <input name="seatsAvailable" type="number" min="1" placeholder="Ex. 150" class="w-full border border-outline-variant rounded-lg p-3 text-sm" />
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-1">Organisateur / Pôle</label>
+            <input name="organizer" placeholder="Ex. Pôle Médical AMORA Bukavu" class="w-full border border-outline-variant rounded-lg p-3 text-sm" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-1">URL de l'image (Africaine / Terrain)</label>
+            <input name="imageUrl" type="url" placeholder="https://images.unsplash.com/..." class="w-full border border-outline-variant rounded-lg p-3 text-sm" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-1">Description détaillée</label>
+            <textarea name="description" required rows="3" placeholder="Objectifs de la mission, public cible, activités prévues..." class="w-full border border-outline-variant rounded-lg p-3 text-sm"></textarea>
+          </div>
+          <button type="submit" class="w-full bg-secondary text-white rounded-lg py-3 font-label-md hover:bg-on-secondary-container transition-all flex items-center justify-center gap-2 font-bold">
+            <span class="material-symbols-outlined text-sm">bolt</span> Publier l'Événement en Direct
+          </button>
+        </form>
+
+        <!-- Liste des Événements Existants -->
+        <div class="lg:col-span-7">
+          <div class="flex justify-between items-center mb-4">
+            <h4 class="font-headline-sm text-primary text-lg font-bold">Événements Actifs</h4>
+            <span id="eventCountBadge" class="text-xs bg-secondary-fixed text-on-secondary-fixed px-3 py-1 rounded-full font-bold">Chargement...</span>
+          </div>
+          <div id="adminEventsList" class="space-y-4 max-h-[560px] overflow-y-auto pr-1">
+            <p class="text-center text-on-surface-variant py-8">Chargement des événements...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 2 : GESTION DES PROJETS & ACTUALITÉS -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter mb-stack-lg">
-      <form id="projectForm" class="bg-surface-container-lowest rounded-xl shadow-level-1 p-stack-lg space-y-3">
-        <h3 class="font-headline-sm text-primary">Ajouter un projet</h3>
-        <input name="title" required placeholder="Titre du projet" class="w-full border border-outline-variant rounded-lg p-3" />
-        <div class="grid grid-cols-2 gap-3"><input name="axis" required placeholder="Domaine" class="border border-outline-variant rounded-lg p-3" /><input name="province" required placeholder="Province" class="border border-outline-variant rounded-lg p-3" /></div>
-        <textarea name="description" required placeholder="Description" class="w-full border border-outline-variant rounded-lg p-3"></textarea>
-        <div class="grid grid-cols-2 gap-3"><input name="goalAmount" type="number" min="1" required placeholder="Objectif en USD" class="border border-outline-variant rounded-lg p-3" /><input name="imageUrl" type="url" placeholder="URL de l'image" class="border border-outline-variant rounded-lg p-3" /></div>
-        <button class="bg-secondary text-white rounded-lg px-5 py-3">Publier le projet</button>
-      </form>
-      <form id="newsForm" class="bg-surface-container-lowest rounded-xl shadow-level-1 p-stack-lg space-y-3">
-        <h3 class="font-headline-sm text-primary">Publier une actualité</h3>
-        <input name="title" required placeholder="Titre de l’actualité" class="w-full border border-outline-variant rounded-lg p-3" />
-        <textarea name="content" required placeholder="Contenu" class="w-full min-h-28 border border-outline-variant rounded-lg p-3"></textarea>
-        <input name="imageUrl" type="url" placeholder="URL de l'image (facultatif)" class="w-full border border-outline-variant rounded-lg p-3" />
-        <button class="bg-secondary text-white rounded-lg px-5 py-3">Publier l’actualité</button>
-      </form>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-stack-lg">
-
-      <div class="md:col-span-8 bg-surface-container-lowest rounded-[24px] shadow-level-1 overflow-hidden">
-        <div
-          class="p-stack-md border-b border-outline-variant flex justify-between items-center bg-surface-container-low">
-          <h3 class="font-headline-sm text-headline-sm text-primary">Tous les Dons (Base de données Live)</h3>
-          <span class="font-body-sm text-body-sm text-on-surface-variant" id="donationCountLabel">Chargement...</span>
-        </div>
-        <div class="overflow-x-auto">
-          <table class="w-full text-left border-collapse">
-            <thead>
-              <tr
-                class="bg-surface-container-lowest border-b border-outline-variant font-label-md text-label-md text-on-surface-variant">
-                <th class="p-stack-md font-medium">Référence</th>
-                <th class="p-stack-md font-medium">Donateur</th>
-                <th class="p-stack-md font-medium">Projet</th>
-                <th class="p-stack-md font-medium">Montant</th>
-                <th class="p-stack-md font-medium">Date</th>
-                <th class="p-stack-md font-medium">Statut</th>
-              </tr>
-            </thead>
-            <tbody id="adminDonationsBody" class="divide-y divide-outline-variant font-body-sm text-body-sm">
-              <tr>
-                <td colspan="6" class="p-stack-md text-center text-on-surface-variant">Chargement des données...</td>
-              </tr>
-            </tbody>
-          </table>
+      <!-- Projets -->
+      <div class="bg-surface-container-lowest rounded-[24px] shadow-level-1 p-6 md:p-8 border border-surface-variant">
+        <h3 class="font-headline-sm text-primary font-bold mb-4 flex items-center gap-2">
+          <span class="material-symbols-outlined text-secondary">add_task</span> Ajouter un Programme Sud-Kivu
+        </h3>
+        <form id="projectForm" class="space-y-4">
+          <input name="title" required placeholder="Titre du programme (ex. Forages d'eau à Kabare)" class="w-full border border-outline-variant rounded-lg p-3 text-sm" />
+          <div class="grid grid-cols-2 gap-3">
+            <input name="axis" required placeholder="Axe (Eau, Santé, Éducation...)" class="border border-outline-variant rounded-lg p-3 text-sm" />
+            <input name="province" required placeholder="Territoire / Ville (ex. Sud-Kivu - Walungu)" class="border border-outline-variant rounded-lg p-3 text-sm" />
+          </div>
+          <textarea name="description" required rows="3" placeholder="Description de l'impact communautaire et des bénéficiaires au Sud-Kivu..." class="w-full border border-outline-variant rounded-lg p-3 text-sm"></textarea>
+          <div class="grid grid-cols-2 gap-3">
+            <input name="goalAmount" type="number" min="1" required placeholder="Budget Objectif ($)" class="border border-outline-variant rounded-lg p-3 text-sm" />
+            <input name="imageUrl" type="url" placeholder="URL Image (africaine)" class="border border-outline-variant rounded-lg p-3 text-sm" />
+          </div>
+          <button type="submit" class="w-full bg-primary text-white rounded-lg py-3 font-label-md hover:opacity-90 transition-all font-bold">
+            Publier le Programme
+          </button>
+        </form>
+        <div class="mt-6 pt-4 border-t border-surface-variant">
+          <h4 class="font-headline-sm text-sm text-primary font-bold mb-3">Programmes enregistrés :</h4>
+          <div id="adminProjectsList" class="space-y-2 max-h-48 overflow-y-auto text-sm"></div>
         </div>
       </div>
 
+      <!-- Actualités -->
+      <div class="bg-surface-container-lowest rounded-[24px] shadow-level-1 p-6 md:p-8 border border-surface-variant">
+        <h3 class="font-headline-sm text-primary font-bold mb-4 flex items-center gap-2">
+          <span class="material-symbols-outlined text-secondary">newspaper</span> Publier un Communiqué / Actualité
+        </h3>
+        <form id="newsForm" class="space-y-4">
+          <input name="title" required placeholder="Titre du communiqué (ex. Inauguration du puits à Ciriri)" class="w-full border border-outline-variant rounded-lg p-3 text-sm" />
+          <textarea name="content" required rows="4" placeholder="Contenu du communiqué officiel..." class="w-full border border-outline-variant rounded-lg p-3 text-sm"></textarea>
+          <input name="imageUrl" type="url" placeholder="URL de l'image de couverture (facultatif)" class="w-full border border-outline-variant rounded-lg p-3 text-sm" />
+          <button type="submit" class="w-full bg-secondary text-white rounded-lg py-3 font-label-md hover:bg-on-secondary-container transition-all font-bold">
+            Diffuser l'Actualité
+          </button>
+        </form>
+        <div class="mt-6 pt-4 border-t border-surface-variant">
+          <h4 class="font-headline-sm text-sm text-primary font-bold mb-3">Actualités récentes :</h4>
+          <div id="adminNewsList" class="space-y-2 max-h-48 overflow-y-auto text-sm"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 3 : TABLEAU DES DONS EN DIRECT -->
+    <div class="bg-surface-container-lowest rounded-[24px] shadow-level-1 overflow-hidden border border-surface-variant mb-stack-lg">
+      <div class="p-stack-md border-b border-outline-variant flex flex-col sm:flex-row justify-between items-start sm:items-center bg-surface-container-low gap-4">
+        <div>
+          <h3 class="font-headline-sm text-headline-sm text-primary">Tous les Dons (Base Live Sud-Kivu)</h3>
+          <span class="font-body-sm text-on-surface-variant" id="donationCountLabel">Chargement...</span>
+        </div>
+        <div class="relative w-full sm:w-80">
+          <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+          <input id="adminSearch" class="w-full pl-9 pr-3 py-2 bg-white border border-outline-variant rounded-full text-xs focus:outline-none focus:border-secondary font-body-md" placeholder="Filtrer par donateur, email, projet..." oninput="filterAdminTable()" />
+        </div>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-surface-container-lowest border-b border-outline-variant font-label-md text-label-md text-on-surface-variant text-xs">
+              <th class="p-stack-md font-bold">Référence</th>
+              <th class="p-stack-md font-bold">Donateur</th>
+              <th class="p-stack-md font-bold">Projet</th>
+              <th class="p-stack-md font-bold">Montant</th>
+              <th class="p-stack-md font-bold">Date</th>
+              <th class="p-stack-md font-bold">Statut</th>
+            </tr>
+          </thead>
+          <tbody id="adminDonationsBody" class="divide-y divide-outline-variant font-body-sm text-body-sm text-xs">
+            <tr>
+              <td colspan="6" class="p-stack-md text-center text-on-surface-variant">Chargement des données...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </main>
 
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
     let allAdminDonations = [];
+    let allAdminEvents = [];
+    let allAdminProjects = [];
+    let allAdminNews = [];
+
+    async function loadStats() {
+      try {
+        const res = await fetch('/api/stats/transparency');
+        const data = await res.json();
+        if (data.success && data.stats) {
+          document.getElementById('statTotalRaised').textContent = data.stats.totalRaised.toLocaleString() + ' $';
+          document.getElementById('statDonors').textContent = data.stats.totalDonors.toLocaleString();
+          document.getElementById('statProjects').textContent = data.stats.totalProjects;
+        }
+      } catch (e) {}
+    }
+
+    async function loadEvents() {
+      const container = document.getElementById('adminEventsList');
+      const badge = document.getElementById('eventCountBadge');
+      try {
+        const res = await fetch('/api/content/events');
+        const data = await res.json();
+        if (data.success) {
+          allAdminEvents = data.events;
+          badge.textContent = `${allAdminEvents.length} événements`;
+          document.getElementById('statEvents').textContent = allAdminEvents.length;
+          if (allAdminEvents.length === 0) {
+            container.innerHTML = '<p class="text-center text-on-surface-variant py-6">Aucun événement créé.</p>';
+            return;
+          }
+          container.innerHTML = allAdminEvents.map(ev => `
+            <div class="bg-white p-4 rounded-xl border border-surface-variant shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+              <div class="flex items-center gap-3">
+                <img src="${ev.imageUrl || 'https://images.unsplash.com/photo-1594708767771-a7502209ff51?auto=format&fit=crop&q=80&w=800'}" class="w-14 h-14 rounded-lg object-cover" />
+                <div>
+                  <h5 class="font-bold text-primary text-sm">${ev.title}</h5>
+                  <p class="text-xs text-secondary font-medium">📍 ${ev.location} &bull; 🗓️ ${new Date(ev.eventDate).toLocaleDateString('fr-FR')}</p>
+                  <p class="text-xs text-on-surface-variant line-clamp-1">${ev.description}</p>
+                </div>
+              </div>
+              <button onclick="deleteEvent('${ev.id}')" class="text-error hover:bg-error-container p-2 rounded-lg transition-colors flex items-center gap-1 text-xs font-bold">
+                <span class="material-symbols-outlined text-sm">delete</span> Supprimer
+              </button>
+            </div>
+          `).join('');
+        }
+      } catch (err) {
+        container.innerHTML = '<p class="text-error text-center py-4">Erreur de chargement des événements.</p>';
+      }
+    }
+
+    async function deleteEvent(id) {
+      const confirm = await Swal.fire({
+        title: 'Supprimer cet événement ?',
+        text: 'Il ne sera plus visible sur le site public.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Oui, supprimer',
+        cancelButtonText: 'Annuler',
+      });
+      if (!confirm.isConfirmed) return;
+
+      try {
+        const res = await fetch(`/api/content/events/${id}`, { method: 'DELETE' });
+        const data = await res.json();
+        if (data.success) {
+          Swal.fire({ icon: 'success', text: 'Événement supprimé avec succès.', timer: 1500, showConfirmButton: false });
+          loadEvents();
+        } else {
+          Swal.fire({ icon: 'error', text: data.message || 'Erreur lors de la suppression.' });
+        }
+      } catch (e) {
+        Swal.fire({ icon: 'error', text: 'Erreur réseau.' });
+      }
+    }
+
+    async function loadProjects() {
+      const container = document.getElementById('adminProjectsList');
+      try {
+        const res = await fetch('/api/projects');
+        const data = await res.json();
+        if (data.success) {
+          allAdminProjects = data.projects;
+          container.innerHTML = allAdminProjects.map(p => `
+            <div class="flex justify-between items-center bg-surface-bright p-2.5 rounded-lg border border-surface-variant">
+              <div>
+                <span class="font-bold text-primary">${p.title}</span>
+                <span class="text-xs text-secondary ml-2">(${p.province})</span>
+              </div>
+              <button onclick="deleteProject('${p.id}')" class="text-error hover:text-red-700 p-1">
+                <span class="material-symbols-outlined text-sm">delete</span>
+              </button>
+            </div>
+          `).join('');
+        }
+      } catch (e) {}
+    }
+
+    async function deleteProject(id) {
+      const confirm = await Swal.fire({
+        title: 'Supprimer ce programme ?',
+        text: 'Cette action est irréversible.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Supprimer',
+      });
+      if (!confirm.isConfirmed) return;
+
+      try {
+        const res = await fetch(`/api/content/projects/${id}`, { method: 'DELETE' });
+        const data = await res.json();
+        if (data.success) {
+          Swal.fire({ icon: 'success', text: 'Programme supprimé.', timer: 1500, showConfirmButton: false });
+          loadProjects();
+          loadStats();
+        }
+      } catch (e) {}
+    }
+
+    async function loadNews() {
+      const container = document.getElementById('adminNewsList');
+      try {
+        const res = await fetch('/api/content/news');
+        const data = await res.json();
+        if (data.success) {
+          allAdminNews = data.news;
+          container.innerHTML = allAdminNews.map(n => `
+            <div class="flex justify-between items-center bg-surface-bright p-2.5 rounded-lg border border-surface-variant">
+              <span class="font-bold text-primary truncate max-w-xs">${n.title}</span>
+              <button onclick="deleteNews('${n.id}')" class="text-error hover:text-red-700 p-1">
+                <span class="material-symbols-outlined text-sm">delete</span>
+              </button>
+            </div>
+          `).join('');
+        }
+      } catch (e) {}
+    }
+
+    async function deleteNews(id) {
+      const res = await fetch(`/api/content/news/${id}`, { method: 'DELETE' });
+      const data = await res.json();
+      if (data.success) {
+        Swal.fire({ icon: 'success', text: 'Actualité supprimée.', timer: 1500, showConfirmButton: false });
+        loadNews();
+      }
+    }
 
     async function loadAdminDonations() {
       try {
@@ -318,30 +544,30 @@
           renderAdminTable(allAdminDonations);
         }
       } catch (err) {
-        console.error('Error loading admin donations:', err);
+        console.error('Error loading donations:', err);
       }
     }
 
     function renderAdminTable(list) {
       const tbody = document.getElementById('adminDonationsBody');
-      document.getElementById('donationCountLabel').textContent = `${list.length} Dons enregistrés`;
+      document.getElementById('donationCountLabel').textContent = `${list.length} Dons enregistrés au Sud-Kivu`;
       if (list.length === 0) {
         tbody.innerHTML = `<tr><td colspan="6" class="p-stack-md text-center text-on-surface-variant">Aucun don trouvé.</td></tr>`;
         return;
       }
       tbody.innerHTML = list.map(d => `
-    <tr class="hover:bg-surface transition-colors">
-      <td class="p-stack-md font-bold text-primary">${d.reference}</td>
-      <td class="p-stack-md">
-        <div class="font-bold text-on-background">${d.donorName}</div>
-        <div class="text-xs text-on-surface-variant">${d.email}</div>
-      </td>
-      <td class="p-stack-md">${d.projectTitle}</td>
-      <td class="p-stack-md font-bold text-secondary">${d.amount.toLocaleString()} $</td>
-      <td class="p-stack-md text-on-surface-variant">${d.date}</td>
-      <td class="p-stack-md"><span class="bg-secondary-container text-on-secondary-container text-xs px-2 py-1 rounded-full font-medium">Validé</span></td>
-    </tr>
-  `).join('');
+        <tr class="hover:bg-surface transition-colors">
+          <td class="p-stack-md font-bold text-primary">${d.reference}</td>
+          <td class="p-stack-md">
+            <div class="font-bold text-on-background">${d.donorName}</div>
+            <div class="text-xs text-on-surface-variant">${d.email}</div>
+          </td>
+          <td class="p-stack-md">${d.projectTitle}</td>
+          <td class="p-stack-md font-bold text-secondary">${d.amount.toLocaleString()} $</td>
+          <td class="p-stack-md text-on-surface-variant">${d.date}</td>
+          <td class="p-stack-md"><span class="bg-secondary-container text-on-secondary-container text-xs px-2.5 py-1 rounded-full font-medium">Validé</span></td>
+        </tr>
+      `).join('');
     }
 
     function filterAdminTable() {
@@ -361,14 +587,73 @@
       location.href = 'login.html';
     }
 
-    async function submitContent(form, endpoint, successText) {
-      const payload = Object.fromEntries(new FormData(form));
-      const response = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-      const data = await response.json();
-      if (!data.success) throw new Error(data.message);
-      form.reset();
-      Swal.fire({ icon: 'success', text: successText });
-    }
+    // Handlers
+    document.getElementById('eventForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const payload = Object.fromEntries(new FormData(this));
+      try {
+        const res = await fetch('/api/content/events', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        const data = await res.json();
+        if (data.success) {
+          Swal.fire({ icon: 'success', text: 'Événement publié en temps réel !', timer: 1500, showConfirmButton: false });
+          this.reset();
+          loadEvents();
+        } else {
+          Swal.fire({ icon: 'error', text: data.message });
+        }
+      } catch (err) {
+        Swal.fire({ icon: 'error', text: 'Erreur réseau.' });
+      }
+    });
+
+    document.getElementById('projectForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const payload = Object.fromEntries(new FormData(this));
+      try {
+        const res = await fetch('/api/content/projects', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        const data = await res.json();
+        if (data.success) {
+          Swal.fire({ icon: 'success', text: 'Programme publié avec succès !', timer: 1500, showConfirmButton: false });
+          this.reset();
+          loadProjects();
+          loadStats();
+        } else {
+          Swal.fire({ icon: 'error', text: data.message });
+        }
+      } catch (err) {
+        Swal.fire({ icon: 'error', text: 'Erreur réseau.' });
+      }
+    });
+
+    document.getElementById('newsForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const payload = Object.fromEntries(new FormData(this));
+      try {
+        const res = await fetch('/api/content/news', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        const data = await res.json();
+        if (data.success) {
+          Swal.fire({ icon: 'success', text: 'Actualité publiée avec succès !', timer: 1500, showConfirmButton: false });
+          this.reset();
+          loadNews();
+        } else {
+          Swal.fire({ icon: 'error', text: data.message });
+        }
+      } catch (err) {
+        Swal.fire({ icon: 'error', text: 'Erreur réseau.' });
+      }
+    });
 
     async function inviteUser() {
       const result = await Swal.fire({
@@ -377,7 +662,12 @@
         showCancelButton: true,
         confirmButtonText: 'Créer',
         cancelButtonText: 'Annuler',
-        preConfirm: () => ({ firstName: document.getElementById('inviteFirst').value, lastName: document.getElementById('inviteLast').value, email: document.getElementById('inviteEmail').value, password: document.getElementById('invitePassword').value }),
+        preConfirm: () => ({
+          firstName: document.getElementById('inviteFirst').value,
+          lastName: document.getElementById('inviteLast').value,
+          email: document.getElementById('inviteEmail').value,
+          password: document.getElementById('invitePassword').value,
+        }),
       });
       if (!result.isConfirmed) return;
       const response = await fetch('/api/users', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(result.value) });
@@ -385,56 +675,11 @@
       Swal.fire({ icon: data.success ? 'success' : 'error', text: data.success ? 'Utilisateur créé avec succès.' : data.message });
     }
 
-    document.getElementById('projectForm').addEventListener('submit', async (event) => {
-      event.preventDefault();
-      try { await submitContent(event.currentTarget, '/api/content/projects', 'Projet publié avec succès.'); } catch (error) { Swal.fire({ icon: 'error', text: error.message }); }
-    });
-    document.getElementById('newsForm').addEventListener('submit', async (event) => {
-      event.preventDefault();
-      try { await submitContent(event.currentTarget, '/api/content/news', 'Actualité publiée avec succès.'); } catch (error) { Swal.fire({ icon: 'error', text: error.message }); }
-    });
-
+    loadStats();
+    loadEvents();
+    loadProjects();
+    loadNews();
     loadAdminDonations();
   </script>
-
-
-  <div id="mobileMenuOverlay" class="fixed inset-0 bg-primary bg-opacity-98 z-50 transform translate-x-full transition-transform duration-300 flex flex-col items-center justify-center">
-    <button id="closeMobileMenuBtn" class="absolute top-6 right-6 text-white focus:outline-none">
-      <span class="material-symbols-outlined text-4xl">close</span>
-    </button>
-    <nav class="flex flex-col gap-6 text-center">
-      <a class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="dashboard.html">Tableau de bord</a>
-      <a class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="transparency.html">Impact Global</a>
-      <a id="mobNavFinancials" class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="financials.html">Finances</a>
-      <a id="mobNavAdminDonors" class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="admin.html">Gestion Donateurs</a>
-      <a id="mobNavReports" class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="reports.html">Rapports</a>
-      <a class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="chat.html">Messagerie / Chat</a>
-      <a class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="profile.html">Mon Profil</a>
-      <hr class="border-white opacity-20 my-2">
-      <a class="text-white text-xl hover:text-secondary-fixed transition-colors" href="donate.html">Faire un don</a>
-      <a class="text-white text-xl hover:text-secondary-fixed transition-colors cursor-pointer" onclick="doLogout()">Déconnexion</a>
-    </nav>
-  </div>
-
-  <script>
-    (function() {
-      const btn = document.getElementById('mobileMenuBtn');
-      const closeBtn = document.getElementById('closeMobileMenuBtn');
-      const overlay = document.getElementById('mobileMenuOverlay');
-      if (btn && overlay) {
-        btn.addEventListener('click', function() {
-          overlay.classList.remove('translate-x-full');
-        });
-      }
-      if (closeBtn && overlay) {
-        closeBtn.addEventListener('click', function() {
-          overlay.classList.add('translate-x-full');
-        });
-      }
-    })();
-  </script>
-
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
-
 </html>

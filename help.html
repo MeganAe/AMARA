@@ -1,0 +1,392 @@
+<!doctype html>
+<html class="scroll-smooth" lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>AMORA | Centre d'Aide &amp; FAQ</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-surface": "#191c1e",
+              secondary: "#006c4a",
+              "secondary-fixed-dim": "#68dba9",
+              "secondary-fixed": "#85f8c4",
+              "on-primary-fixed-variant": "#2d4674",
+              "on-tertiary": "#ffffff",
+              "on-error-container": "#93000a",
+              tertiary: "#08192c",
+              "tertiary-container": "#1e2e42",
+              "on-secondary-fixed": "#002114",
+              "on-tertiary-container": "#8596ae",
+              "on-secondary-fixed-variant": "#005137",
+              "on-background": "#191c1e",
+              "tertiary-fixed-dim": "#b7c8e1",
+              "primary-fixed-dim": "#aec7fd",
+              "on-surface-variant": "#44474f",
+              "on-tertiary-fixed-variant": "#38485d",
+              primary: "#00173b",
+              "surface-variant": "#e0e3e5",
+              "inverse-on-surface": "#eff1f3",
+              error: "#ba1a1a",
+              "on-primary": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              outline: "#747780",
+              "inverse-surface": "#2d3133",
+              "surface-tint": "#465e8e",
+              "inverse-primary": "#aec7fd",
+              "on-primary-container": "#7c94c8",
+              "outline-variant": "#c4c6d0",
+              "surface-bright": "#f7f9fb",
+              "surface-container-high": "#e6e8ea",
+              "surface-container": "#eceef0",
+              "secondary-container": "#82f5c1",
+              "surface-container-highest": "#e0e3e5",
+              "primary-fixed": "#d8e2ff",
+              "surface-container-low": "#f2f4f6",
+              "surface-dim": "#d8dadc",
+              "on-secondary-container": "#00714e",
+              background: "#f7f9fb",
+              surface: "#f7f9fb",
+              "on-tertiary-fixed": "#0b1c30",
+              "on-error": "#ffffff",
+              "on-secondary": "#ffffff",
+              "tertiary-fixed": "#d3e4fe",
+              "on-primary-fixed": "#001a41",
+              "primary-container": "#0f2c59",
+              "error-container": "#ffdad6",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              "margin-mobile": "16px",
+              "stack-lg": "32px",
+              "margin-desktop": "40px",
+              "sidebar-width": "280px",
+              "container-max": "1280px",
+              gutter: "24px",
+              "stack-sm": "8px",
+              "stack-md": "16px",
+            },
+            fontFamily: {
+              "body-md": ["Plus Jakarta Sans"],
+              "body-lg": ["Plus Jakarta Sans"],
+              "headline-xl": ["Playfair Display"],
+              "headline-lg-mobile": ["Playfair Display"],
+              "headline-sm": ["Playfair Display"],
+              "label-md": ["Plus Jakarta Sans"],
+              "headline-md": ["Playfair Display"],
+              "body-sm": ["Plus Jakarta Sans"],
+              "headline-lg": ["Playfair Display"],
+            },
+            fontSize: {
+              "body-md": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+              "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+              "headline-xl": ["48px", { lineHeight: "1.2", letterSpacing: "-0.02em", fontWeight: "700" }],
+              "headline-lg-mobile": ["32px", { lineHeight: "1.2", fontWeight: "700" }],
+              "headline-sm": ["22px", { lineHeight: "1.4", fontWeight: "600" }],
+              "label-md": ["14px", { lineHeight: "1.0", letterSpacing: "0.05em", fontWeight: "600" }],
+              "headline-md": ["28px", { lineHeight: "1.3", fontWeight: "600" }],
+              "body-sm": ["14px", { lineHeight: "1.5", fontWeight: "400" }],
+              "headline-lg": ["36px", { lineHeight: "1.2", fontWeight: "700" }],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+      }
+      .shadow-level-1 { box-shadow: 0px 4px 20px rgba(15, 44, 89, 0.05); }
+      .shadow-level-2 { box-shadow: 0px 12px 32px rgba(15, 44, 89, 0.1); }
+    </style>
+  </head>
+  <body class="bg-surface text-on-surface font-body-md antialiased flex flex-col min-h-screen">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-surface shadow-sm">
+      <nav class="flex justify-between items-center px-margin-mobile md:px-margin-desktop w-full h-20 max-w-container-max mx-auto">
+        <a href="index.html" class="font-headline-md text-headline-md font-bold text-primary">AMORA</a>
+        <div class="hidden md:flex gap-stack-lg items-center">
+          <a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors" href="index.html">Impact</a>
+          <a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors" href="projects.html">Programmes</a>
+          <a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors" href="about.html">Gouvernance</a>
+          <a class="font-body-md text-body-md text-secondary font-bold border-b-2 border-secondary pb-1" href="help.html">Aide &amp; FAQ</a>
+        </div>
+        <div class="flex items-center gap-stack-md">
+          <button class="hidden md:flex bg-secondary text-on-secondary rounded-full px-6 py-2 font-label-md hover:bg-on-secondary-container transition-colors" onclick="location.href = 'donate.html'">
+            Faire un don
+          </button>
+          <a href="login.html" id="navProfileLink" class="nav-profile-icon hidden md:flex items-center text-on-surface-variant hover:text-secondary transition-colors" title="Connexion">
+            <span class="material-symbols-outlined">account_circle</span>
+          </a>
+          <button class="md:hidden text-primary focus:outline-none p-2" id="mobileMenuBtn" aria-label="Ouvrir le menu">
+            <span class="material-symbols-outlined text-3xl">menu</span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="flex-grow">
+      <!-- Hero -->
+      <section class="bg-primary text-white py-16 px-margin-mobile md:px-margin-desktop text-center">
+        <div class="max-w-3xl mx-auto">
+          <span class="inline-block bg-secondary text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-4">Centre d'assistance</span>
+          <h1 class="font-headline-lg md:font-headline-xl text-white mb-4">Comment pouvons-nous vous aider ?</h1>
+          <p class="font-body-lg text-surface-container-low mb-8">
+            Retrouvez toutes les réponses concernant nos actions au Sud-Kivu (Bukavu, Kabare, Walungu, Kalehe, Idjwi), les dons Mobile Money et la traçabilité de notre impact.
+          </p>
+          <div class="relative max-w-xl mx-auto">
+            <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+            <input id="faqSearch" type="text" placeholder="Rechercher une question (ex. Mobile Money, Bukavu, reçu, bénévolat)..." class="w-full pl-12 pr-4 py-4 rounded-full text-on-surface bg-white shadow-level-2 focus:outline-none focus:ring-2 focus:ring-secondary text-body-md" oninput="filterFaq()" />
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ Content -->
+      <section class="py-16 px-margin-mobile md:px-margin-desktop max-w-4xl mx-auto w-full">
+        <!-- Categories tabs -->
+        <div class="flex flex-wrap gap-2 justify-center mb-12" id="faqCategoryTabs">
+          <button onclick="filterCategory('all')" class="faq-tab bg-primary text-white px-5 py-2 rounded-full font-label-md text-sm transition-all" data-cat="all">Toutes les questions</button>
+          <button onclick="filterCategory('dons')" class="faq-tab bg-white text-on-surface-variant border border-outline-variant px-5 py-2 rounded-full font-label-md text-sm hover:border-secondary transition-all" data-cat="dons">Dons &amp; Paiements</button>
+          <button onclick="filterCategory('projets')" class="faq-tab bg-white text-on-surface-variant border border-outline-variant px-5 py-2 rounded-full font-label-md text-sm hover:border-secondary transition-all" data-cat="projets">Actions au Sud-Kivu</button>
+          <button onclick="filterCategory('transparence')" class="faq-tab bg-white text-on-surface-variant border border-outline-variant px-5 py-2 rounded-full font-label-md text-sm hover:border-secondary transition-all" data-cat="transparence">Transparence &amp; Audit</button>
+          <button onclick="filterCategory('engagement')" class="faq-tab bg-white text-on-surface-variant border border-outline-variant px-5 py-2 rounded-full font-label-md text-sm hover:border-secondary transition-all" data-cat="engagement">Bénévolat &amp; Siège</button>
+        </div>
+
+        <!-- FAQ Items -->
+        <div class="space-y-4" id="faqAccordion">
+          <div class="faq-item bg-white rounded-2xl p-6 shadow-level-1 border border-surface-variant" data-category="dons">
+            <button class="w-full flex justify-between items-center text-left font-headline-sm text-primary font-bold focus:outline-none" onclick="toggleFaq(this)">
+              <span>Quels sont les moyens de paiement acceptés pour soutenir AMORA ?</span>
+              <span class="material-symbols-outlined text-secondary transition-transform duration-200">expand_more</span>
+            </button>
+            <div class="faq-answer hidden mt-4 pt-4 border-t border-surface-variant text-on-surface-variant font-body-md space-y-2">
+              <p>Nous acceptons plusieurs méthodes adaptées au contexte local et international :</p>
+              <ul class="list-disc pl-5 space-y-1">
+                <li><strong>Mobile Money en RDC :</strong> M-Pesa (Vodacom), Airtel Money et Orange Money.</li>
+                <li><strong>Cartes Bancaires Internationales :</strong> Visa, Mastercard, American Express.</li>
+                <li><strong>Virement bancaire direct :</strong> Sur notre compte officiel auprès de la Rawbank Bukavu ou TMB Bukavu.</li>
+              </ul>
+              <p>Chaque don donne lieu à une attestation de don sécurisée téléchargeable immédiatement dans votre profil.</p>
+            </div>
+          </div>
+
+          <div class="faq-item bg-white rounded-2xl p-6 shadow-level-1 border border-surface-variant" data-category="projets">
+            <button class="w-full flex justify-between items-center text-left font-headline-sm text-primary font-bold focus:outline-none" onclick="toggleFaq(this)">
+              <span>Où sont situés vos projets prioritaires au Sud-Kivu ?</span>
+              <span class="material-symbols-outlined text-secondary transition-transform duration-200">expand_more</span>
+            </button>
+            <div class="faq-answer hidden mt-4 pt-4 border-t border-surface-variant text-on-surface-variant font-body-md space-y-2">
+              <p>Nos interventions couvrent les 8 territoires du Sud-Kivu ainsi que les 3 communes urbaines de Bukavu :</p>
+              <ul class="list-disc pl-5 space-y-1">
+                <li><strong>Ville de Bukavu :</strong> Forages d'eau à Kadutu &amp; Bagira, Maternité sans risque à Panzi / Ibanda, Centre des métiers.</li>
+                <li><strong>Kabare &amp; Kalehe :</strong> Forages d'eau potable, écoles primaires et reforestation du parc de Kahuzi-Biega.</li>
+                <li><strong>Walungu &amp; Nyangezi :</strong> Soutien et microcrédits aux coopératives maraîchères féminines.</li>
+                <li><strong>Île d'Idjwi :</strong> Captages de sources d'eau saine et lutte contre le choléra.</li>
+                <li><strong>Uvira &amp; Fizi :</strong> Unités médicales mobiles et cliniques de brousse.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="faq-item bg-white rounded-2xl p-6 shadow-level-1 border border-surface-variant" data-category="transparence">
+            <button class="w-full flex justify-between items-center text-left font-headline-sm text-primary font-bold focus:outline-none" onclick="toggleFaq(this)">
+              <span>Comment garantissez-vous que 98% des fonds vont au terrain ?</span>
+              <span class="material-symbols-outlined text-secondary transition-transform duration-200">expand_more</span>
+            </button>
+            <div class="faq-answer hidden mt-4 pt-4 border-t border-surface-variant text-on-surface-variant font-body-md space-y-2">
+              <p>La fondation AMORA applique une politique de transparence absolue :</p>
+              <ul class="list-disc pl-5 space-y-1">
+                <li>Tous les états financiers sont audités annuellement par un cabinet d'audit indépendant basé à Bukavu.</li>
+                <li>Chaque projet dispose d'une jauge de financement en direct visible sur la plateforme.</li>
+                <li>Les rapports annuels et rapports de mission trimestriels sont téléchargeables librement dans la section <a href="reports.html" class="text-secondary underline font-bold">Rapports annuels</a>.</li>
+                <li>Les frais administratifs sont strictement plafonnés à 2% grâce à l'appui de mécènes fondateurs.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="faq-item bg-white rounded-2xl p-6 shadow-level-1 border border-surface-variant" data-category="engagement">
+            <button class="w-full flex justify-between items-center text-left font-headline-sm text-primary font-bold focus:outline-none" onclick="toggleFaq(this)">
+              <span>Où se trouve le siège de la fondation et comment vous rencontrer ?</span>
+              <span class="material-symbols-outlined text-secondary transition-transform duration-200">expand_more</span>
+            </button>
+            <div class="faq-answer hidden mt-4 pt-4 border-t border-surface-variant text-on-surface-variant font-body-md space-y-2">
+              <p>Notre siège social et bureau exécutif sont installés au cœur de Bukavu :</p>
+              <p class="bg-surface-container-low p-4 rounded-xl font-medium text-primary">
+                📍 <strong>Siège AMORA :</strong> Avenue Patrice Emery Lumumba, Commune d'Ibanda, Ville de Bukavu, Province du Sud-Kivu, République Démocratique du Congo.<br />
+                📞 <strong>Téléphone :</strong> +243 999 123 456 / +243 852 345 678<br />
+                ✉️ <strong>Email :</strong> contact@fondation-amora.org
+              </p>
+              <p>Nos bureaux sont ouverts du lundi au vendredi de 8h00 à 17h00 et le samedi de 8h30 à 12h30.</p>
+            </div>
+          </div>
+
+          <div class="faq-item bg-white rounded-2xl p-6 shadow-level-1 border border-surface-variant" data-category="engagement">
+            <button class="w-full flex justify-between items-center text-left font-headline-sm text-primary font-bold focus:outline-none" onclick="toggleFaq(this)">
+              <span>Comment devenir bénévole ou relais de terrain au Sud-Kivu ?</span>
+              <span class="material-symbols-outlined text-secondary transition-transform duration-200">expand_more</span>
+            </button>
+            <div class="faq-answer hidden mt-4 pt-4 border-t border-surface-variant text-on-surface-variant font-body-md space-y-2">
+              <p>Vous pouvez postuler en quelques minutes via notre page dédiée <a href="volunteer.html" class="text-secondary underline font-bold">Devenir bénévole</a>. Nous recherchons activement des volontaires en hydraulique rurale, médecine communautaire, agronomie et éducation.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Still have questions card -->
+        <div class="mt-16 bg-white rounded-[24px] shadow-level-2 p-8 md:p-12 text-center border-2 border-secondary-fixed">
+          <span class="material-symbols-outlined text-secondary text-5xl mb-3">support_agent</span>
+          <h3 class="font-headline-md text-primary mb-3">Vous n'avez pas trouvé votre réponse ?</h3>
+          <p class="font-body-md text-on-surface-variant max-w-xl mx-auto mb-6">
+            Notre équipe locale à Bukavu est à votre entière écoute pour vous renseigner ou recevoir vos suggestions.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="contact.html" class="bg-secondary text-white px-8 py-3 rounded-full font-label-md hover:bg-on-secondary-container transition-all">Nous écrire</a>
+            <a href="https://wa.me/243999123456" target="_blank" class="bg-white border-2 border-secondary text-secondary px-8 py-3 rounded-full font-label-md hover:bg-secondary-fixed transition-all flex items-center justify-center gap-2">
+              <span>WhatsApp Bukavu</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-primary w-full text-white">
+      <div class="px-margin-mobile md:px-margin-desktop py-12 max-w-container-max mx-auto border-t border-on-primary-fixed-variant">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+          <div>
+            <div class="font-headline-md text-white font-bold mb-2">AMORA</div>
+            <p class="text-sm text-surface-container-low mb-4">Fondation pour le développement durable, l'accès à l'eau potable, la santé et l'éducation au Sud-Kivu (RDC).</p>
+            <p class="text-xs text-on-primary-container">Siège social : Avenue P.E. Lumumba, Ibanda, Bukavu, Sud-Kivu, RDC.</p>
+          </div>
+          <div>
+            <div class="font-label-md text-white uppercase tracking-wider mb-3">Programmes Sud-Kivu</div>
+            <ul class="text-sm space-y-2 text-on-primary-container">
+              <li><a href="projects.html" class="hover:text-secondary-fixed transition-colors">Forages d'eau potable</a></li>
+              <li><a href="projects.html" class="hover:text-secondary-fixed transition-colors">Maternité de Panzi</a></li>
+              <li><a href="projects.html" class="hover:text-secondary-fixed transition-colors">Maraîchage à Walungu</a></li>
+              <li><a href="projects.html" class="hover:text-secondary-fixed transition-colors">Écoles de Kalehe</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="font-label-md text-white uppercase tracking-wider mb-3">Informations Légales</div>
+            <ul class="text-sm space-y-2 text-on-primary-container">
+              <li><a href="privacy.html" class="hover:text-secondary-fixed transition-colors">Politique de confidentialité</a></li>
+              <li><a href="terms.html" class="hover:text-secondary-fixed transition-colors">Conditions d'utilisation</a></li>
+              <li><a href="reports.html" class="hover:text-secondary-fixed transition-colors">Rapports annuels &amp; Audits</a></li>
+              <li><a href="help.html" class="hover:text-secondary-fixed transition-colors">Centre d'aide &amp; FAQ</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="font-label-md text-white uppercase tracking-wider mb-3">Contact Direct</div>
+            <p class="text-sm text-on-primary-container mb-2">📍 Bukavu, Sud-Kivu, RDC</p>
+            <p class="text-sm text-on-primary-container mb-2">📞 +243 999 123 456</p>
+            <p class="text-sm text-on-primary-container mb-4">✉️ contact@fondation-amora.org</p>
+            <a href="contact.html" class="inline-block bg-secondary text-white px-5 py-2 rounded-full text-xs font-bold hover:bg-on-secondary-container transition-colors">Formulaire de contact</a>
+          </div>
+        </div>
+        <div class="border-t border-on-primary-fixed-variant pt-6 flex flex-col md:flex-row justify-between items-center text-xs text-on-primary-container">
+          <p>© 2026 Fondation AMORA (Bukavu, Sud-Kivu, RDC). Tous droits réservés.</p>
+          <p class="mt-2 md:mt-0">Plateforme officielle d'impact communautaire au Sud-Kivu.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobileMenuOverlay" class="fixed inset-0 bg-primary bg-opacity-98 z-[9999] transform translate-x-full transition-transform duration-300 flex flex-col items-center justify-center">
+      <button id="closeMobileMenuBtn" onclick="document.getElementById('mobileMenuOverlay')?.classList.add('translate-x-full')" class="absolute top-6 right-6 text-white focus:outline-none p-2" aria-label="Fermer le menu">
+        <span class="material-symbols-outlined text-4xl">close</span>
+      </button>
+      <nav class="flex flex-col gap-6 text-center">
+        <a class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="index.html">Impact</a>
+        <a class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="projects.html">Programmes</a>
+        <a class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="transparency.html">Transparence</a>
+        <a class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="about.html">Gouvernance</a>
+        <a class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="volunteer.html">Bénévolat</a>
+        <a class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="help.html">Aide &amp; FAQ</a>
+        <a class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors" href="contact.html">Contact</a>
+        <hr class="border-white opacity-20 my-2" />
+        <a class="bg-secondary text-on-secondary font-label-md py-3 px-8 rounded-full hover:bg-opacity-90 transition-opacity mt-2 inline-block text-lg shadow-sm" href="donate.html">Faire un don</a>
+      </nav>
+    </div>
+
+    <script>
+      function toggleFaq(btn) {
+        const item = btn.closest('.faq-item');
+        const answer = item.querySelector('.faq-answer');
+        const icon = btn.querySelector('.material-symbols-outlined');
+        const isHidden = answer.classList.contains('hidden');
+        
+        document.querySelectorAll('.faq-answer').forEach(el => el.classList.add('hidden'));
+        document.querySelectorAll('.faq-item .material-symbols-outlined').forEach(el => el.textContent = 'expand_more');
+        
+        if (isHidden) {
+          answer.classList.remove('hidden');
+          icon.textContent = 'expand_less';
+        }
+      }
+
+      function filterCategory(cat) {
+        document.querySelectorAll('.faq-tab').forEach(t => {
+          if (t.dataset.cat === cat) {
+            t.className = 'faq-tab bg-primary text-white px-5 py-2 rounded-full font-label-md text-sm transition-all';
+          } else {
+            t.className = 'faq-tab bg-white text-on-surface-variant border border-outline-variant px-5 py-2 rounded-full font-label-md text-sm hover:border-secondary transition-all';
+          }
+        });
+
+        document.querySelectorAll('.faq-item').forEach(item => {
+          if (cat === 'all' || item.dataset.category === cat) {
+            item.classList.remove('hidden');
+          } else {
+            item.classList.add('hidden');
+          }
+        });
+      }
+
+      function filterFaq() {
+        const q = document.getElementById('faqSearch').value.toLowerCase().trim();
+        document.querySelectorAll('.faq-item').forEach(item => {
+          const text = item.textContent.toLowerCase();
+          if (!q || text.includes(q)) {
+            item.classList.remove('hidden');
+          } else {
+            item.classList.add('hidden');
+          }
+        });
+      }
+
+      (async function checkNavbarAuth() {
+        try {
+          const res = await fetch('/api/auth/me');
+          const data = await res.json();
+          if (data.authenticated && data.user) {
+            const profileIcons = document.querySelectorAll('#navProfileLink, .nav-profile-icon');
+            profileIcons.forEach((el) => {
+              el.href = 'profile.html';
+              el.title = 'Mon Profil (' + data.user.firstName + ')';
+            });
+          }
+        } catch (e) {}
+      })();
+
+      document.getElementById('mobileMenuBtn')?.addEventListener('click', () => {
+        document.getElementById('mobileMenuOverlay')?.classList.remove('translate-x-full');
+      });
+    </script>
+  </body>
+</html>

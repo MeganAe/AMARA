@@ -334,30 +334,56 @@
             ></p>
           </form>
           <div
-            class="bg-white rounded-[16px] shadow-level-1 p-stack-lg space-y-4"
+            class="bg-white rounded-[20px] shadow-level-1 p-8 space-y-6 border border-surface-variant"
           >
-            <h3 class="font-headline-sm text-headline-sm text-primary mb-2">
-              Nos bureaux
-            </h3>
-            <div
-              class="flex items-center gap-3 font-body-md text-body-md text-on-surface-variant"
-            >
-              <span class="material-symbols-outlined text-secondary"
-                >location_on</span
-              >
-              Siège — Kinshasa &amp; Goma, RDC
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-secondary bg-secondary-fixed px-3 py-1 rounded-full">Siège &amp; Antennes Sud-Kivu</span>
+              <h3 class="font-headline-sm text-primary mt-3 mb-2">
+                Nos coordonnées directes
+              </h3>
+              <p class="text-sm text-on-surface-variant">Nos équipes sont basées à Bukavu et interviennent dans l'ensemble des 8 territoires de la province.</p>
             </div>
-            <div
-              class="flex items-center gap-3 font-body-md text-body-md text-on-surface-variant"
-            >
-              <span class="material-symbols-outlined text-secondary">call</span>
-              +243 810 000 000
-            </div>
-            <div
-              class="flex items-center gap-3 font-body-md text-body-md text-on-surface-variant"
-            >
-              <span class="material-symbols-outlined text-secondary">mail</span>
-              contact@fondation-amora.org
+
+            <div class="space-y-4 pt-2">
+              <div class="flex items-start gap-3">
+                <span class="material-symbols-outlined text-secondary text-2xl mt-0.5">location_on</span>
+                <div>
+                  <h4 class="font-bold text-primary text-sm">Siège Social de Bukavu</h4>
+                  <p class="text-xs text-on-surface-variant">Avenue Patrice Emery Lumumba, Commune d'Ibanda, Bukavu, Sud-Kivu, RDC</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <span class="material-symbols-outlined text-secondary text-2xl mt-0.5">apartment</span>
+                <div>
+                  <h4 class="font-bold text-primary text-sm">Antennes Régionales Sud-Kivu</h4>
+                  <p class="text-xs text-on-surface-variant">Bureaux de coordination à Uvira (Santé), Walungu (Agronomie) et Kalehe (Éducation)</p>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-secondary text-2xl">call</span>
+                <div>
+                  <h4 class="font-bold text-primary text-sm">Téléphone / WhatsApp</h4>
+                  <p class="text-xs text-on-surface-variant">+243 999 123 456 / +243 850 123 456</p>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-secondary text-2xl">mail</span>
+                <div>
+                  <h4 class="font-bold text-primary text-sm">Courrier électronique</h4>
+                  <p class="text-xs text-on-surface-variant">contact@fondation-amora.org &bull; partenariats@fondation-amora.org</p>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-secondary text-2xl">schedule</span>
+                <div>
+                  <h4 class="font-bold text-primary text-sm">Horaires d'ouverture</h4>
+                  <p class="text-xs text-on-surface-variant">Du Lundi au Vendredi : 8h00 - 17h00 (Heure de Bukavu, CAT)</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -393,43 +419,43 @@
           });
       </script>
     </main>
-    <footer class="bg-primary w-full">
-      <div
-        class="flex flex-col md:flex-row justify-between items-center px-margin-mobile md:px-margin-desktop py-stack-lg w-full max-w-container-max mx-auto border-t border-on-primary-fixed-variant"
-      >
-        <div
-          class="font-headline-sm text-headline-sm text-on-primary mb-stack-md md:mb-0"
-        >
-          AMORA
+    <footer class="bg-primary w-full text-white">
+      <div class="px-margin-mobile md:px-margin-desktop py-12 max-w-container-max mx-auto border-t border-on-primary-fixed-variant">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+          <div>
+            <div class="font-headline-md text-white font-bold mb-2">AMORA</div>
+            <p class="text-sm text-surface-container-low mb-4">Fondation pour le développement durable, l'accès à l'eau potable, la santé et l'éducation au Sud-Kivu (RDC).</p>
+            <p class="text-xs text-on-primary-container">Siège social : Avenue P.E. Lumumba, Ibanda, Bukavu, Sud-Kivu, RDC.</p>
+          </div>
+          <div>
+            <div class="font-label-md text-white uppercase tracking-wider mb-3">Programmes Sud-Kivu</div>
+            <ul class="text-sm space-y-2 text-on-primary-container">
+              <li><a href="projects.html" class="hover:text-secondary-fixed transition-colors">Forages d'eau potable</a></li>
+              <li><a href="projects.html" class="hover:text-secondary-fixed transition-colors">Maternité de Panzi</a></li>
+              <li><a href="projects.html" class="hover:text-secondary-fixed transition-colors">Maraîchage à Walungu</a></li>
+              <li><a href="projects.html" class="hover:text-secondary-fixed transition-colors">Écoles de Kalehe</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="font-label-md text-white uppercase tracking-wider mb-3">Informations Légales</div>
+            <ul class="text-sm space-y-2 text-on-primary-container">
+              <li><a href="privacy.html" class="hover:text-secondary-fixed transition-colors">Politique de confidentialité</a></li>
+              <li><a href="terms.html" class="hover:text-secondary-fixed transition-colors">Conditions d'utilisation</a></li>
+              <li><a href="reports.html" class="hover:text-secondary-fixed transition-colors">Rapports annuels &amp; Audits</a></li>
+              <li><a href="help.html" class="hover:text-secondary-fixed transition-colors">Centre d'aide &amp; FAQ</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="font-label-md text-white uppercase tracking-wider mb-3">Contact Direct</div>
+            <p class="text-sm text-on-primary-container mb-2">📍 Bukavu, Sud-Kivu, RDC</p>
+            <p class="text-sm text-on-primary-container mb-2">📞 +243 999 123 456</p>
+            <p class="text-sm text-on-primary-container mb-4">✉️ contact@fondation-amora.org</p>
+            <a href="contact.html" class="inline-block bg-secondary text-white px-5 py-2 rounded-full text-xs font-bold hover:bg-on-secondary-container transition-colors">Formulaire de contact</a>
+          </div>
         </div>
-        <div
-          class="flex flex-wrap justify-center gap-stack-md md:gap-stack-lg mb-stack-md md:mb-0"
-        >
-          <a
-            class="font-body-sm text-body-sm text-on-primary-container hover:text-secondary-fixed transition-colors"
-            href="#"
-            >Politique de confidentialité</a
-          >
-          <a
-            class="font-body-sm text-body-sm text-on-primary-container hover:text-secondary-fixed transition-colors"
-            href="#"
-            >Conditions d'utilisation</a
-          >
-          <a
-            class="font-body-sm text-body-sm text-on-primary-container hover:text-secondary-fixed transition-colors"
-            href="#"
-            >Rapports annuels</a
-          >
-          <a
-            class="font-body-sm text-body-sm text-on-primary-container hover:text-secondary-fixed transition-colors"
-            href="#"
-            >Nous contacter</a
-          >
-        </div>
-        <div
-          class="font-body-sm text-body-sm text-on-primary-container text-center md:text-right"
-        >
-           2026 AMORA. Tous droits réservés.
+        <div class="border-t border-on-primary-fixed-variant pt-6 flex flex-col md:flex-row justify-between items-center text-xs text-on-primary-container">
+          <p>© 2026 Fondation AMORA (Bukavu, Sud-Kivu, RDC). Tous droits réservés.</p>
+          <p class="mt-2 md:mt-0">Plateforme officielle d'impact communautaire au Sud-Kivu.</p>
         </div>
       </div>
     </footer>
@@ -476,6 +502,11 @@
           class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors"
           href="volunteer.html"
           >Bénévolat</a
+        >
+        <a
+          class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors"
+          href="help.html"
+          >Aide &amp; FAQ</a
         >
         <a
           class="text-white text-2xl font-headline hover:text-secondary-fixed transition-colors"

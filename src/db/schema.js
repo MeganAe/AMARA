@@ -77,6 +77,19 @@ export const news = pgTable("news", {
   publishedAt: timestamp("published_at").defaultNow().notNull(),
 });
 
+export const events = pgTable("events", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  title: text("title").notNull(),
+  description: text("description").notNull(),
+  location: text("location").notNull(),
+  eventDate: timestamp("event_date").notNull(),
+  category: text("category").notNull().default("Communauté"),
+  imageUrl: text("image_url"),
+  organizer: text("organizer").default("AMORA Bukavu"),
+  seatsAvailable: integer("seats_available").default(100),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
 export const messages = pgTable("messages", {
   id: uuid("id").defaultRandom().primaryKey(),
   senderId: uuid("sender_id")

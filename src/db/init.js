@@ -102,6 +102,21 @@ export async function ensureDbReady() {
       `;
 
       await sql`
+        CREATE TABLE IF NOT EXISTS events (
+          id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+          title TEXT NOT NULL,
+          description TEXT NOT NULL,
+          location TEXT NOT NULL,
+          event_date TIMESTAMP WITH TIME ZONE NOT NULL,
+          category TEXT NOT NULL DEFAULT 'Communauté',
+          image_url TEXT,
+          organizer TEXT DEFAULT 'AMORA Bukavu',
+          seats_available INTEGER DEFAULT 100,
+          created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW() NOT NULL
+        );
+      `;
+
+      await sql`
         CREATE TABLE IF NOT EXISTS messages (
           id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
           sender_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
