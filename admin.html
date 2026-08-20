@@ -279,7 +279,7 @@
           </div>
           <div>
             <label class="block text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-1">URL de l'image (Africaine / Terrain)</label>
-            <input name="imageUrl" type="url" placeholder="https://images.unsplash.com/..." class="w-full border border-outline-variant rounded-lg p-3 text-sm" />
+            <input name="imageUrl" type="url" placeholder="https://upload.wikimedia.org/wikipedia/commons/..." class="w-full border border-outline-variant rounded-lg p-3 text-sm" />
           </div>
           <div>
             <label class="block text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-1">Description détaillée</label>
@@ -421,7 +421,7 @@
           container.innerHTML = allAdminEvents.map(ev => `
             <div class="bg-white p-4 rounded-xl border border-surface-variant shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
               <div class="flex items-center gap-3">
-                <img src="${ev.imageUrl || 'https://images.unsplash.com/photo-1594708767771-a7502209ff51?auto=format&fit=crop&q=80&w=800'}" class="w-14 h-14 rounded-lg object-cover" />
+                <img src="${ev.imageUrl || 'https://upload.wikimedia.org/wikipedia/commons/3/35/Source_d%27eau_de_FUNU_%C3%A0_Bukavu_au_Sud-Kivu_en_RDC.jpg'}" class="w-14 h-14 rounded-lg object-cover" />
                 <div>
                   <h5 class="font-bold text-primary text-sm">${ev.title}</h5>
                   <p class="text-xs text-secondary font-medium">📍 ${ev.location} &bull; 🗓️ ${new Date(ev.eventDate).toLocaleDateString('fr-FR')}</p>

@@ -53,6 +53,38 @@ export async function seedDatabase() {
     donorUser = foundDonor;
   }
 
+  // Wikimedia Commons - authentic photos from DRC / Bukavu / Sud-Kivu
+  const WIKI = {
+    // Eau - Source d'eau de FUNU à Bukavu (photo réelle, Wikimedia Commons, CC BY-SA 4.0)
+    eau_bukavu: "https://upload.wikimedia.org/wikipedia/commons/3/35/Source_d%27eau_de_FUNU_%C3%A0_Bukavu_au_Sud-Kivu_en_RDC.jpg",
+    // Eau - Enfant puisant eau au robinet à Goma, RDC (Wikimedia Commons)
+    eau_goma: "https://upload.wikimedia.org/wikipedia/commons/0/00/Child_collecting_water_at_community_tap_in_Goma%2C_DR_Congo.png",
+    // Eau - Famille cherchant l'eau, RDC (Wikimedia Commons)
+    eau_famille: "https://upload.wikimedia.org/wikipedia/commons/a/ad/Un_foyer_cherchant_l%27eau_pour_vivre.jpg",
+    // Santé - Infirmière à l'Hôpital de Lemera, Uvira, Sud-Kivu (Wikimedia Commons)
+    infirmiere_sudkivu: "https://upload.wikimedia.org/wikipedia/commons/5/5c/A_nurse_at_Lemera_Hospital%2C_Lemera%2C_Uvira_Territory%2C_South_Kivu_Province%2C_DR_Congo.jpg",
+    // Santé - Hôpital de Panzi, Bukavu (Wikimedia Commons)
+    panzi: "https://upload.wikimedia.org/wikipedia/commons/8/86/PanziHospital.png",
+    // Agriculture - Femmes de Bukavu (Art-Feminism-Bukavu, Wikimedia Commons)
+    femmes_bukavu: "https://upload.wikimedia.org/wikipedia/commons/1/10/Art-Feminism-Bukavu_%281%29.jpg",
+    // Éducation - Femmes rassemblées à Bukavu (Wikimedia Commons)
+    femmes_bukavu2: "https://upload.wikimedia.org/wikipedia/commons/6/68/Art-Feminism-Bukavu_%2810%29.jpg",
+    // Environnement - Parc Kahuzi-Biega, Sud-Kivu (Wikimedia Commons)
+    kahuzi: "https://upload.wikimedia.org/wikipedia/commons/b/b6/Kahuzi-Biega_National_Park_%2839423247252%29.jpg",
+    // Bukavu - Vue lac Kivu (Wikimedia Commons)
+    lac_kivu: "https://upload.wikimedia.org/wikipedia/commons/a/a0/Aganze_1_Lac_kivu_RD_Congo.jpg",
+    // Hôpital général Lemera Sud-Kivu (Wikimedia Commons)
+    hopital_lemera: "https://upload.wikimedia.org/wikipedia/commons/4/4f/L%27H%C3%B4pital_G%C3%A9n%C3%A9ral_de_R%C3%A9f%C3%A9rence_de_Lemera%2C_Sud-Kivu.jpg",
+    // Bukavu centre-ville (Wikimedia Commons)
+    bukavu_centre: "https://upload.wikimedia.org/wikipedia/commons/b/b7/Centre_ville_de_Bukavu_%284308252305%29.jpg",
+    // Bukavu - Avenue PE Lumumba (Wikimedia Commons)
+    bukavu_lumumba: "https://upload.wikimedia.org/wikipedia/commons/b/b0/Bukavu%2C_PE_Lumumba.jpeg",
+    // Récipient d'eau, RDC (Wikimedia Commons)
+    recipient_eau: "https://upload.wikimedia.org/wikipedia/commons/1/12/R%C3%A9cipient_d%27eau.jpg",
+    // Village Bitobolo, Sud-Kivu (Wikimedia Commons)
+    bitobolo: "https://upload.wikimedia.org/wikipedia/commons/2/22/Bitobolo_Village.jpg",
+  };
+
   const projectList = [
     {
       slug: "kivu-eau",
@@ -63,8 +95,7 @@ export async function seedDatabase() {
         "Construction de forages profonds et adduction d'eau potable pour plus de 25 000 habitants des collines de Kabare et des quartiers populaires de Bukavu (Kadutu et Bagira).",
       goalAmount: "65000.00",
       initialRaised: "48500.00",
-      imageUrl:
-        "https://images.unsplash.com/photo-1594708767771-a7502209ff51?auto=format&fit=crop&q=80&w=800",
+      imageUrl: WIKI.eau_bukavu,
     },
     {
       slug: "panzi-maternite",
@@ -75,8 +106,7 @@ export async function seedDatabase() {
         "Équipements obstétricaux modernes et prise en charge intégrale des accouchements et consultations prénatales pour 3 200 femmes vulnérables à Panzi et Ibanda.",
       goalAmount: "85000.00",
       initialRaised: "64200.00",
-      imageUrl:
-        "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&q=80&w=800",
+      imageUrl: WIKI.infirmiere_sudkivu,
     },
     {
       slug: "walungu-maraichage",
@@ -87,8 +117,7 @@ export async function seedDatabase() {
         "Formation agroécologique, distribution de semences vivrières améliorées et microcrédits pour 1 200 femmes agricultrices regroupées en coopératives.",
       goalAmount: "40000.00",
       initialRaised: "29500.00",
-      imageUrl:
-        "https://images.unsplash.com/photo-1617454837374-d456488d55c7?auto=format&fit=crop&q=80&w=800",
+      imageUrl: WIKI.femmes_bukavu,
     },
     {
       slug: "kalehe-education",
@@ -99,8 +128,7 @@ export async function seedDatabase() {
         "Réhabilitation de 8 écoles primaires et octroi de bourses scolaires complètes pour 600 enfants orphelins et vulnérables du territoire de Kalehe.",
       goalAmount: "45000.00",
       initialRaised: "33800.00",
-      imageUrl:
-        "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=800",
+      imageUrl: WIKI.femmes_bukavu2,
     },
     {
       slug: "kahuzi-reforestation",
@@ -111,8 +139,7 @@ export async function seedDatabase() {
         "Plantation de 150 000 arbres agroforestiers pour stabiliser les versants de collines, lutter contre l'érosion et préserver la biodiversité du Sud-Kivu.",
       goalAmount: "50000.00",
       initialRaised: "37200.00",
-      imageUrl:
-        "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&q=80&w=800",
+      imageUrl: WIKI.kahuzi,
     },
     {
       slug: "kadutu-jeunesse",
@@ -123,8 +150,7 @@ export async function seedDatabase() {
         "Ateliers d'apprentissage professionnel en menuiserie, couture, énergie solaire et numérique pour 450 jeunes sans emploi de Bukavu.",
       goalAmount: "35000.00",
       initialRaised: "21400.00",
-      imageUrl:
-        "https://images.unsplash.com/photo-1524069290683-0457abfe42c3?auto=format&fit=crop&q=80&w=800",
+      imageUrl: WIKI.bukavu_centre,
     },
     {
       slug: "idjwi-eau",
@@ -135,8 +161,7 @@ export async function seedDatabase() {
         "Captage de sources d'eau saines et installation de filtres collectifs pour éradiquer le choléra et les maladies hydriques chez 18 000 insulaires.",
       goalAmount: "55000.00",
       initialRaised: "41900.00",
-      imageUrl:
-        "https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&q=80&w=800",
+      imageUrl: WIKI.lac_kivu,
     },
     {
       slug: "uvira-fizi-soins",
@@ -147,8 +172,7 @@ export async function seedDatabase() {
         "Déploiement d'une unité médicale mobile dispensant des consultations gratuites, des vaccins et des médicaments essentiels dans les villages enclavés.",
       goalAmount: "60000.00",
       initialRaised: "46000.00",
-      imageUrl:
-        "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=800",
+      imageUrl: WIKI.hopital_lemera,
     },
   ];
 
@@ -198,7 +222,7 @@ export async function seedDatabase() {
       location: "Kabare (Centre) & Commune de Kadutu, Bukavu",
       eventDate: new Date(Date.now() + 5 * 86400000),
       category: "Eau & Assainissement",
-      imageUrl: "https://images.unsplash.com/photo-1594708767771-a7502209ff51?auto=format&fit=crop&q=80&w=800",
+      imageUrl: WIKI.eau_bukavu,
       organizer: "Équipe Hydraulique AMORA Bukavu",
       seatsAvailable: 250,
     },
@@ -208,7 +232,7 @@ export async function seedDatabase() {
       location: "Salle Concordia, Commune d'Ibanda, Bukavu",
       eventDate: new Date(Date.now() + 12 * 86400000),
       category: "Santé Maternelle",
-      imageUrl: "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&q=80&w=800",
+      imageUrl: WIKI.infirmiere_sudkivu,
       organizer: "Coordination Médicale AMORA",
       seatsAvailable: 150,
     },
@@ -218,7 +242,7 @@ export async function seedDatabase() {
       location: "Place du Marché de Walungu-Centre",
       eventDate: new Date(Date.now() + 19 * 86400000),
       category: "Agriculture Durable",
-      imageUrl: "https://images.unsplash.com/photo-1617454837374-d456488d55c7?auto=format&fit=crop&q=80&w=800",
+      imageUrl: WIKI.femmes_bukavu,
       organizer: "Pôle Autonomisation Féminine AMORA",
       seatsAvailable: 300,
     },
@@ -237,17 +261,17 @@ export async function seedDatabase() {
     {
       title: "Succès du forage d'eau potable à Ciriri (Bukavu)",
       content: "Grâce aux dons collectés sur la plateforme AMORA, le captage d'eau de Ciriri alimente désormais en eau potable plus de 8 000 habitants en continu.",
-      imageUrl: "https://images.unsplash.com/photo-1594708767771-a7502209ff51?auto=format&fit=crop&q=80&w=800",
+      imageUrl: WIKI.eau_goma,
     },
     {
       title: "Remise de bourses d'études à 200 élèves de Kalehe",
       content: "La rentrée scolaire a été assurée pour 200 jeunes vulnérables avec la prise en charge intégrale des frais scolaires, uniformes et manuels.",
-      imageUrl: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=800",
+      imageUrl: WIKI.femmes_bukavu2,
     },
     {
       title: "Publication du rapport d'audit financier 2025 pour le Sud-Kivu",
       content: "Le cabinet d'audit indépendant a validé la conformité et l'efficacité à 98.5% de l'allocation des fonds sur le terrain au Sud-Kivu.",
-      imageUrl: "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&q=80&w=800",
+      imageUrl: WIKI.bukavu_lumumba,
     },
   ];
 
