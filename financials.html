@@ -5,7 +5,8 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Portail AMORA - Finances</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
       async function doLogout() {
             await fetch('/api/auth/logout', { method: 'POST' });
             location.href = 'login.html';
