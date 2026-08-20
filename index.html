@@ -596,6 +596,13 @@
       </section>
     </main>
 
+    <section class="bg-surface py-20 px-margin-mobile md:px-margin-desktop">
+      <div class="max-w-container-max mx-auto">
+        <h2 class="font-headline-lg text-primary mb-8">Actualités</h2>
+        <div id="newsGrid" class="grid grid-cols-1 md:grid-cols-3 gap-gutter"></div>
+      </div>
+    </section>
+
     <footer class="bg-primary w-full">
       <div
         class="flex flex-col md:flex-row justify-between items-center px-margin-mobile md:px-margin-desktop py-stack-lg w-full max-w-container-max mx-auto border-t border-on-primary-fixed-variant"
@@ -702,6 +709,26 @@
     </div>
 
     <script>
+      async function loadNews() {
+        const grid = document.getElementById("newsGrid");
+        try {
+          const response = await fetch("/api/content/news");
+          const data = await response.json();
+          if (!data.success || !data.news.length) {
+            grid.innerHTML = '<p class="text-on-surface-variant">Aucune actualité publiée pour le moment.</p>';
+            return;
+          }
+          grid.innerHTML = data.news.map((item) => `
+            <article class="bg-white rounded-xl shadow-level-1 overflow-hidden">
+              ${item.imageUrl ? `<img src="${item.imageUrl}" alt="" class="w-full h-48 object-cover">` : ""}
+              <div class="p-stack-lg"><p class="text-sm text-secondary mb-2">${new Date(item.publishedAt).toLocaleDateString("fr-FR")}</p><h3 class="font-headline-sm text-primary mb-2">${item.title}</h3><p class="text-on-surface-variant">${item.content}</p></div>
+            </article>
+          `).join("");
+        } catch (error) {
+          grid.innerHTML = '<p class="text-error">Impossible de charger les actualités.</p>';
+        }
+      }
+      loadNews();
       (async function checkNavbarAuth() {
         try {
           const res = await fetch("/api/auth/me");

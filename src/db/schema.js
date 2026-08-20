@@ -69,6 +69,14 @@ export const reports = pgTable("reports", {
   publishedAt: timestamp("published_at").defaultNow().notNull(),
 });
 
+export const news = pgTable("news", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  title: text("title").notNull(),
+  content: text("content").notNull(),
+  imageUrl: text("image_url"),
+  publishedAt: timestamp("published_at").defaultNow().notNull(),
+});
+
 export const messages = pgTable("messages", {
   id: uuid("id").defaultRandom().primaryKey(),
   senderId: uuid("sender_id")

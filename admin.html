@@ -7,6 +7,7 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
   <title>Portail AMORA - Gestion des donateurs</title>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet" />
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Plus+Jakarta+Sans:ital,wght@0,200..800&amp;display=swap"
     rel="stylesheet" />
@@ -254,6 +255,24 @@
       </div>
     </div>
 
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter mb-stack-lg">
+      <form id="projectForm" class="bg-surface-container-lowest rounded-xl shadow-level-1 p-stack-lg space-y-3">
+        <h3 class="font-headline-sm text-primary">Ajouter un projet</h3>
+        <input name="title" required placeholder="Titre du projet" class="w-full border border-outline-variant rounded-lg p-3" />
+        <div class="grid grid-cols-2 gap-3"><input name="axis" required placeholder="Domaine" class="border border-outline-variant rounded-lg p-3" /><input name="province" required placeholder="Province" class="border border-outline-variant rounded-lg p-3" /></div>
+        <textarea name="description" required placeholder="Description" class="w-full border border-outline-variant rounded-lg p-3"></textarea>
+        <div class="grid grid-cols-2 gap-3"><input name="goalAmount" type="number" min="1" required placeholder="Objectif en USD" class="border border-outline-variant rounded-lg p-3" /><input name="imageUrl" type="url" placeholder="URL de l'image" class="border border-outline-variant rounded-lg p-3" /></div>
+        <button class="bg-secondary text-white rounded-lg px-5 py-3">Publier le projet</button>
+      </form>
+      <form id="newsForm" class="bg-surface-container-lowest rounded-xl shadow-level-1 p-stack-lg space-y-3">
+        <h3 class="font-headline-sm text-primary">Publier une actualité</h3>
+        <input name="title" required placeholder="Titre de l’actualité" class="w-full border border-outline-variant rounded-lg p-3" />
+        <textarea name="content" required placeholder="Contenu" class="w-full min-h-28 border border-outline-variant rounded-lg p-3"></textarea>
+        <input name="imageUrl" type="url" placeholder="URL de l'image (facultatif)" class="w-full border border-outline-variant rounded-lg p-3" />
+        <button class="bg-secondary text-white rounded-lg px-5 py-3">Publier l’actualité</button>
+      </form>
+    </div>
+
     <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-stack-lg">
 
       <div class="md:col-span-8 bg-surface-container-lowest rounded-[24px] shadow-level-1 overflow-hidden">
@@ -342,6 +361,24 @@
       location.href = 'login.html';
     }
 
+    async function submitContent(form, endpoint, successText) {
+      const payload = Object.fromEntries(new FormData(form));
+      const response = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+      const data = await response.json();
+      if (!data.success) throw new Error(data.message);
+      form.reset();
+      Swal.fire({ icon: 'success', text: successText });
+    }
+
+    document.getElementById('projectForm').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      try { await submitContent(event.currentTarget, '/api/content/projects', 'Projet publié avec succès.'); } catch (error) { Swal.fire({ icon: 'error', text: error.message }); }
+    });
+    document.getElementById('newsForm').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      try { await submitContent(event.currentTarget, '/api/content/news', 'Actualité publiée avec succès.'); } catch (error) { Swal.fire({ icon: 'error', text: error.message }); }
+    });
+
     loadAdminDonations();
   </script>
 
@@ -382,6 +419,7 @@
     })();
   </script>
 
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

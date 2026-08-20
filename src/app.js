@@ -11,6 +11,7 @@ import contactRouter from "./routes/contact.js";
 import reportsRouter from "./routes/reports.js";
 import usersRouter from "./routes/users.js";
 import messagesRouter from "./routes/messages.js";
+import contentRouter from "./routes/content.js";
 import { ensureDbReady } from "./db/init.js";
 
 const app = express();
@@ -47,6 +48,7 @@ app.use("/api/contact", contactRouter);
 app.use("/api/reports", reportsRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/messages", messagesRouter);
+app.use("/api/content", contentRouter);
 app.get("/api/health", (req, res) => {
   res.json({ status: "ok", timestamp: new Date().toISOString() });
 });
