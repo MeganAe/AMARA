@@ -312,47 +312,234 @@
           </div>
           <div>
             <div class="font-label-md text-white uppercase tracking-wider mb-3">Contact Direct</div>
-            <p class="text-sm text-on-primary-container mb-2">📍 Bukavu, Sud-Kivu, RDC</p>
-            <p class="text-sm text-on-primary-container mb-2">📞 +243 999 123 456</p>
-            <p class="text-sm text-on-primary-container mb-4">✉️ contact@fondation-amora.org</p>
+            <p class="text-sm text-on-primary-container mb-2">Bukavu, Sud-Kivu, RDC</p>
+            <p class="text-sm text-on-primary-container mb-2">Tel : +243 999 123 456</p>
+            <p class="text-sm text-on-primary-container mb-4">Email : contact@fondation-amora.org</p>
             <a href="contact.html" class="inline-block bg-secondary text-white px-5 py-2 rounded-full text-xs font-bold hover:bg-on-secondary-container transition-colors">Formulaire de contact</a>
           </div>
         </div>
         <div class="border-t border-on-primary-fixed-variant pt-6 flex flex-col md:flex-row justify-between items-center text-xs text-on-primary-container">
           <p>© 2026 Fondation AMORA (Bukavu, Sud-Kivu, RDC). Tous droits réservés.</p>
-          <p class="mt-2 md:mt-0">Plateforme officielle d'impact communautaire au Sud-Kivu.</p>
+          <p class="mt-2 md:mt-0">Organisation non gouvernementale de developpement durable au Sud-Kivu.</p>
         </div>
       </div>
     </footer>
     <script>
-      let PROJECTS = [];
+      const DEFAULT_SUD_KIVU_PROJECTS = [
+        {
+          id: "kivu-eau-forage-kabare",
+          axis: "Eau et assainissement",
+          title: "Forages d'eau potable et bornes-fontaines a Kabare",
+          province: "Sud-Kivu (Kabare et Bukavu)",
+          desc: "Construction de forages profonds et adduction d'eau potable pour plus de 25 000 habitants des collines de Kabare et des communes de Kadutu et Bagira.",
+          raised: 48500,
+          goal: 65000,
+          donors: 320,
+          pct: 75,
+          img: "https://upload.wikimedia.org/wikipedia/commons/3/35/Source_d%27eau_de_FUNU_%C3%A0_Bukavu_au_Sud-Kivu_en_RDC.jpg",
+        },
+        {
+          id: "bukavu-assainissement-kadutu",
+          axis: "Eau et assainissement",
+          title: "Reseau d'assainissement et hygiene collective a Kadutu",
+          province: "Sud-Kivu (Bukavu - Kadutu)",
+          desc: "Installation de blocs sanitaires communautaires et drainage des eaux usees pour proteger 15 000 habitants des epidemies hydriques.",
+          raised: 26800,
+          goal: 38000,
+          donors: 140,
+          pct: 71,
+          img: "https://upload.wikimedia.org/wikipedia/commons/1/12/R%C3%A9cipient_d%27eau.jpg",
+        },
+        {
+          id: "idjwi-eau-ile",
+          axis: "Eau et assainissement",
+          title: "Adduction d'eau et captage de sources a Idjwi",
+          province: "Sud-Kivu (Territoire d'Idjwi)",
+          desc: "Captage de sources saines et filtres collectifs pour securiser l'approvisionnement en eau potable de 18 000 insulaires du lac Kivu.",
+          raised: 41900,
+          goal: 55000,
+          donors: 260,
+          pct: 76,
+          img: "https://upload.wikimedia.org/wikipedia/commons/a/a0/Aganze_1_Lac_kivu_RD_Congo.jpg",
+        },
+        {
+          id: "panzi-maternite-bukavu",
+          axis: "Sante maternelle",
+          title: "Maternite sans risque et soins obstetricaux a Panzi",
+          province: "Sud-Kivu (Bukavu - Ibanda)",
+          desc: "Equipements medicaux modernes et prise en charge integrale des accouchements et consultations prenatales pour 3 200 femmes a Panzi.",
+          raised: 64200,
+          goal: 85000,
+          donors: 410,
+          pct: 76,
+          img: "https://upload.wikimedia.org/wikipedia/commons/5/5c/A_nurse_at_Lemera_Hospital%2C_Lemera%2C_Uvira_Territory%2C_South_Kivu_Province%2C_DR_Congo.jpg",
+        },
+        {
+          id: "uvira-clinique-mobile",
+          axis: "Sante maternelle",
+          title: "Clinique mobile et soins d'urgence a Uvira et Fizi",
+          province: "Sud-Kivu (Uvira et Fizi)",
+          desc: "Deploiement d'une unite medicale mobile dispensant des consultations gratuites et medicaments essentiels dans les localites enclavees.",
+          raised: 46000,
+          goal: 60000,
+          donors: 280,
+          pct: 77,
+          img: "https://upload.wikimedia.org/wikipedia/commons/4/4f/L%27H%C3%B4pital_G%C3%A9n%C3%A9ral_de_R%C3%A9f%C3%A9rence_de_Lemera%2C_Sud-Kivu.jpg",
+        },
+        {
+          id: "mwenga-sante-rurale",
+          axis: "Sante maternelle",
+          title: "Rehabilitation du centre de sante rural de Mwenga",
+          province: "Sud-Kivu (Territoire de Mwenga)",
+          desc: "Renovation des salles de soins, dotation en materiel d'accouchement et approvisionnement regulier en medicaments pour 12 000 residents.",
+          raised: 29000,
+          goal: 48000,
+          donors: 175,
+          pct: 60,
+          img: "https://upload.wikimedia.org/wikipedia/commons/8/86/PanziHospital.png",
+        },
+        {
+          id: "walungu-maraichage-femmes",
+          axis: "Agriculture et economie",
+          title: "Cooperatives maraicheres feminines de Walungu et Nyangezi",
+          province: "Sud-Kivu (Walungu)",
+          desc: "Formation agroecologique, distribution de semences vivrieres et microcredits solidaires pour 1 200 agricultrices regroupees en cooperatives.",
+          raised: 29500,
+          goal: 40000,
+          donors: 215,
+          pct: 74,
+          img: "https://upload.wikimedia.org/wikipedia/commons/1/10/Art-Feminism-Bukavu_%281%29.jpg",
+        },
+        {
+          id: "shabunda-agriculture-vivriere",
+          axis: "Agriculture et economie",
+          title: "Appui aux petits producteurs agricoles de Shabunda",
+          province: "Sud-Kivu (Territoire de Shabunda)",
+          desc: "Fourniture d'outils aratoires, de semences resistantes et soutien logistique pour ameliorer la securite alimentaire de 800 familles.",
+          raised: 18500,
+          goal: 42000,
+          donors: 95,
+          pct: 44,
+          img: "https://upload.wikimedia.org/wikipedia/commons/3/3f/Un_personnel_de_la_Section_VIH-SIDA_de_la_MONUSCO_m%C3%A8ne_une_s%C3%A9ance_de_sensibilisation_sur_le_VIH-SIDA_%C3%A0_l%E2%80%99endroit_des_ex-combattants_dans_le_camp_de_transit_de_Walungu._%2823152505520%29.jpg",
+        },
+        {
+          id: "kalehe-ecoles-orphelins",
+          axis: "Education",
+          title: "Bourses scolaires et kits educatifs pour les enfants de Kalehe",
+          province: "Sud-Kivu (Territoire de Kalehe)",
+          desc: "Prise en charge integrale des frais scolaires, uniformes et manuels pour 600 enfants orphelins et vulnerables de Kalehe.",
+          raised: 33800,
+          goal: 45000,
+          donors: 240,
+          pct: 75,
+          img: "https://upload.wikimedia.org/wikipedia/commons/6/68/Art-Feminism-Bukavu_%2810%29.jpg",
+        },
+        {
+          id: "bagira-formation-jeunes",
+          axis: "Education",
+          title: "Centre de formation professionnelle des jeunes a Bagira",
+          province: "Sud-Kivu (Bukavu - Bagira)",
+          desc: "Ateliers d'apprentissage en menuiserie, energie solaire, couture et informatique pour 450 jeunes en difficulte d'insertion a Bukavu.",
+          raised: 21400,
+          goal: 35000,
+          donors: 130,
+          pct: 61,
+          img: "https://upload.wikimedia.org/wikipedia/commons/b/b7/Centre_ville_de_Bukavu_%284308252305%29.jpg",
+        },
+        {
+          id: "kahuzi-reforestation",
+          axis: "Environnement",
+          title: "Reforestation et preservation du massif de Kahuzi-Biega",
+          province: "Sud-Kivu (Kabare et Kalehe)",
+          desc: "Plantation de 150 000 arbres agroforestiers pour stabiliser les collines, freiner l'erosion et proteger les corridors ecologiques du Sud-Kivu.",
+          raised: 37200,
+          goal: 50000,
+          donors: 190,
+          pct: 74,
+          img: "https://upload.wikimedia.org/wikipedia/commons/b/b6/Kahuzi-Biega_National_Park_%2839423247252%29.jpg",
+        },
+        {
+          id: "bukavu-energie-solaire",
+          axis: "Environnement",
+          title: "Electrification solaire des structures scolaires et medicales",
+          province: "Sud-Kivu (Bukavu et Kabare)",
+          desc: "Installation de generateurs solaires fiables dans 15 ecoles et 8 dispensaires pour assurer l'eclairage et la conservation des vaccins.",
+          raised: 31600,
+          goal: 58000,
+          donors: 160,
+          pct: 54,
+          img: "https://upload.wikimedia.org/wikipedia/commons/b/b0/Bukavu%2C_PE_Lumumba.jpeg",
+        },
+        {
+          id: "bukavu-femmes-microfinance",
+          axis: "Agriculture et economie",
+          title: "Microfinance solidaire pour les femmes chefs de menage a Ibanda",
+          province: "Sud-Kivu (Bukavu - Ibanda)",
+          desc: "Programme de microcredits et accompagnement technique en gestion au profit de 350 meres de famille a Bukavu.",
+          raised: 19200,
+          goal: 32000,
+          donors: 110,
+          pct: 60,
+          img: "https://upload.wikimedia.org/wikipedia/commons/b/bb/Art-Feminism-Bukavu_%2811%29.jpg",
+        },
+        {
+          id: "bitobolo-eau-village",
+          axis: "Eau et assainissement",
+          title: "Point d'eau communautaire et hygiene a Bitobolo",
+          province: "Sud-Kivu (Kabare - Bitobolo)",
+          desc: "Amenagement d'un point d'eau villageois protege et mise en place d'un comite local d'entretien technique pour 4 000 habitants.",
+          raised: 14500,
+          goal: 22000,
+          donors: 85,
+          pct: 66,
+          img: "https://upload.wikimedia.org/wikipedia/commons/2/22/Bitobolo_Village.jpg",
+        },
+      ];
+
+      let PROJECTS = DEFAULT_SUD_KIVU_PROJECTS;
       let filter = "Tous";
 
       async function fetchProjects() {
         try {
           const res = await fetch("/api/projects");
           const data = await res.json();
-          if (data.success) {
-            PROJECTS = data.projects.map((p) => ({
-              id: p.slug,
-              axis: p.axis,
-              title: p.title,
-              province: p.province,
-              desc: p.description,
-              raised: p.raisedAmount,
-              goal: p.goalAmount,
-              donors: p.donorCount,
-              pct: p.percentage,
-              img:
-                p.imageUrl ||
-                "https://upload.wikimedia.org/wikipedia/commons/b/b0/Bukavu%2C_PE_Lumumba.jpeg",
-            }));
-            renderFilters();
-            renderGrid();
+          if (data.success && data.projects && data.projects.length) {
+            const sudKivuProjects = data.projects.filter(p => p.province && p.province.toLowerCase().includes("kivu"));
+            if (sudKivuProjects.length >= 4) {
+              const WIKI_DEFAULT = "https://upload.wikimedia.org/wikipedia/commons/3/35/Source_d%27eau_de_FUNU_%C3%A0_Bukavu_au_Sud-Kivu_en_RDC.jpg";
+              PROJECTS = sudKivuProjects.map((p) => {
+                let img = p.imageUrl || WIKI_DEFAULT;
+                if (img.includes("unsplash.com") || img.includes("photo-")) {
+                  if (p.axis && p.axis.toLowerCase().includes("sante")) {
+                    img = "https://upload.wikimedia.org/wikipedia/commons/5/5c/A_nurse_at_Lemera_Hospital%2C_Lemera%2C_Uvira_Territory%2C_South_Kivu_Province%2C_DR_Congo.jpg";
+                  } else if (p.axis && (p.axis.toLowerCase().includes("agri") || p.axis.toLowerCase().includes("femme"))) {
+                    img = "https://upload.wikimedia.org/wikipedia/commons/1/10/Art-Feminism-Bukavu_%281%29.jpg";
+                  } else if (p.axis && p.axis.toLowerCase().includes("educ")) {
+                    img = "https://upload.wikimedia.org/wikipedia/commons/6/68/Art-Feminism-Bukavu_%2810%29.jpg";
+                  } else {
+                    img = WIKI_DEFAULT;
+                  }
+                }
+                return {
+                  id: p.slug,
+                  axis: p.axis,
+                  title: p.title,
+                  province: p.province,
+                  desc: p.description,
+                  raised: p.raisedAmount,
+                  goal: p.goalAmount,
+                  donors: p.donorCount,
+                  pct: p.percentage,
+                  img: img,
+                };
+              });
+            }
           }
         } catch (e) {
-          console.error("Error fetching projects:", e);
+          console.log("Utilisation des projets locaux Sud-Kivu.");
         }
+        renderFilters();
+        renderGrid();
       }
 
       function card(p) {

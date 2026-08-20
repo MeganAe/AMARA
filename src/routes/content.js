@@ -68,7 +68,7 @@ router.post("/events", authenticateUser, requireAdmin, async (req, res) => {
       location,
       eventDate: new Date(eventDate),
       category: category || "Communauté",
-      imageUrl: imageUrl || "https://images.unsplash.com/photo-1594708767771-a7502209ff51?auto=format&fit=crop&q=80&w=800",
+      imageUrl: imageUrl || "https://upload.wikimedia.org/wikipedia/commons/3/35/Source_d%27eau_de_FUNU_%C3%A0_Bukavu_au_Sud-Kivu_en_RDC.jpg",
       organizer: organizer || "AMORA Bukavu",
       seatsAvailable: seatsAvailable ? Number(seatsAvailable) : 100,
     }).returning();
@@ -103,7 +103,7 @@ router.post("/projects", authenticateUser, requireAdmin, async (req, res) => {
       province,
       description,
       goalAmount: String(goalAmount),
-      imageUrl: imageUrl || "https://images.unsplash.com/photo-1594708767771-a7502209ff51?auto=format&fit=crop&q=80&w=800",
+      imageUrl: imageUrl || "https://upload.wikimedia.org/wikipedia/commons/3/35/Source_d%27eau_de_FUNU_%C3%A0_Bukavu_au_Sud-Kivu_en_RDC.jpg",
     }).returning();
     res.status(201).json({ success: true, project, message: "Projet créé avec succès." });
   } catch (error) {
