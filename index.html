@@ -456,7 +456,6 @@
         class="py-20 px-margin-mobile md:px-margin-desktop w-full max-w-container-max mx-auto"
       >
         <div class="mb-16">
-          <span class="text-xs font-bold uppercase tracking-wider text-secondary bg-secondary-fixed px-3 py-1 rounded-full inline-block mb-3">Priorités Sud-Kivu</span>
           <h2 class="font-headline-lg text-headline-lg text-primary mb-4">
             Nos domaines d'action prioritaires
           </h2>
@@ -566,7 +565,6 @@
         <div class="max-w-container-max mx-auto">
           <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12">
             <div>
-              <span class="text-xs font-bold uppercase tracking-wider text-secondary bg-secondary-fixed px-3 py-1 rounded-full inline-block mb-3">En direct du terrain</span>
               <h2 class="font-headline-lg text-primary">Événements &amp; Actions au Sud-Kivu</h2>
               <p class="text-on-surface-variant font-body-md mt-2">Suivez en temps réel les inaugurations, forums communautaires et caravanes de santé.</p>
             </div>
@@ -588,7 +586,6 @@
         class="bg-primary py-24 px-margin-mobile md:px-margin-desktop relative overflow-hidden"
       >
         <div class="relative z-10 w-full max-w-4xl mx-auto text-center">
-          <span class="text-xs font-bold uppercase tracking-wider text-secondary-fixed bg-primary-container px-4 py-1.5 rounded-full inline-block mb-4">Agir pour le Sud-Kivu</span>
           <h2 class="font-headline-lg text-headline-lg text-white mb-stack-md">
             Votre contribution transforme concrètement le Sud-Kivu
           </h2>
@@ -620,7 +617,6 @@
       <section class="bg-surface py-20 px-margin-mobile md:px-margin-desktop">
         <div class="max-w-container-max mx-auto">
           <div class="mb-10">
-            <span class="text-xs font-bold uppercase tracking-wider text-secondary bg-secondary-fixed px-3 py-1 rounded-full inline-block mb-2">Dernières nouvelles</span>
             <h2 class="font-headline-lg text-primary">Actualités du Sud-Kivu</h2>
           </div>
           <div id="newsGrid" class="grid grid-cols-1 md:grid-cols-3 gap-gutter"></div>
@@ -704,8 +700,7 @@
           grid.innerHTML = data.events.map((ev) => `
             <article class="bg-white rounded-2xl shadow-level-1 overflow-hidden border border-surface-variant flex flex-col hover:shadow-level-2 transition-all">
               <div class="h-48 bg-cover bg-center relative" style="background-image: url('${ev.imageUrl || "https://upload.wikimedia.org/wikipedia/commons/3/35/Source_d%27eau_de_FUNU_%C3%A0_Bukavu_au_Sud-Kivu_en_RDC.jpg"}')">
-                <span class="absolute top-3 left-3 bg-secondary text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-md">${ev.category || "Terrain"}</span>
-              </div>
+                </div>
               <div class="p-6 flex-grow flex flex-col">
                 <div class="flex items-center gap-2 text-xs text-on-surface-variant mb-2">
                   <span class="material-symbols-outlined text-sm text-secondary">calendar_month</span>
