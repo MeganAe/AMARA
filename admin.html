@@ -238,7 +238,7 @@
         </a>
         <button
           class="bg-secondary text-on-secondary px-6 py-3 rounded-full font-label-md text-label-md hover:opacity-90 transition-opacity flex items-center gap-2 shadow-level-1"
-          onclick="document.getElementById('inviteModal').classList.remove('hidden')">
+          onclick="inviteUser()">
           <span class="material-symbols-outlined" data-icon="add">add</span> Invite New User
         </button>
       </div>
@@ -368,6 +368,21 @@
       if (!data.success) throw new Error(data.message);
       form.reset();
       Swal.fire({ icon: 'success', text: successText });
+    }
+
+    async function inviteUser() {
+      const result = await Swal.fire({
+        title: 'Ajouter un utilisateur',
+        html: '<input id="inviteFirst" class="swal2-input" placeholder="Prénom"><input id="inviteLast" class="swal2-input" placeholder="Nom"><input id="inviteEmail" class="swal2-input" placeholder="Email" type="email"><input id="invitePassword" class="swal2-input" placeholder="Mot de passe (6 caractères min.)" type="password">',
+        showCancelButton: true,
+        confirmButtonText: 'Créer',
+        cancelButtonText: 'Annuler',
+        preConfirm: () => ({ firstName: document.getElementById('inviteFirst').value, lastName: document.getElementById('inviteLast').value, email: document.getElementById('inviteEmail').value, password: document.getElementById('invitePassword').value }),
+      });
+      if (!result.isConfirmed) return;
+      const response = await fetch('/api/users', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(result.value) });
+      const data = await response.json();
+      Swal.fire({ icon: data.success ? 'success' : 'error', text: data.success ? 'Utilisateur créé avec succès.' : data.message });
     }
 
     document.getElementById('projectForm').addEventListener('submit', async (event) => {

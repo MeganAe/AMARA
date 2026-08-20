@@ -106,4 +106,19 @@ router.patch("/:id/role", authenticateUser, requireAdmin, async (req, res) => {
   }
 });
 
+router.post("/", authenticateUser, requireAdmin, async (req, res) => {
+  try {
+    const { firstName, lastName, email, password, role = "donor" } = req.body;
+    if (!firstName || !lastName || !email || !password || password.length < 6 || !["donor", "admin"].includes(role)) {
+      return res.status(400).json({ success: false, message: "Informations utilisateur invalides." });
+    }
+    const [user] = await db.insert(users).values({
+      firstName: firstName.trim(), lastName: lastName.trim(), email: email.toLowerCase().trim(), passwordHash: await bcrypt.hash(password, 10), role,
+    }).returning();
+    return res.status(201).json({ success: true, user });
+  } catch (err) {
+    return res.status(400).json({ success: false, message: "Cette adresse email est déjà utilisée." });
+  }
+});
+
 export default router;

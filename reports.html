@@ -680,13 +680,16 @@
 
       async function loadLiveReports() {
         try {
-          const [reportsResponse, statsResponse] = await Promise.all([
-            fetch("/api/reports"),
-            fetch("/api/stats/transparency"),
-          ]);
+          const reportsResponse = await fetch("/api/reports");
           const reportsData = await reportsResponse.json();
-          const statsData = await statsResponse.json();
           if (reportsData.success) renderReports(reportsData.reports);
+          else reportGrid.innerHTML = '<p class="text-error">Impossible de charger les documents.</p>';
+        } catch (error) {
+          reportGrid.innerHTML = '<p class="text-error">Impossible de charger les documents.</p>';
+        }
+        try {
+          const statsResponse = await fetch("/api/stats/transparency");
+          const statsData = await statsResponse.json();
           if (statsData.success) {
             window.liveReportStats = statsData.stats;
             document.getElementById("liveDonationCount").textContent = statsData.stats.totalDonations.toLocaleString("fr-FR");
@@ -699,7 +702,8 @@
             `).join("") || '<li class="text-sm text-on-surface-variant">Aucune donnée disponible.</li>';
           }
         } catch (error) {
-          reportGrid.innerHTML = '<p class="text-error">Impossible de charger les données.</p>';
+          document.getElementById("liveDonationCount").textContent = "0";
+          document.getElementById("liveSectorList").innerHTML = '<li class="text-sm text-on-surface-variant">Statistiques indisponibles.</li>';
         }
       }
 
